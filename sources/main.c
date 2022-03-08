@@ -1,6 +1,15 @@
 #include <stdio.h>
+#include <mlx.h>
 
-int main()
+int	main(void)
 {
-	return (0);
+	void	*mlx;
+	void	*mlx_win;
+
+	(void)mlx;
+	(void)mlx_win;
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
 }
+
