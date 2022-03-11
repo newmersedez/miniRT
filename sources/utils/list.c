@@ -6,11 +6,10 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:40:56 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/11 21:53:39 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/11 21:55:17 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "../../includes/list.h"
 #include "../../includes/figure.h"
 
