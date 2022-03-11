@@ -2,35 +2,41 @@
 # define MINIRT_H
 
 # include <mlx.h>
-# include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
 
-typedef struct	s_pos
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_pos;
+# include "list.h"
+# include "figure.h"
+# include "parser.h"
 
-typedef struct	s_color
+typedef struct s_minirt
 {
-	int	r;
-	int	g;
-	int	b;
-}	t_color;
+	t_ambient	*ambient_light;
+	t_camera	*camera;
+	t_light		*light;
 
-typedef struct	s_ambient
-{
-	double	ratio;
-	t_color	color;
-}	t_ambient;
+}	t_minirt;
 
-typedef struct	s_camera
-{
-	t_pos	pos;
-	t_pos	normal_vec_pos;
-	double	fov;
-}	t_camera;
 
 #endif
+
+// typedef struct figure
+// {
+// 	void	*figure;
+// 	double	(*intersect_with)(t_vector *ray, t_vector *begin_point, void* figure) 
+// 	double	(*get_)(t_vector *, t_vector *begin_point, void* figure) 
+// }	figure;
+
+
+// double	intersect_with_plane(t_vector ray, t_vector begin_point, void* figure)
+// {
+
+// }
+
+// double	intersect_with_sphere(t_vector ray, t_vector begin_point, void* figure)
+// {
+
+// }
+
+// figure fig = new figure;	//пусть это плоскость
+// figure = fig->intersect_with = intersect_with_plane;
+
