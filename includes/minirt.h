@@ -2,7 +2,6 @@
 # define MINIRT_H
 
 # include <mlx.h>
-# include <stdlib.h>
 
 # include "list.h"
 # include "figure.h"
