@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:50:13 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/12 20:13:20 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/12 22:42:58 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct s_minirt	t_minirt;
 typedef struct s_color	t_color;
+typedef struct s_pos	t_pos;
 
 /* Parsing */
 int		parse_info_from_file(const char *filename, t_minirt *minirt);

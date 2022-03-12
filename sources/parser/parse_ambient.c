@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:17:40 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/12 20:10:48 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/12 23:43:54 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_color	get_color(char **line, int *code)
 	(*line)++;
 	color.b = get_int_param(line, code);
 	skip_spaces(line);
-	if (**line != '\0' || color.b < 0)
+	if (**line != '\0' || color.b < 0)	
 		*code = 1;
 	return (color);
 }
@@ -51,7 +51,6 @@ int	parse_ambient(char *line, t_minirt *minirt)
 	double	lighting_ratio;
 	t_color	color;
 
-	(void)minirt;
 	exit_code = 0;
 	lighting_ratio = get_lighting_ratio(&line, &exit_code);
 	if (exit_code == 1)

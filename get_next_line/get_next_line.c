@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:21:58 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/12 17:23:33 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/12 23:39:50 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,9 @@ int	assignment(char **line, void *data)
 int	get_next_line(int fd, char **line)
 {
 	static char	buffer[OPEN_MAX][BUFFER_SIZE + 1];
-	int			i;
 	int			count;
 	int			returned;
 
-	i = 0;
 	count = -1;
 	if (read(fd, 0, 0) == -1 || !line || !assignment(line, malloc(1)) || \
 			BUFFER_SIZE < 1)
