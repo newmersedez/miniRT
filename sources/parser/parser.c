@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:17:45 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/12 18:36:22 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/12 20:14:45 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	parse_info_from_file(const char *filename, t_minirt *minirt)
 	int		status;
 	char	*line;
 
-	if (!minirt)	
+	if (!minirt)
 		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)

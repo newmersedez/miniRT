@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:50:13 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/12 19:50:53 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/12 20:13:20 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 
-typedef struct s_minirt t_minirt;
-typedef struct s_color t_color;
+typedef struct s_minirt	t_minirt;
+typedef struct s_color	t_color;
 
 /* Parsing */
 int		parse_info_from_file(const char *filename, t_minirt *minirt);

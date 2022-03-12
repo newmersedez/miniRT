@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:49:04 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/11 20:51:09 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/12 20:12:36 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@
 # define PLANE		1
 # define CYLINDER	2
 
-typedef struct	s_pos
+typedef struct s_pos
 {
 	double	x;
 	double	y;
 	double	z;
 }	t_pos;
 
-typedef struct	s_color
+typedef struct s_color
 {
 	int	r;
 	int	g;
 	int	b;
 }	t_color;
 
-typedef struct	s_ambient
+typedef struct s_ambient
 {
 	double	lighting_ratio;
 	t_color	color;
 }	t_ambient;
 
-typedef struct	s_camera
+typedef struct s_camera
 {
 	t_pos	pos;
 	t_pos	normal_vec;
@@ -74,4 +74,4 @@ typedef struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
-# endif
+#endif

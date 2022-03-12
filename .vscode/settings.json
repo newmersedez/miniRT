@@ -1,7 +1,0 @@
-{
-	"files.associations": {
-		"parser.h": "c",
-		"system_error": "c",
-		"get_next_line.h": "c"
-	}
-}

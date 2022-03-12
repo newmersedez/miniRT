@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:49:48 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/12 19:56:59 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/12 20:14:35 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ double	get_double_param(char **line, int *code)
 	if (!ft_isdigit(**line))
 		*code = 1;
 	while (**line && ft_isdigit(**line))
-		fract = fract* 10 + (*((*line)++) - '0');
+		fract = fract * 10 + (*((*line)++) - '0');
 	return (negative * (value + ((double)fract / pow(10, numberlen(fract)))));
 }
 
