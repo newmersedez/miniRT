@@ -22,6 +22,7 @@ int	get_int_param(char**line, int *code)
 	int	value;
 	int	negative;
 
+	value = 0;
 	negative = 1;
 	if (**line == '-')
 	{
@@ -31,7 +32,10 @@ int	get_int_param(char**line, int *code)
 	if (!ft_isdigit(**line))
 		*code = 1;
 	while (**line && ft_isdigit(**line))
-		value = value * 10 + (*((*line)++) - '0');
+	{
+		value = value * 10 + (**line - '0');
+		(*line)++;
+	}
 	return (negative * value);
 }
 
@@ -53,9 +57,9 @@ double	get_double_param(char **line, int *code)
 		*code = 1;
 	while (**line && ft_isdigit(**line))
 		value = value * 10 + (*((*line)++) - '0');
-	if (*((*line)++) == '.')
+	if (**line == '.')
 	{
-		if (!ft_isdigit(**line))
+		if (!ft_isdigit(*(++(*line))))
 			*code = 1;
 		while (**line && ft_isdigit(**line))
 			fract = fract * 10 + (*((*line)++) - '0');

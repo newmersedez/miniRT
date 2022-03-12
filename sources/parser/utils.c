@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:49:48 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/12 23:06:27 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/13 00:42:45 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_isspace(char c)
 
 void	skip_spaces(char **line)
 {
+	if (!line && !*line)
+		return ;
 	while (**line && ft_isspace(**line))
 		(*line)++;
 }
