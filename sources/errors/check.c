@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:53:50 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/11 22:02:36 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/12 17:54:01 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,19 @@ int	check_file_extension(const char *filename)
 			return (0);
 		else if (ext[0] != 'r' || ext[1] != 't')
 			return (0);
+	}
+	return (1);
+}
+
+int	check_line_empty(const char *line)
+{
+	if (!line)
+		return (1);
+	while (*line)
+	{
+		if (!ft_isspace(*line))
+			return (0);
+		line++;
 	}
 	return (1);
 }

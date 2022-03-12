@@ -6,15 +6,19 @@
 # include "list.h"
 # include "figure.h"
 # include "parser.h"
+# include "errors.h"
 
 typedef struct s_minirt
 {
 	t_ambient	*ambient_light;
 	t_camera	*camera;
 	t_light		*light;
+	t_list		*figures_list;
 
 }	t_minirt;
 
+/* Initizlization */
+int	init_minirt(t_minirt *minirt);
 
 #endif
 

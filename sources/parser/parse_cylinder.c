@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/12 17:25:37 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/12 20:09:01 by lorphan          ###   ########.fr       */
+/*   Created: 2022/03/12 18:23:21 by lorphan           #+#    #+#             */
+/*   Updated: 2022/03/12 18:30:17 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/parser.h"
 
-int	main(int argc, char *argv[])
+int	parse_cylinder(char *line, t_minirt *minirt)
 {
-	t_minirt	minirt;
-	char		*filename;
-
-	if (!check_start_errors(argc, argv))
-		return (1);
-	if (!init_minirt(&minirt))
-		return (1);
-	filename = argv[1];
-	if (!parse_info_from_file(filename, &minirt))
-	{
-		printf("Error\n");
-		return (1);
-	}
-	printf("krasava\n");
-	return (0);
+		(void)line;
+	(void)minirt;
+	return (1);
 }

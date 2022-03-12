@@ -1,4 +1,4 @@
-NAME			= a.out
+NAME			= minirt
 LIBFT			= ./libft/libft.h
 
 CC				= gcc
@@ -6,7 +6,7 @@ CFLAGS			= -Wall -Wextra -Werror
 RM				= rm -rf
 
 INCLUDES_DIR	= ./includes/
-SOURCES_DIR		= ./sources/ ./sources/parser/
+SOURCES_DIR		= ./sources/ ./sources/errors/ ./sources/list/ ./sources/minirt/ ./sources/parser/ ./get_next_line/
 OBJECTS_DIR		= ./objects/
 LIBFT_DIR		= ./libft/
 
