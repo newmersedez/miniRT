@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:17:45 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 01:28:17 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/13 01:59:19 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int	parse_line(char *line, t_minirt *minirt)
 		status = parse_camera(line + 1, minirt);
 	else if (*line == 'L')
 		status = parse_light(line + 1, minirt);
-	// else if (*line == 's' && *(line + 1) == 'p')
-	// 	status = parse_sphere(line + 2, minirt);
+	else if (*line == 's' && *(line + 1) == 'p')
+		status = parse_sphere(line + 2, minirt);
 	// else if (*line == 'p' && *(line + 1) == 'l)
 	// 	status = parse_plane(line + 2, minirt);
 	// else if (*line == 'c' && *(line + 1) == 'y)

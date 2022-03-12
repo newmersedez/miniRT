@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:49:04 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/12 23:02:30 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/13 02:43:15 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_camera
 {
 	double	fov;
 	t_pos	pos;
-	t_pos	normal_vec;
+	t_pos	normal;
 }	t_camera;
 
 typedef struct s_light
@@ -62,14 +62,14 @@ typedef struct s_plane
 {
 	t_pos	pos;
 	t_color	color;
-	t_pos	normal_vec;
+	t_pos	normal;
 }	t_plane;
 
 typedef struct s_cylinder
 {
 	t_pos	pos;
 	t_color	color;
-	t_pos	normal_vec;
+	t_pos	normal;
 	double	diameter;
 	double	height;
 }	t_cylinder;
