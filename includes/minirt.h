@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 19:47:19 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/13 20:27:26 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ typedef struct s_minirt
 int			init_minirt(t_minirt *minirt);
 t_window	*init_window(int width, int height, char *name);
 t_image		*init_image(t_minirt *minirt);
+
+/* Clear */
+int			clear_minirt(t_minirt *minirt);
+int			clear_figures(t_minirt *minirt);
 
 #endif
 
