@@ -3,25 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/12 23:16:15 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/13 19:47:19 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-// # include <mlx.h>
+# include <mlx.h>
 
 # include "list.h"
 # include "figure.h"
 # include "parser.h"
 # include "errors.h"
+# include "defines.h"
+
+typedef struct s_window
+{
+	void	*mlx;
+	void	*mlx_win;
+}	t_window;
+
+typedef struct s_image
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_image;
 
 typedef struct s_minirt
 {
+	t_window	*window;
+	t_image		*image;
 	t_ambient	*ambient_light;
 	t_camera	*camera;
 	t_light		*light;
@@ -30,7 +48,9 @@ typedef struct s_minirt
 }	t_minirt;
 
 /* Initizlization */
-int	init_minirt(t_minirt *minirt);
+int			init_minirt(t_minirt *minirt);
+t_window	*init_window(int width, int height, char *name);
+t_image		*init_image(t_minirt *minirt);
 
 #endif
 

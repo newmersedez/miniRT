@@ -6,11 +6,18 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:25:37 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 17:18:12 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/13 19:59:49 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
+
+int	close_hook(t_minirt *minirt)
+{
+	(void)minirt;
+	exit(EXIT_SUCCESS);
+	return (0);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -23,10 +30,9 @@ int	main(int argc, char *argv[])
 		return (1);
 	filename = argv[1];
 	if (!parse_info_from_file(filename, &minirt))
-	{
-		printf("Error\n");
 		return (1);
-	}
-	printf("krasava\n");
+	mlx_hook(minirt.window->mlx_win, 17, 0, close_hook, &minirt);
+	mlx_loop(minirt.window->mlx);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
