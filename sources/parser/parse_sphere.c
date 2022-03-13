@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:21:35 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 02:44:19 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/13 03:03:27 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,15 @@ int	parse_sphere(char *line, t_minirt *minirt)
 	if (code == 1)
 		return (0);
 	push_back(&(minirt->figures_list), (void *)sphere, SPHERE);
-	free(sphere);
-
+	printf("___\n");
+	print_figure(minirt->figures_list->figure, SPHERE);
+	printf("___\n");
+	
+	printf("%f %f %f\n",
+					(sphere)->pos.x,
+					(sphere)->pos.y,
+					(sphere)->pos.z);
+					
 	if (minirt->figures_list)
 	{
 		t_list	*temp = minirt->figures_list;
@@ -51,7 +58,7 @@ int	parse_sphere(char *line, t_minirt *minirt)
 		{
 			if (temp->type == SPHERE)
 				printf("%f %f %f\n",
-					((t_sphere *)temp)->pos.x,
+					((t_sphere *)temp->figure)->pos.x,
 					((t_sphere *)temp)->pos.y,
 					((t_sphere *)temp)->pos.z);
 			else if (temp->type == PLANE)
