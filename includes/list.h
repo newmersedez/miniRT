@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:35:44 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 02:19:18 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/13 16:29:00 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIST_H
 # define LIST_H
 
+# include <stdio.h>
 # include <stdlib.h>
 
 typedef struct s_list

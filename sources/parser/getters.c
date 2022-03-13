@@ -1,21 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   getters.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/13 17:18:47 by lorphan           #+#    #+#             */
+/*   Updated: 2022/03/13 17:19:34 by lorphan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/parser.h"
-
-static size_t	numberlen(int n)
-{
-	size_t	len;
-
-	len = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		len = 1;
-	while (n != 0)
-	{
-		n = n / 10;
-		len++;
-	}
-	return (len);
-}
 
 int	get_int_param(char**line, int *code)
 {
@@ -91,18 +86,37 @@ t_color	get_color(char **line, int *code)
 t_pos	get_pos(char **line, int *code)
 {
 	t_pos	pos;
-	
+
 	skip_spaces(line);
 	pos.x = get_double_param(line, code);
 	if (**line != ',')
 		*code = 1;
 	(*line)++;
 	pos.y = get_double_param(line, code);
-	if (**line != ',')	
+	if (**line != ',')
 		*code = 1;
 	(*line)++;
 	pos.z = get_double_param(line, code);
 	if (!ft_isspace(**line))
 		*code = 1;
 	return (pos);
+}
+
+t_pos	get_normal(char **line, int *code)
+{
+	t_pos	normal;
+
+	skip_spaces(line);
+	normal.x = get_double_param(line, code);
+	if (**line != ',' || !(normal.x >= -1.0 && normal.x <= 1.0))
+		*code = 1;
+	(*line)++;
+	normal.y = get_double_param(line, code);
+	if (**line != ',' || !(normal.y >= -1.0 && normal.y <= 1.0))
+		*code = 1;
+	(*line)++;
+	normal.z = get_double_param(line, code);
+	if (!ft_isspace(**line) || !(normal.z >= -1.0 && normal.z <= 1.0))
+		*code = 1;
+	return (normal);
 }

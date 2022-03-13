@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:49:04 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 02:58:52 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/13 15:35:56 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_pos
 }	t_pos;
 
 typedef struct s_pos t_vec;
-void	print_figure(void *data, int type);
 
 typedef struct s_color
 {
@@ -76,5 +75,7 @@ typedef struct s_cylinder
 	double	diameter;
 	double	height;
 }	t_cylinder;
+
+void	print_figure(void *data, int type);
 
 #endif

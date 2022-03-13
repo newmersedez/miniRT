@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:21:35 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 03:03:27 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/13 16:03:53 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,37 +42,5 @@ int	parse_sphere(char *line, t_minirt *minirt)
 	if (code == 1)
 		return (0);
 	push_back(&(minirt->figures_list), (void *)sphere, SPHERE);
-	printf("___\n");
-	print_figure(minirt->figures_list->figure, SPHERE);
-	printf("___\n");
-	
-	printf("%f %f %f\n",
-					(sphere)->pos.x,
-					(sphere)->pos.y,
-					(sphere)->pos.z);
-					
-	if (minirt->figures_list)
-	{
-		t_list	*temp = minirt->figures_list;
-		while (temp)
-		{
-			if (temp->type == SPHERE)
-				printf("%f %f %f\n",
-					((t_sphere *)temp->figure)->pos.x,
-					((t_sphere *)temp)->pos.y,
-					((t_sphere *)temp)->pos.z);
-			else if (temp->type == PLANE)
-				printf("%f %f %f\n",
-					((t_plane *)temp)->pos.x,
-					((t_plane *)temp)->pos.y,
-					((t_plane *)temp)->pos.z);
-			else if (temp->type == CYLINDER)
-				printf("%f %f %f\n",
-					((t_cylinder *)temp)->pos.x,
-					((t_cylinder *)temp)->pos.y,
-					((t_cylinder *)temp)->pos.z);
-			temp = temp->next;
-		}
-	}
 	return (1);
 }

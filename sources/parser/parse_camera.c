@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:19:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 02:43:15 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/13 17:19:47 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
-
-static t_pos	get_normal(char **line, int *code)
-{
-	t_pos	normal;
-	
-	skip_spaces(line);
-	normal.x = get_double_param(line, code);
-	if (**line != ',' || !(normal.x >= -1.0 && normal.x <= 1.0))
-		*code = 1;
-	(*line)++;
-	normal.y = get_double_param(line, code);
-	if (**line != ',' || !(normal.y >= -1.0 && normal.y <= 1.0))
-		*code = 1;
-	(*line)++;
-	normal.z = get_double_param(line, code);
-	if (!ft_isspace(**line) || !(normal.z >= -1.0 && normal.z <= 1.0))
-		*code = 1;
-	return (normal);
-}
 
 static double	get_fov(char **line, int *code)
 {
@@ -52,7 +33,7 @@ int	parse_camera(char *line, t_minirt *minirt)
 
 	code = 0;
 	pos = get_pos(&line, &code);
-	if (code == 1)	
+	if (code == 1)
 		return (0);
 	normal = get_normal(&line, &code);
 	if (code == 1)
