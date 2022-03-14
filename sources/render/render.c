@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/12 17:25:37 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/14 22:17:30 by lorphan          ###   ########.fr       */
+/*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
+/*   Updated: 2022/03/14 22:18:21 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
-int	main(int argc, char *argv[])
+void	render(t_minirt *minirt)
 {
-	t_minirt	minirt;
-
-	handle_errors(&minirt, argc, argv);
-	render(&minirt);
-	mlx_hook(minirt.window->mlx_win, 17, 0, close_hook, &minirt);
-	mlx_loop(minirt.window->mlx);
-	return (0);
+	
 }
