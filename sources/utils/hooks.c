@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/12 17:25:37 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/14 22:06:50 by lorphan          ###   ########.fr       */
+/*   Created: 2022/03/14 21:39:11 by lorphan           #+#    #+#             */
+/*   Updated: 2022/03/14 21:40:28 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
-int	main(int argc, char *argv[])
+int	close_hook(t_minirt *minirt)
 {
-	t_minirt	minirt;
-
-	handle_errors(&minirt, argc, argv);
-	mlx_hook(minirt.window->mlx_win, 17, 0, close_hook, &minirt);
-	mlx_loop(minirt.window->mlx);
+	success_exit(minirt, "OK");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 20:27:26 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/14 21:40:53 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ t_image		*init_image(t_minirt *minirt);
 /* Clear */
 int			clear_minirt(t_minirt *minirt);
 int			clear_figures(t_minirt *minirt);
+
+/* Events */
+int			close_hook(t_minirt *minirt);
 
 #endif
 
