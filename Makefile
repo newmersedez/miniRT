@@ -6,7 +6,7 @@ CFLAGS			= -Wall -Wextra -Werror
 RM				= rm -rf
 
 INCLUDES_DIR	= ./includes/
-SOURCES_DIR		= ./sources/ ./sources/errors/ ./sources/init/ ./sources/parser/ ./sources/utils/ ./get_next_line/
+SOURCES_DIR		= ./sources/ ./sources/errors/ ./sources/init/ ./sources/parser/ ./sources/utils/ ./sources/render/ ./get_next_line/
 OBJECTS_DIR		= ./objects/
 LIBFT_DIR		= ./libft/
 

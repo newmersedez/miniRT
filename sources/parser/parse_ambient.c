@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:17:40 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 01:57:25 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/15 14:15:30 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int	parse_ambient(char *line, t_minirt *minirt)
 	color = get_color(&line, &code);
 	if (code == 1)
 		return (0);
-	if (minirt->ambient_light)
+	if (minirt->scene->ambient_light)
 		return (0);
-	minirt->ambient_light = (t_ambient *)malloc(sizeof(t_ambient));
-	if (!minirt->ambient_light)
+	minirt->scene->ambient_light = (t_ambient *)malloc(sizeof(t_ambient));
+	if (!minirt->scene->ambient_light)
 		return (0);
-	minirt->ambient_light->lighting_ratio = lighting_ratio;
-	minirt->ambient_light->color = color;
+	minirt->scene->ambient_light->lighting_ratio = lighting_ratio;
+	minirt->scene->ambient_light->color = color;
 	return (1);
 }

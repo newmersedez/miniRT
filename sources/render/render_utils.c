@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_minirt.c                                      :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/12 18:16:18 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 14:13:58 by lorphan          ###   ########.fr       */
+/*   Created: 2022/03/15 13:17:10 by lorphan           #+#    #+#             */
+/*   Updated: 2022/03/15 13:17:22 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int	init_minirt(t_minirt *minirt)
+void	my_mlx_pixel_put(t_image *data, int x, int y, int color)
 {
-	if (!minirt)
-		return (0);
-	minirt->scene = init_scene();
-	if (!minirt->scene)
-		return (0);
-	minirt->window = init_window(WINDOW_WIDTH, WINDOW_HEIGHT, "minirt");
-	if (!minirt->window)
-		return (0);
-	minirt->image = init_image(minirt);
-	if (!minirt->image)
-		return (0);
-	return (1);
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }

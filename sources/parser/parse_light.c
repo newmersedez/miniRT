@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:20:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 01:58:03 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/15 14:15:51 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	parse_light(char *line, t_minirt *minirt)
 	color = get_color(&line, &code);
 	if (code == 1)
 		return (0);
-	if (minirt->light)
+	if (minirt->scene->light)
 		return (0);
-	minirt->light = (t_light *)malloc(sizeof(t_light));
-	if (!minirt->light)
+	minirt->scene->light = (t_light *)malloc(sizeof(t_light));
+	if (!minirt->scene->light)
 		return (0);
-	minirt->light->pos = pos;
-	minirt->light->color = color;
-	minirt->light->brightness_ratio = brightness_ratio;
+	minirt->scene->light->pos = pos;
+	minirt->scene->light->color = color;
+	minirt->scene->light->brightness_ratio = brightness_ratio;
 	return (1);
 }

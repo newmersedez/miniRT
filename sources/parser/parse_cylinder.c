@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:23:21 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 17:19:55 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/15 14:15:42 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ int	parse_cylinder(char *line, t_minirt *minirt)
 	cylinder->color = get_color(&line, &code);
 	if (code == 1)
 		return (0);
-	push_back(&(minirt->figures_list), (void *)cylinder, CYLINDER);
+	push_back(&(minirt->scene->figures_list), (void *)cylinder, CYLINDER);
 	return (1);
 }

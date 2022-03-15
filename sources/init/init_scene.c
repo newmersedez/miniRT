@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_minirt.c                                      :+:      :+:    :+:   */
+/*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/12 18:16:18 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 14:13:58 by lorphan          ###   ########.fr       */
+/*   Created: 2022/03/15 14:11:58 by lorphan           #+#    #+#             */
+/*   Updated: 2022/03/15 14:14:01 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int	init_minirt(t_minirt *minirt)
+t_scene	*init_scene(void)
 {
-	if (!minirt)
-		return (0);
-	minirt->scene = init_scene();
-	if (!minirt->scene)
-		return (0);
-	minirt->window = init_window(WINDOW_WIDTH, WINDOW_HEIGHT, "minirt");
-	if (!minirt->window)
-		return (0);
-	minirt->image = init_image(minirt);
-	if (!minirt->image)
-		return (0);
-	return (1);
+	t_scene	*scene;
+
+	scene = (t_scene *)malloc(sizeof(t_scene));
+	if (!scene)
+		return (NULL);
+	scene->ambient_light = NULL;
+	scene->camera = NULL;
+	scene->light = NULL;
+	scene->figures_list = NULL;
+	return (scene);
 }
