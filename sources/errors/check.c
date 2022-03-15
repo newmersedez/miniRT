@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:53:50 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/14 22:08:45 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/15 16:44:02 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	handle_errors(t_minirt *minirt, int argc, char *argv[])
 	char		*filename;
 
 	if (argc != 2)
-		fail_exit(minirt, ARGS_COUNT_ERROR);
+		fail_exit(NULL, ARGS_COUNT_ERROR);
 	filename = argv[1];
 	if (!check_file_extension(filename))
-		fail_exit(minirt, FILE_EXT_ERROR);
+		fail_exit(NULL, FILE_EXT_ERROR);
 	if (!init_minirt(minirt))
 		fail_exit(minirt, INIT_ERROR);
 	if (!parse_info_from_file(filename, minirt))

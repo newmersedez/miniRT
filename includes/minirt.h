@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 14:13:28 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/15 16:39:49 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,13 @@ t_image		*init_image(t_minirt *minirt);
 /* Render */
 void		render(t_minirt *minirt);
 
-/* Utils */
+/* Math */
+t_vec		vec_add(t_vec vec1, t_vec vec2);
+t_vec		vec_subtract(t_vec vec1, t_vec vec2);
+t_vec		vec_scalar_multiply(t_vec vec1, t_vec vec2);
+
+
+/* Drawing utils */
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
 
 /* Clear */
