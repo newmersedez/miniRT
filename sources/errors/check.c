@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:53:50 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 16:44:02 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/17 21:27:35 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,15 @@ int	check_line_empty(const char *line)
 		line++;
 	}
 	return (1);
+}
+
+int	check_line_comment(const char *line)
+{
+	if (!line)
+		return (0);
+	while (*line && ft_isspace(*line))
+		line++;
+	if (*line && *line == '#')
+		return (1);
+	return (0);
 }
