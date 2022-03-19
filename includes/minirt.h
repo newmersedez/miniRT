@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 16:39:49 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/19 20:32:39 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_image		*init_image(t_minirt *minirt);
 
 /* Render */
 void		render(t_minirt *minirt);
+t_color		raytrace(t_pos *camera_pos, double x, double y);
 
 /* Math */
 t_vec		vec_add(t_vec vec1, t_vec vec2);

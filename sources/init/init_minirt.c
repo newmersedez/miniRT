@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:16:18 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 15:21:28 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/19 20:48:22 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_image	*init_image(t_minirt *minirt)
 	if (!image)
 		return (NULL);
 	image->img = mlx_new_image(minirt->window->mlx,
-			WINDOW_HEIGHT, WINDOW_HEIGHT);
+			WINDOW_WIDTH, WINDOW_HEIGHT);
 	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel,
 			&image->line_length, &image->endian);
 	if (!image->img || !image->addr)
