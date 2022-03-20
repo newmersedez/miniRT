@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 18:06:06 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 17:10:44 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/21 00:11:53 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* Window settings */
 # define WINDOW_WIDTH		1920
 # define WINDOW_HEIGHT		1080
+# define DEFAULT_FOV		60
 
 /* Error messages */
 # define ARGS_COUNT_ERROR	"Icorrect args count\n"

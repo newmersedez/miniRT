@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:50:13 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 16:11:06 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/21 00:14:01 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <math.h>
 # include "minirt.h"
 # include "../libft/libft.h"
-# include "../get_next_line/get_next_line.h"
+# include "../sources/get_next_line/get_next_line.h"
 
 typedef struct s_minirt	t_minirt;
 typedef struct s_color	t_color;

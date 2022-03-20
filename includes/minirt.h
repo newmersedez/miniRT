@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/19 20:32:39 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/21 00:12:43 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include <mlx.h>
+// # include <mlx.h>
+# include "../mlx_linux/mlx.h"
 # include <math.h>
 
 # include "list.h"
@@ -64,10 +65,9 @@ void		render(t_minirt *minirt);
 t_color		raytrace(t_pos *camera_pos, double x, double y);
 
 /* Math */
-t_vec		vec_add(t_vec vec1, t_vec vec2);
-t_vec		vec_subtract(t_vec vec1, t_vec vec2);
-t_vec		vec_scalar_multiply(t_vec vec1, t_vec vec2);
-
+t_vec		vec_add(t_vec *vec1, t_vec *vec2);
+t_vec		vec_subtract(t_vec *vec1, t_vec *vec2);
+t_vec		vec_scalar_multiply(t_vec *vec1, t_vec *vec2);
 
 /* Drawing utils */
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
@@ -78,6 +78,9 @@ int			clear_figures(t_minirt *minirt);
 
 /* Events */
 int			close_hook(t_minirt *minirt);
+
+/* Converters */
+double		fov_converter(double fov);
 
 #endif
 
