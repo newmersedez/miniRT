@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 00:12:43 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/21 01:34:21 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,13 @@ t_image		*init_image(t_minirt *minirt);
 
 /* Render */
 void		render(t_minirt *minirt);
-t_color		raytrace(t_pos *camera_pos, double x, double y);
+t_color		raytrace(t_vec3 *start, t_vec3 *end, double x, double y);
 
 /* Math */
-t_vec		vec_add(t_vec *vec1, t_vec *vec2);
-t_vec		vec_subtract(t_vec *vec1, t_vec *vec2);
-t_vec		vec_scalar_multiply(t_vec *vec1, t_vec *vec2);
+t_vec3		vec_add(t_vec3 *vec1, t_vec3 *vec2);
+t_vec3		vec_subtract(t_vec3 *vec1, t_vec3 *vec2);
+double		vec_dot(t_vec3 *vec1, t_vec3 *vec2);
+t_vec2		ray_intersect_sphere(t_vec3 *start, t_vec3 *end, t_sphere *sphere);
 
 /* Drawing utils */
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
@@ -80,16 +81,9 @@ int			clear_figures(t_minirt *minirt);
 int			close_hook(t_minirt *minirt);
 
 /* Converters */
-double		fov_converter(double fov);
+t_vec3		convert_to_viewport(t_minirt *minirt, double x, double y);
 
 #endif
-
-// typedef struct figure
-// {
-// 	void	*figure;
-// 	double	(*intersect_with)(t_vector *ray, t_vector *begin_point, void* figure) 
-// 	double	(*get_)(t_vector *, t_vector *begin_point, void* figure) 
-// }	figure;
 
 
 // double	intersect_with_plane(t_vector ray, t_vector begin_point, void* figure)
@@ -101,7 +95,4 @@ double		fov_converter(double fov);
 // {
 
 // }
-
-// figure fig = new figure;	//пусть это плоскость
-// figure = fig->intersect_with = intersect_with_plane;
 

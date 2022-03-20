@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:40:56 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 14:15:06 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/21 00:54:38 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,19 @@ void	clear_list(t_list **list)
 		free(temp_ptr->figure);
 		free(temp_ptr);
 	}
+}
+
+size_t	size(t_list *list)
+{
+	size_t	size;
+
+	size = 0;
+	if (!list)
+		return (0);
+	while (list)
+	{
+		list = list->next;
+		++size;	
+	}
+	return (size);
 }

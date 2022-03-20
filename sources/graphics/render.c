@@ -3,39 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/19 20:48:09 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/21 01:24:31 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_color	raytrace(t_pos *camera_pos, double x, double y)
+t_color	raytrace(t_vec3 *start, t_vec3 *end, double x, double y)
 {
-	t_color	color = {0, 0, 0};
+	void	*closest_figure;
+	t_color	color = {x / 10, y / 10, 0};
+
 	(void)x;
-	(void)camera_pos;
 	(void)y;
+	(void)start;
+	(void)end;
+	(void)closest_figure;
 	return (color);
 }
 
 void	render(t_minirt *minirt)
 {
-	size_t	i;
-	size_t	j;
+	size_t	x;
+	size_t	y;
+	t_vec3	d_vec;
+	t_color	color;
 
-	i = 0;
-	while (i < WINDOW_WIDTH)
+	x = 0;
+	while (x < WINDOW_WIDTH)
 	{
-		j = 0;
-		while (j < WINDOW_HEIGHT)
+		y = 0;
+		while (y < WINDOW_HEIGHT)
 		{
-			my_mlx_pixel_put(minirt->image, i, j, 0xFFFFFF);
-			j++;
+			d_vec = convert_to_viewport(minirt, (double)x, (double)y);
+			color = raytrace(&minirt->scene->camera->pos, &d_vec,
+					(double)x, (double)y);
+			my_mlx_pixel_put(minirt->image, x, y,
+				((color.r & 0xFF) << 16)
+				+ ((color.g & 0xFF) << 8)
+				+ (color.b & 0xFF));
+			y++;
 		}
-		i++;
+		x++;
 	}
-	mlx_put_image_to_window(minirt->window->mlx, minirt->window->mlx_win, minirt->image->img, 0, 0);
+	mlx_put_image_to_window(minirt->window->mlx, minirt->window->mlx_win,
+		minirt->image->img, 0, 0);
 }

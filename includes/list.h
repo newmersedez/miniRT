@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:35:44 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 16:29:00 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/21 00:54:44 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ typedef struct s_list
 t_list	*create_new_elem(void *data, int type);
 void	push_back(t_list **list, void *data, int type);
 void	clear_list(t_list **list);
+size_t	size(t_list *list);
 
 #endif
