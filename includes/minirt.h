@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 01:34:21 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/21 02:05:43 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ t_image		*init_image(t_minirt *minirt);
 
 /* Render */
 void		render(t_minirt *minirt);
-t_color		raytrace(t_vec3 *start, t_vec3 *end, double x, double y);
+t_color		raytrace(t_minirt *minirt, t_vec3 *start, t_vec3 *end);
 
 /* Math */
 t_vec3		vec_add(t_vec3 *vec1, t_vec3 *vec2);
 t_vec3		vec_subtract(t_vec3 *vec1, t_vec3 *vec2);
 double		vec_dot(t_vec3 *vec1, t_vec3 *vec2);
-t_vec2		ray_intersect_sphere(t_vec3 *start, t_vec3 *end, t_sphere *sphere);
+double		ray_intersect_sphere(t_vec3 *start, t_vec3 *end, t_sphere *sphere, int *intersected);
 
 /* Drawing utils */
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);

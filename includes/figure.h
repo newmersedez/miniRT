@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:49:04 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 01:13:15 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/21 01:46:42 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_pos
 	double	z;
 }	t_pos;
 
-typedef struct s_pos	t_vec2;
 typedef struct s_pos	t_vec3;
 
 typedef struct s_color

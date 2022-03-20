@@ -2,12 +2,13 @@ NAME			= minirt
 LIBFT			= ./libft/libft.h
 
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -w
 RM				= rm -rf
 
 INCLUDES_DIR	= ./includes/
 SOURCES_DIR		= ./sources/ \
 					./sources/errors/ \
+					./sources/math/ \
 					./sources/init/ \
 					./sources/parser/ \
 					./sources/utils/ \
