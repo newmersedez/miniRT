@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 18:06:06 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 02:19:38 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/21 18:43:19 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define DEFINES_H
 
 /* Window settings */
-# define WINDOW_WIDTH		480
-# define WINDOW_HEIGHT		320
+# define WINDOW_WIDTH		1280
+# define WINDOW_HEIGHT		720
 # define DEFAULT_FOV		60
 
 /* Error messages */
