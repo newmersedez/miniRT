@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 21:13:39 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/22 02:11:12 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static t_color	calculate_color(t_color *color, )
-{
-
-}
-
-double	*intersect_ray_sphere(t_vec3 *camera_vec, t_vec3 *d_vec, t_sphere *sphere)
+static double	*intersect_ray_sphere(t_vec3 *start_vec, t_vec3 *end_vec, t_sphere *sphere)
 {
 	double	*intersections;
 	double	k1;
@@ -29,9 +24,9 @@ double	*intersect_ray_sphere(t_vec3 *camera_vec, t_vec3 *d_vec, t_sphere *sphere
 	intersections = (double *)malloc(2 * sizeof(double));
 	if (!intersections)
 		return (NULL);
-	oc_vec = vec_subtract(&sphere->pos, camera_vec);
-	k1 = vec_dot(d_vec, d_vec);
-	k2 = 2 * vec_dot(&oc_vec, d_vec);
+	oc_vec = vec_subtract(&sphere->pos, start_vec);
+	k1 = vec_dot(end_vec, end_vec);
+	k2 = 2 * vec_dot(&oc_vec, end_vec);
 	k3 = vec_dot(&oc_vec, &oc_vec) - (sphere->diameter / 2) * (sphere->diameter / 2);
 	discriminant = k2 * k2 - 4 * k1 * k3;
     if (discriminant < 0)
@@ -47,7 +42,7 @@ double	*intersect_ray_sphere(t_vec3 *camera_vec, t_vec3 *d_vec, t_sphere *sphere
 	return (intersections);
 }
 
-t_color	raytrace(t_minirt *minirt, t_vec3 *camera_vec, t_vec3 *d_vec)
+static t_color	raytrace(t_minirt *minirt, t_vec3 *start_vec, t_vec3 *end_vec)
 {
 	double		closest_t;
 	double		*t_array;
@@ -60,7 +55,7 @@ t_color	raytrace(t_minirt *minirt, t_vec3 *camera_vec, t_vec3 *d_vec)
 	figure_list = minirt->scene->figures_list;
 	while (figure_list)
 	{
-		t_array = intersect_ray_sphere(camera_vec, d_vec, (t_sphere *)figure_list->figure);
+		t_array = intersect_ray_sphere(start_vec, end_vec, (t_sphere *)figure_list->figure);
 		if (t_array)
 		{
 			if ((t_array[0] >= 1 && t_array[0] <= INFINITY) && (t_array[0] < closest_t))
@@ -87,19 +82,21 @@ void	render(t_minirt *minirt)
 {
 	size_t	x;
 	size_t	y;
-	t_vec3	d_vec;
+	t_vec3	end_vec;
 	t_color	color;
 	double	*intersections;
 
+	rotate_ox(&minirt->scene->camera->normal);
+	rotate_oy(&minirt->scene->camera->normal);
+	rotate_oz(&minirt->scene->camera->normal);
 	x = 0;
 	while (x < WINDOW_WIDTH)
 	{
 		y = 0;
 		while (y < WINDOW_HEIGHT)
 		{
-			d_vec = convert_to_viewport(minirt, (double)x, (double)y);
-			color = raytrace(minirt, &minirt->scene->camera->pos, &d_vec);
-			color = calculate_light(&color);	
+			end_vec = convert_to_viewport(minirt, (double)x, (double)y);
+			color = raytrace(minirt, &minirt->scene->camera->pos, &end_vec);
 			my_mlx_pixel_put(minirt->image, x, y,
 				((color.r & 0xFF) << 16)
 				+ ((color.g & 0xFF) << 8)

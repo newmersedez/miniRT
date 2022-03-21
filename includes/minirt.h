@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 19:12:49 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/22 01:59:35 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,28 @@ typedef struct s_minirt
 
 }	t_minirt;
 
-/* Initizlization */
+/* Initizlization and clear*/
 int			init_minirt(t_minirt *minirt);
 t_scene		*init_scene(void);
 t_window	*init_window(int width, int height, char *name);
 t_image		*init_image(t_minirt *minirt);
-
-/* Render */
-void		render(t_minirt *minirt);
-t_color		raytrace(t_minirt *minirt, t_vec3 *camera_vec, t_vec3 *d_vec);
-
-/* Math */
-t_vec3		vec_add(t_vec3 *vec1, t_vec3 *vec2);
-t_vec3		vec_subtract(t_vec3 *vec1, t_vec3 *vec2);
-t_vec3		vec_normalize(t_vec3 *vec);
-double		vec_dot(t_vec3 *vec1, t_vec3 *vec2);
-
-/* Drawing utils */
-void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
-
-/* Clear */
 int			clear_minirt(t_minirt *minirt);
 int			clear_figures(t_minirt *minirt);
+
+/* Render */
+void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
+void		render(t_minirt *minirt);
+// t_color		raytrace(t_minirt *minirt, t_vec3 *start_vec, t_vec3 *end_vec);
+
+/* Math */
+double		vec_length(t_vec3 *vec);
+t_vec3		vec_normalize(t_vec3 *vec);
+t_vec3		vec_add(t_vec3 *vec1, t_vec3 *vec2);
+t_vec3		vec_subtract(t_vec3 *vec1, t_vec3 *vec2);
+double		vec_dot(t_vec3 *vec1, t_vec3 *vec2);
+void		rotate_ox(t_vec3 *vec);
+void		rotate_oy(t_vec3 *vec);
+void		rotate_oz(t_vec3 *vec);
 
 /* Events */
 int			close_hook(t_minirt *minirt);
@@ -84,15 +84,3 @@ int			close_hook(t_minirt *minirt);
 t_vec3		convert_to_viewport(t_minirt *minirt, double x, double y);
 
 #endif
-
-
-// double	intersect_with_plane(t_vector ray, t_vector begin_point, void* figure)
-// {
-
-// }
-
-// double	intersect_with_sphere(t_vector ray, t_vector begin_point, void* figure)
-// {
-
-// }
-
