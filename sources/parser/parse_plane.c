@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:22:09 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 14:15:54 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/21 19:16:35 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	parse_plane(char *line, t_minirt *minirt)
 	if (code == 1)
 		return (0);
 	plane->normal = get_pos(&line, &code);
+	vec_normalize(&plane->normal);
 	if (code == 1)
 		return (0);
 	plane->color = get_color(&line, &code);

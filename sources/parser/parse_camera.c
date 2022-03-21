@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:19:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 14:15:37 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/21 19:14:29 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	parse_camera(char *line, t_minirt *minirt)
 		return (0);
 	minirt->scene->camera->fov = fov;
 	minirt->scene->camera->pos = pos;
-	minirt->scene->camera->normal = normal;
+	minirt->scene->camera->normal = vec_normalize(&normal);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 17:50:42 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/21 19:12:49 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_color		raytrace(t_minirt *minirt, t_vec3 *camera_vec, t_vec3 *d_vec);
 /* Math */
 t_vec3		vec_add(t_vec3 *vec1, t_vec3 *vec2);
 t_vec3		vec_subtract(t_vec3 *vec1, t_vec3 *vec2);
+t_vec3		vec_normalize(t_vec3 *vec);
 double		vec_dot(t_vec3 *vec1, t_vec3 *vec2);
 
 /* Drawing utils */
