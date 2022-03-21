@@ -6,11 +6,16 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 18:42:33 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/21 21:13:39 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+static t_color	calculate_color(t_color *color, )
+{
+
+}
 
 double	*intersect_ray_sphere(t_vec3 *camera_vec, t_vec3 *d_vec, t_sphere *sphere)
 {
@@ -94,6 +99,7 @@ void	render(t_minirt *minirt)
 		{
 			d_vec = convert_to_viewport(minirt, (double)x, (double)y);
 			color = raytrace(minirt, &minirt->scene->camera->pos, &d_vec);
+			color = calculate_light(&color);	
 			my_mlx_pixel_put(minirt->image, x, y,
 				((color.r & 0xFF) << 16)
 				+ ((color.g & 0xFF) << 8)
