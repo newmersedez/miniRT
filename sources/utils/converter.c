@@ -16,8 +16,8 @@ t_vec3	convert_to_viewport(t_minirt *minirt, double x, double y)
 	end_vec.y = -(y - WINDOW_HEIGHT / 2)
 		* (converted_fov / (double)WINDOW_HEIGHT);
 	end_vec.z = 1;
-	// rotate_ox(&minirt->scene->camera->normal);
-	// rotate_oy(&minirt->scene->camera->normal);
-	// rotate_oz(&minirt->scene->camera->normal);
+	rotate_ox(&minirt->scene->camera->normal);
+	rotate_oy(&minirt->scene->camera->normal);
+	rotate_oz(&minirt->scene->camera->normal);
 	return (end_vec);
 }

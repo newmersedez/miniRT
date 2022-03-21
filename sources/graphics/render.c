@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 02:11:12 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 02:30:27 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,6 @@ void	render(t_minirt *minirt)
 	t_color	color;
 	double	*intersections;
 
-	rotate_ox(&minirt->scene->camera->normal);
-	rotate_oy(&minirt->scene->camera->normal);
-	rotate_oz(&minirt->scene->camera->normal);
 	x = 0;
 	while (x < WINDOW_WIDTH)
 	{
