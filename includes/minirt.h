@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 01:59:35 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 16:07:50 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int			clear_figures(t_minirt *minirt);
 /* Render */
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
 void		render(t_minirt *minirt);
-// t_color		raytrace(t_minirt *minirt, t_vec3 *start_vec, t_vec3 *end_vec);
 
 /* Math */
 double		vec_length(t_vec3 *vec);
@@ -77,10 +76,7 @@ void		rotate_ox(t_vec3 *vec);
 void		rotate_oy(t_vec3 *vec);
 void		rotate_oz(t_vec3 *vec);
 
-/* Events */
+/* Utils */
 int			close_hook(t_minirt *minirt);
-
-/* Converters */
-t_vec3		convert_to_viewport(t_minirt *minirt, double x, double y);
 
 #endif
