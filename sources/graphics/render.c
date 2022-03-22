@@ -6,25 +6,11 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 23:03:32 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 23:06:20 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-
-static t_vec3	convert_to_viewport(t_minirt *minirt, float x, float y)
-{
-	t_vec3	end_vec;
-	float	fov;
-	float	aspect_ratio;
-
-	aspect_ratio = (float)WINDOW_WIDTH  / WINDOW_HEIGHT;
-	fov = minirt->scene->camera->fov / (float)DEFAULT_FOV;
-	end_vec.x = (x - WINDOW_WIDTH / 2) * (fov / WINDOW_WIDTH) * aspect_ratio;
-	end_vec.y = -1 * (y - WINDOW_HEIGHT / 2) * (fov / WINDOW_HEIGHT);
-	end_vec.z = 1;
-	return (vec_normalize(&end_vec));
-}
 
 static float	*intersect_ray_sphere(t_vec3 *camera_vec, t_vec3 *d_vec, t_sphere *sphere)
 {
@@ -85,9 +71,9 @@ static t_color	calculate_light(t_minirt *minirt, t_vec3 *pixel, t_sphere *sphere
 	}
 	else
 	{
-		color.r /= angle * minirt->scene->light->brightness_ratio;
-		color.g /= angle * minirt->scene->light->brightness_ratio;
-		color.b /= angle * minirt->scene->light->brightness_ratio;
+		color.r = 0;
+		color.g = 0;
+		color.b = 0;
 	}
 	return (color);
 }

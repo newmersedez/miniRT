@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 20:31:41 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 23:04:29 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void		rotate_oy(t_vec3 *vec);
 void		rotate_oz(t_vec3 *vec);
 
 /* Utils */
+t_vec3		convert_to_viewport(t_minirt *minirt, float x, float y);
 int			close_hook(t_minirt *minirt);
 
 #endif
