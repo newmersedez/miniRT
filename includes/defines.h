@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 18:06:06 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 18:31:37 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 22:23:13 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define DEFINES_H
 
 /* Window settings */
-# define WINDOW_WIDTH		1920
-# define WINDOW_HEIGHT		1080
+# define WINDOW_WIDTH		1280
+# define WINDOW_HEIGHT		720
 # define DEFAULT_FOV		60
 
 /* Error messages */

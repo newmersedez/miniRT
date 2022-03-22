@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 19:58:43 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 23:03:32 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 static t_vec3	convert_to_viewport(t_minirt *minirt, float x, float y)
 {
 	t_vec3	end_vec;
-	float	converted_fov;
+	float	fov;
 	float	aspect_ratio;
 
-	aspect_ratio = (float)WINDOW_WIDTH  / (float)WINDOW_HEIGHT;
-	converted_fov = minirt->scene->camera->fov / (float)DEFAULT_FOV;
-	end_vec.x = aspect_ratio
-		* (x - WINDOW_WIDTH / 2) * (converted_fov / (float)WINDOW_WIDTH);
-	end_vec.y = -(y - WINDOW_HEIGHT / 2)
-		* (converted_fov / (float)WINDOW_HEIGHT);
+	aspect_ratio = (float)WINDOW_WIDTH  / WINDOW_HEIGHT;
+	fov = minirt->scene->camera->fov / (float)DEFAULT_FOV;
+	end_vec.x = (x - WINDOW_WIDTH / 2) * (fov / WINDOW_WIDTH) * aspect_ratio;
+	end_vec.y = -1 * (y - WINDOW_HEIGHT / 2) * (fov / WINDOW_HEIGHT);
 	end_vec.z = 1;
 	return (vec_normalize(&end_vec));
 }
@@ -58,16 +56,40 @@ static float	*intersect_ray_sphere(t_vec3 *camera_vec, t_vec3 *d_vec, t_sphere *
 	return (intersections);
 }
 
-static t_color	calculate_light(t_minirt *minirt, t_vec3 *pixel, t_color *color)
+static t_color	calculate_light(t_minirt *minirt, t_vec3 *pixel, t_sphere *sphere)
 {
-	if (minirt->scene->light != NULL)
+	t_vec3	normal_vec;
+	t_vec3	light_vec;
+	t_color	color;
+	float	angle;
+	float	dot_product;
+
+	normal_vec.x = pixel->x - sphere->pos.x;
+	normal_vec.y = pixel->y - sphere->pos.y;
+	normal_vec.z = pixel->z - sphere->pos.z;
+	normal_vec = vec_normalize(&normal_vec);
+
+	light_vec.x = pixel->x - minirt->scene->light->pos.x;
+	light_vec.y = pixel->y - minirt->scene->light->pos.y;
+	light_vec.z = pixel->z - minirt->scene->light->pos.z;
+	light_vec = vec_normalize(&light_vec);
+
+	dot_product = vec_dot(&light_vec, &normal_vec);
+	angle = dot_product / (vec_length(&light_vec) * vec_length(&normal_vec));
+	color = sphere->color;	
+	if (angle >= 0 && angle <= 1)
 	{
-		if (color->b == 255)
-			color->b = 100;
+		color.r *= angle * minirt->scene->light->brightness_ratio;
+		color.g *= angle * minirt->scene->light->brightness_ratio;
+		color.b *= angle * minirt->scene->light->brightness_ratio;
 	}
-	if (minirt->scene->ambient_light != NULL)
+	else
 	{
+		color.r /= angle * minirt->scene->light->brightness_ratio;
+		color.g /= angle * minirt->scene->light->brightness_ratio;
+		color.b /= angle * minirt->scene->light->brightness_ratio;
 	}
+	return (color);
 }
 
 static t_color	raytrace(t_minirt *minirt, t_vec3 *origin, t_vec3 *dir)
@@ -102,11 +124,11 @@ static t_color	raytrace(t_minirt *minirt, t_vec3 *origin, t_vec3 *dir)
 		figure_list = figure_list->next;
 	}
 	if (closest_sphere)
-		color = closest_sphere->color;
-	
-	t_vec3	dir_new = vec_multiply_by_num(dir, closest_t);
-	t_vec3	p = vec_add(&origin, &dir_new);
-	color = calculate_light(minirt, &p, &color);
+	{	
+		t_vec3	pixel = vec_multiply_by_num(dir, closest_t);
+		color = calculate_light(minirt, &pixel, closest_sphere);
+		// color = closest_sphere->color;
+	}
 	return (color);
 }
 
@@ -114,7 +136,7 @@ void	render(t_minirt *minirt)
 {
 	size_t	x;
 	size_t	y;
-	t_vec3	dir_vec;
+	t_vec3	dir;
 	t_color	color;
 	float	*intersections;
 
@@ -124,8 +146,8 @@ void	render(t_minirt *minirt)
 		y = 0;
 		while (y < WINDOW_HEIGHT)
 		{
-			dir_vec = convert_to_viewport(minirt, (float)x, (float)y);
-			color = raytrace(minirt, &minirt->scene->camera->pos, &dir_vec);
+			dir = convert_to_viewport(minirt, (float)x, (float)y);
+			color = raytrace(minirt, &minirt->scene->camera->pos, &dir);
 			my_mlx_pixel_put(minirt->image, x, y,
 				((color.r & 0xFF) << 16)
 				+ ((color.g & 0xFF) << 8)

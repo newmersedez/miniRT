@@ -22,10 +22,12 @@ t_vec3	vec_subtract(t_vec3 *vec1, t_vec3 *vec2)
 
 t_vec3	vec_multiply_by_num(t_vec3 *vec, float n)
 {
-	vec->x = n * vec->x;
-	vec->y = n * vec->y;
-	vec->z = n * vec->z;
-	return (*vec);
+	t_vec3	res_vec;
+
+	res_vec.x = n * vec->x;
+	res_vec.y = n * vec->y;
+	res_vec.z = n * vec->z;
+	return (res_vec);
 }
 
 float	vec_dot(t_vec3 *vec1, t_vec3 *vec2)
