@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:21:35 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 14:15:59 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/22 18:09:08 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-static double	get_diameter(char **line, int *code)
+static float	get_diameter(char **line, int *code)
 {
-	double	diameter;
+	float	diameter;
 
 	skip_spaces(line);
-	diameter = get_double_param(line, code);
+	diameter = get_float_param(line, code);
 	if (!ft_isspace(**line) || diameter <= 0)
 		*code = 1;
 	return (diameter);

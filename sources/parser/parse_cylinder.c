@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:23:21 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 14:15:42 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/22 18:09:08 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-static double	get_diameter(char **line, int *code)
+static float	get_diameter(char **line, int *code)
 {
-	double	diameter;
+	float	diameter;
 
 	skip_spaces(line);
-	diameter = get_double_param(line, code);
+	diameter = get_float_param(line, code);
 	if (!ft_isspace(**line) || diameter <= 0)
 		*code = 1;
 	return (diameter);
 }
 
-static double	get_height(char **line, int *code)
+static float	get_height(char **line, int *code)
 {
-	double	height;
+	float	height;
 
 	skip_spaces(line);
-	height = get_double_param(line, code);
+	height = get_float_param(line, code);
 	if (!ft_isspace(**line) || height <= 0)
 		*code = 1;
 	return (height);

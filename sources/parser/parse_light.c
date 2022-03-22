@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:20:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 14:15:51 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/22 18:09:08 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-static double	get_brightness_ratio(char **line, int *code)
+static float	get_brightness_ratio(char **line, int *code)
 {
-	double	brightness;
+	float	brightness;
 
 	skip_spaces(line);
-	brightness = get_double_param(line, code);
+	brightness = get_float_param(line, code);
 	if (!ft_isspace(**line) || !(brightness >= 0.0 && brightness <= 1.0))
 		*code = 1;
 	return (brightness);
@@ -28,7 +28,7 @@ int	parse_light(char *line, t_minirt *minirt)
 	int		code;
 	t_pos	pos;
 	t_color	color;
-	double	brightness_ratio;
+	float	brightness_ratio;
 
 	code = 0;
 	pos = get_pos(&line, &code);

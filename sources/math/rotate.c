@@ -2,7 +2,7 @@
 
 void	rotate_ox(t_vec3 *vec)
 {
-	double	angle;
+	float	angle;
 	t_vec3	normal_vec;
 
 	normal_vec.x = 1;
@@ -18,7 +18,7 @@ void	rotate_ox(t_vec3 *vec)
 
 void	rotate_oy(t_vec3 *vec)
 {
-	double	angle;
+	float	angle;
 	t_vec3	normal_vec;
 
 	normal_vec.x = 0;
@@ -34,7 +34,7 @@ void	rotate_oy(t_vec3 *vec)
 
 void	rotate_oz(t_vec3 *vec)
 {
-	double	angle;
+	float	angle;
 	t_vec3	normal_vec;
 	normal_vec.x = 0;
 	normal_vec.y = 0;

@@ -6,13 +6,13 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:24:48 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 01:39:16 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 18:09:08 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-double	vec_length(t_vec3 *vec)
+float	vec_length(t_vec3 *vec)
 {
 	if (!vec)
 		return (0);
@@ -21,7 +21,7 @@ double	vec_length(t_vec3 *vec)
 
 t_vec3	vec_normalize(t_vec3 *vec)
 {
-	double	temp;
+	float	temp;
 
 	temp = vec_length(vec);
 	vec->x /= temp;
@@ -50,7 +50,7 @@ t_vec3	vec_subtract(t_vec3 *vec1, t_vec3 *vec2)
 	return (res_vec);
 }
 
-double	vec_dot(t_vec3 *vec1, t_vec3 *vec2)
+float	vec_dot(t_vec3 *vec1, t_vec3 *vec2)
 {
 	return (vec1->x * vec2->x + vec1->y * vec2->y + vec1->z * vec2->z);
 }

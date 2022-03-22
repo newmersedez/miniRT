@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 16:07:50 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 18:09:08 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
 void		render(t_minirt *minirt);
 
 /* Math */
-double		vec_length(t_vec3 *vec);
+float		vec_length(t_vec3 *vec);
 t_vec3		vec_normalize(t_vec3 *vec);
 t_vec3		vec_add(t_vec3 *vec1, t_vec3 *vec2);
 t_vec3		vec_subtract(t_vec3 *vec1, t_vec3 *vec2);
-double		vec_dot(t_vec3 *vec1, t_vec3 *vec2);
+float		vec_dot(t_vec3 *vec1, t_vec3 *vec2);
 void		rotate_ox(t_vec3 *vec);
 void		rotate_oy(t_vec3 *vec);
 void		rotate_oz(t_vec3 *vec);

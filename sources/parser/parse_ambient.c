@@ -6,18 +6,18 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:17:40 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 10:56:52 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 18:09:08 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-static double	get_lighting_ratio(char **line, int *code)
+static float	get_lighting_ratio(char **line, int *code)
 {
-	double	lighting;
+	float	lighting;
 
 	skip_spaces(line);
-	lighting = get_double_param(line, code);
+	lighting = get_float_param(line, code);
 	if (!ft_isspace(**line) || !(lighting >= 0.0 && lighting <= 1.0))
 		*code = 1;
 	return (lighting);
@@ -26,7 +26,7 @@ static double	get_lighting_ratio(char **line, int *code)
 int	parse_ambient(char *line, t_minirt *minirt)
 {
 	int		code;
-	double	lighting_ratio;
+	float	lighting_ratio;
 	t_color	color;
 
 	code = 0;

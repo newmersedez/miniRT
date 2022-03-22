@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 17:18:47 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/13 17:19:34 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/22 18:09:08 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	get_int_param(char**line, int *code)
 	return (negative * value);
 }
 
-double	get_double_param(char **line, int *code)
+float	get_float_param(char **line, int *code)
 {
 	int		negative;
-	double	value;
-	double	fract;
+	float	value;
+	float	fract;
 
 	value = 0;
 	fract = 0;
@@ -88,15 +88,15 @@ t_pos	get_pos(char **line, int *code)
 	t_pos	pos;
 
 	skip_spaces(line);
-	pos.x = get_double_param(line, code);
+	pos.x = get_float_param(line, code);
 	if (**line != ',')
 		*code = 1;
 	(*line)++;
-	pos.y = get_double_param(line, code);
+	pos.y = get_float_param(line, code);
 	if (**line != ',')
 		*code = 1;
 	(*line)++;
-	pos.z = get_double_param(line, code);
+	pos.z = get_float_param(line, code);
 	if (!ft_isspace(**line))
 		*code = 1;
 	return (pos);
@@ -107,15 +107,15 @@ t_pos	get_normal(char **line, int *code)
 	t_pos	normal;
 
 	skip_spaces(line);
-	normal.x = get_double_param(line, code);
+	normal.x = get_float_param(line, code);
 	if (**line != ',' || !(normal.x >= -1.0 && normal.x <= 1.0))
 		*code = 1;
 	(*line)++;
-	normal.y = get_double_param(line, code);
+	normal.y = get_float_param(line, code);
 	if (**line != ',' || !(normal.y >= -1.0 && normal.y <= 1.0))
 		*code = 1;
 	(*line)++;
-	normal.z = get_double_param(line, code);
+	normal.z = get_float_param(line, code);
 	if (!ft_isspace(**line) || !(normal.z >= -1.0 && normal.z <= 1.0))
 		*code = 1;
 	return (normal);

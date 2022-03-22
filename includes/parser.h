@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:50:13 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 00:14:01 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 18:09:08 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ size_t	numberlen(int n);
 int		ft_isspace(char c);
 void	skip_spaces(char **line);
 int		get_int_param(char**line, int *code);
-double	get_double_param(char **line, int *code);
+float	get_float_param(char **line, int *code);
 t_color	get_color(char **line, int *code);
 t_pos	get_pos(char **line, int *code);
 t_pos	get_normal(char **line, int *code);
