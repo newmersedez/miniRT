@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 19:05:49 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 19:10:11 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,18 @@
 
 static t_vec3	convert_to_viewport(t_minirt *minirt, float x, float y)
 {
-	float	fov = tan(minirt->scene->camera->fov * M_PI / 360);
-	float	aspect_ratio = (float)WINDOW_HEIGHT / WINDOW_HEIGHT;
-	t_vec3	pixel_NDC;
-	t_vec3	pixel_screen;
-	t_vec3	pixel_camera;
+	t_vec3	end_vec;
+	double	converted_fov;
+	double	aspect_ratio;
 
-	pixel_NDC.x = (x + 0.5) / WINDOW_WIDTH;
-	pixel_NDC.y = (y + 0.5) / WINDOW_HEIGHT;
-
-	pixel_screen.x = 2 * pixel_NDC.x - 1;
-	pixel_screen.y = 1 - 2 * pixel_NDC.y;
-
-	pixel_camera.x = (2 * pixel_screen.x - 1) * aspect_ratio * fov;
-	pixel_camera.y = (1 - 2 * pixel_screen.y) * fov;
-	pixel_camera.z = 1;
-
-	// float	aspect_ratio;
-	// float	fov;
-	// t_vec3	viewport_coords;
-
-	// fov = tan(minirt->scene->camera->fov / 2 * M_PI / 180);
-	// aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
-	// viewport_coords.x = (2 * ((x + 0.5) / WINDOW_WIDTH) - 1) * aspect_ratio * fov;
-	// viewport_coords.y = (1 - 2 * ((y + 0.5) / WINDOW_HEIGHT)) * fov;
-	// return (vec_normalize(&viewport_coords));
-
-	
-	// t_vec3	end_vec;
-	// double	converted_fov;
-	// double	aspect_ratio;
-
-	// aspect_ratio = (double)WINDOW_WIDTH  / (double)WINDOW_HEIGHT;
-	// converted_fov = minirt->scene->camera->fov / (double)DEFAULT_FOV;
-	// end_vec.x = aspect_ratio
-	// 	* (x - WINDOW_WIDTH / 2) * (converted_fov / (double)WINDOW_WIDTH);
-	// end_vec.y = -(y - WINDOW_HEIGHT / 2)
-	// 	* (converted_fov / (double)WINDOW_HEIGHT);
-	// end_vec.z = 1;
-	// return (vec_normalize(&end_vec));
+	aspect_ratio = (double)WINDOW_WIDTH  / (double)WINDOW_HEIGHT;
+	converted_fov = minirt->scene->camera->fov / (double)DEFAULT_FOV;
+	end_vec.x = aspect_ratio
+		* (x - WINDOW_WIDTH / 2) * (converted_fov / (double)WINDOW_WIDTH);
+	end_vec.y = -(y - WINDOW_HEIGHT / 2)
+		* (converted_fov / (double)WINDOW_HEIGHT);
+	end_vec.z = 1;
+	return (vec_normalize(&end_vec));
 }
 
 static double	*intersect_ray_sphere(t_vec3 *camera_vec, t_vec3 *d_vec, t_sphere *sphere)
