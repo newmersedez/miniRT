@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 18:09:08 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 19:48:43 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_minirt
 
 }	t_minirt;
 
-/* Initizlization and clear*/
+/* Init and clear*/
 int			init_minirt(t_minirt *minirt);
 t_scene		*init_scene(void);
 t_window	*init_window(int width, int height, char *name);
@@ -71,6 +71,7 @@ float		vec_length(t_vec3 *vec);
 t_vec3		vec_normalize(t_vec3 *vec);
 t_vec3		vec_add(t_vec3 *vec1, t_vec3 *vec2);
 t_vec3		vec_subtract(t_vec3 *vec1, t_vec3 *vec2);
+t_vec3		vec_multiply_by_num(t_vec3 *vec, float n);
 float		vec_dot(t_vec3 *vec1, t_vec3 *vec2);
 void		rotate_ox(t_vec3 *vec);
 void		rotate_oy(t_vec3 *vec);

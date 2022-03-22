@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 19:10:11 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 19:58:43 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,29 @@
 static t_vec3	convert_to_viewport(t_minirt *minirt, float x, float y)
 {
 	t_vec3	end_vec;
-	double	converted_fov;
-	double	aspect_ratio;
+	float	converted_fov;
+	float	aspect_ratio;
 
-	aspect_ratio = (double)WINDOW_WIDTH  / (double)WINDOW_HEIGHT;
-	converted_fov = minirt->scene->camera->fov / (double)DEFAULT_FOV;
+	aspect_ratio = (float)WINDOW_WIDTH  / (float)WINDOW_HEIGHT;
+	converted_fov = minirt->scene->camera->fov / (float)DEFAULT_FOV;
 	end_vec.x = aspect_ratio
-		* (x - WINDOW_WIDTH / 2) * (converted_fov / (double)WINDOW_WIDTH);
+		* (x - WINDOW_WIDTH / 2) * (converted_fov / (float)WINDOW_WIDTH);
 	end_vec.y = -(y - WINDOW_HEIGHT / 2)
-		* (converted_fov / (double)WINDOW_HEIGHT);
+		* (converted_fov / (float)WINDOW_HEIGHT);
 	end_vec.z = 1;
 	return (vec_normalize(&end_vec));
 }
 
-static double	*intersect_ray_sphere(t_vec3 *camera_vec, t_vec3 *d_vec, t_sphere *sphere)
+static float	*intersect_ray_sphere(t_vec3 *camera_vec, t_vec3 *d_vec, t_sphere *sphere)
 {
-	double	*intersections;
-	double	k1;
-	double	k2;
-	double	k3;
-	double	discriminant;
+	float	*intersections;
+	float	k1;
+	float	k2;
+	float	k3;
+	float	discriminant;
 	t_vec3	oc_vec;
 
-	intersections = (double *)malloc(2 * sizeof(double));
+	intersections = (float *)malloc(2 * sizeof(float));
 	if (!intersections)
 		return (NULL);
 	oc_vec = vec_subtract(&sphere->pos, camera_vec);
@@ -58,10 +58,22 @@ static double	*intersect_ray_sphere(t_vec3 *camera_vec, t_vec3 *d_vec, t_sphere 
 	return (intersections);
 }
 
+static t_color	calculate_light(t_minirt *minirt, t_vec3 *pixel, t_color *color)
+{
+	if (minirt->scene->light != NULL)
+	{
+		if (color->b == 255)
+			color->b = 100;
+	}
+	if (minirt->scene->ambient_light != NULL)
+	{
+	}
+}
+
 static t_color	raytrace(t_minirt *minirt, t_vec3 *origin, t_vec3 *dir)
 {
-	double		closest_t;
-	double		*t_array;
+	float		closest_t;
+	float		*t_array;
 	t_sphere	*closest_sphere;
 	t_list		*figure_list;
 	t_color		color = {0, 0, 0};
@@ -91,6 +103,10 @@ static t_color	raytrace(t_minirt *minirt, t_vec3 *origin, t_vec3 *dir)
 	}
 	if (closest_sphere)
 		color = closest_sphere->color;
+	
+	t_vec3	dir_new = vec_multiply_by_num(dir, closest_t);
+	t_vec3	p = vec_add(&origin, &dir_new);
+	color = calculate_light(minirt, &p, &color);
 	return (color);
 }
 
@@ -114,7 +130,6 @@ void	render(t_minirt *minirt)
 				((color.r & 0xFF) << 16)
 				+ ((color.g & 0xFF) << 8)
 				+ (color.b & 0xFF));
-			// printf("%zu %zu\n", x, y);
 			++y;
 		}
 		++x;
