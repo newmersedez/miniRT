@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:53:50 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/17 21:27:35 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/23 01:02:31 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	handle_errors(t_minirt *minirt, int argc, char *argv[])
 	filename = argv[1];
 	if (!check_file_extension(filename))
 		fail_exit(NULL, FILE_EXT_ERROR);
-	if (!init_minirt(minirt))
+	if (!create_minirt(minirt))
 		fail_exit(minirt, INIT_ERROR);
 	if (!parse_info_from_file(filename, minirt))
 		fail_exit(minirt, PARSE_FILE_ERROR);

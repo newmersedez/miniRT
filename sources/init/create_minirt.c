@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_minirt.c                                      :+:      :+:    :+:   */
+/*   create_minirt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:16:18 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/19 20:48:22 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/23 01:50:11 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int	init_minirt(t_minirt *minirt)
+int	create_minirt(t_minirt *minirt)
 {
 	if (!minirt)
 		return (0);
-	minirt->scene = init_scene();
+	minirt->scene = create_scene();
 	if (!minirt->scene)
 		return (0);
-	minirt->window = init_window(WINDOW_WIDTH, WINDOW_HEIGHT, "minirt");
+	minirt->window = create_window(WINDOW_WIDTH, WINDOW_HEIGHT, "minirt");
 	if (!minirt->window)
 		return (0);
-	minirt->image = init_image(minirt);
+	minirt->image = create_image(minirt);
 	if (!minirt->image)
 		return (0);
 	return (1);
 }
 
-t_scene	*init_scene(void)
+t_scene	*create_scene(void)
 {
 	t_scene	*scene;
 
@@ -42,7 +42,7 @@ t_scene	*init_scene(void)
 	return (scene);
 }
 
-t_image	*init_image(t_minirt *minirt)
+t_image	*create_image(t_minirt *minirt)
 {
 	t_image	*image;
 
@@ -61,7 +61,7 @@ t_image	*init_image(t_minirt *minirt)
 	return (image);
 }
 
-t_window	*init_window(int width, int height, char *name)
+t_window	*create_window(int width, int height, char *name)
 {
 	t_window	*window;
 

@@ -12,7 +12,6 @@ SOURCES_DIR		= ./sources/ \
 					./sources/init/ \
 					./sources/parser/ \
 					./sources/utils/ \
-					./sources/graphics/ \
 					./sources/get_next_line/
 OBJECTS_DIR		= ./objects/
 LIBFT_DIR		= ./libft/

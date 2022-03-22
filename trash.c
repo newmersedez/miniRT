@@ -1,11 +1,11 @@
-// static float	*intersect_ray_sphere(t_vec3d *camera_vec, t_vec3d *d_vec, t_sphere *sphere)
+// static float	*intersect_ray_sphere(t_vec *camera_vec, t_vec *d_vec, t_sphere *sphere)
 // {
 // 	float	*intersections;
 // 	float	k1;
 // 	float	k2;
 // 	float	k3;
 // 	float	discriminant;
-// 	t_vec3d	oc_vec;
+// 	t_vec	oc_vec;
 
 // 	intersections = (float *)malloc(2 * sizeof(float));
 // 	if (!intersections)
@@ -28,10 +28,10 @@
 // 	return (intersections);
 // }
 
-// static t_color	calculate_light(t_minirt *minirt, t_vec3d *pixel, t_sphere *sphere)
+// static t_color	calculate_light(t_minirt *minirt, t_vec *pixel, t_sphere *sphere)
 // {
-// 	t_vec3d	normal_vec;
-// 	t_vec3d	light_vec;
+// 	t_vec	normal_vec;
+// 	t_vec	light_vec;
 // 	t_color	color;
 // 	float	angle;
 // 	float	dot_product;
@@ -61,7 +61,7 @@
 // 	return (color);
 // }
 
-// static t_color	raytrace(t_minirt *minirt, t_vec3d *origin, t_vec3d *dir)
+// static t_color	raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir)
 // {
 // 	float		closest_t;
 // 	float		*t_array;
@@ -94,16 +94,16 @@
 // 	}
 // 	if (closest_sphere)
 // 	{	
-// 		t_vec3d	pixel = vec_multiply_by_num(dir, closest_t);
+// 		t_vec	pixel = vec_multiply_by_num(dir, closest_t);
 // 		color = calculate_light(minirt, &pixel, closest_sphere);
 // 		// color = closest_sphere->color;
 // 	}
 // 	return (color);
 // }
 
-// t_vec3d	convert_to_viewport(t_minirt *minirt, float x, float y)
+// t_vec	convert_to_viewport(t_minirt *minirt, float x, float y)
 // {
-// 	t_vec3d	end_vec;
+// 	t_vec	end_vec;
 // 	float	fov;
 // 	float	aspect_ratio;
 

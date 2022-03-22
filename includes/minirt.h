@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 00:00:17 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/23 01:48:31 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,51 @@ typedef struct s_minirt
 }	t_minirt;
 
 /* Init and clear*/
-int			init_minirt(t_minirt *minirt);
-t_scene		*init_scene(void);
-t_window	*init_window(int width, int height, char *name);
-t_image		*init_image(t_minirt *minirt);
+int			create_minirt(t_minirt *minirt);
+t_scene		*create_scene(void);
+t_window	*create_window(int width, int height, char *name);
+t_image		*create_image(t_minirt *minirt);
+t_object	*create_sphere_object(t_sphere *sphere);
+t_object	*create_plane_object(t_plane *plane);
+t_object	*create_cylinder_object(t_cylinder *cylinder);
 int			clear_minirt(t_minirt *minirt);
 int			clear_figures(t_minirt *minirt);
 
 /* Render */
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
 void		render(t_minirt *minirt);
-t_color		raytrace(t_minirt *minirt, t_vec3d *origin, t_vec3d *dir);
+t_color		raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir);
 
 /* Math */
-float		vec_length(t_vec3d *vec);
-t_vec3d		vec_normalize(t_vec3d *vec);
-t_vec3d		vec_add(t_vec3d *vec1, t_vec3d *vec2);
-t_vec3d		vec_subtract(t_vec3d *vec1, t_vec3d *vec2);
-t_vec3d		vec_multiply_by_num(t_vec3d *vec, float n);
-float		vec_dot(t_vec3d *vec1, t_vec3d *vec2);
-void		rotate_ox(t_vec3d *vec);
-void		rotate_oy(t_vec3d *vec);
-void		rotate_oz(t_vec3d *vec);
+float		vec_length(t_vec *vec);
+t_vec		vec_normalize(t_vec *vec);
+t_vec		vec_add(t_vec *vec1, t_vec *vec2);
+t_vec		vec_subtract(t_vec *vec1, t_vec *vec2);
+t_vec		vec_multiply_by_num(t_vec *vec, float n);
+float		vec_dot(t_vec *vec1, t_vec *vec2);
+t_color		get_sphere_color(const void *data,
+				const t_point *intersection);
+t_color		get_plane_color(const void *data,
+				const t_point *intersection);
+t_color		get_cylinder_color(const void *data,
+				const t_point *intersection);
+t_vec		get_sphere_normal_vec(const void *data,
+				const t_point *intersection);
+t_vec		get_plane_normal_vec(const void *data,
+				const t_point *intersection);
+t_vec		get_cylinder_normal_vec(const void *data,
+				const t_point *intersection);
+float		ray_intersect_sphere(const void *data,
+				const t_point *start_point,
+				const t_vec *ray, t_point *intersection);
+float		ray_intersect_plane(const void *data,
+				const t_point *start_point,
+				const t_vec *ray, t_point *intersection);
+float		ray_intersect_cylinder(const void *data,
+				const t_point *start_point,
+				const t_vec *ray, t_point *intersection);
 
 /* Utils */
-t_vec3d		convert_to_viewport(t_minirt *minirt, float x, float y);
 int			close_hook(t_minirt *minirt);
 
 #endif

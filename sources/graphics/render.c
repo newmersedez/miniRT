@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 00:00:17 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/23 01:32:05 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	render(t_minirt *minirt)
 {
 	size_t	x;
 	size_t	y;
-	t_vec3d	dir;
+	t_vec	dir;
 	t_color	color;
 
 	x = 0;

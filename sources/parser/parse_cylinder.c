@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:23:21 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 00:00:17 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/23 02:27:29 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,47 @@ static float	get_height(char **line, int *code)
 	return (height);
 }
 
-int	parse_cylinder(char *line, t_minirt *minirt)
+static t_cylinder	*get_cylinder_info(char *line)
 {
 	int			code;
 	t_cylinder	*cylinder;
 
+	code = 0;
 	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
 	if (!cylinder)
-		return (0);
-	code = 0;
-	cylinder->pos = get_vec3d(&line, &code);
+		return (NULL);
+	cylinder->pos = get_pos(&line, &code);
 	if (code == 1)
-		return (0);
+		return (NULL);
 	cylinder->normal = get_normal(&line, &code);
 	if (code == 1)
-		return (0);
+		return (NULL);
 	cylinder->diameter = get_diameter(&line, &code);
 	if (code == 1)
-		return (0);
+		return (NULL);
 	cylinder->height = get_height(&line, &code);
 	if (code == 1)
-		return (0);
+		return (NULL);
 	cylinder->color = get_color(&line, &code);
 	if (code == 1)
+		return (NULL);
+	return (cylinder);
+}
+
+int	parse_cylinder(char *line, t_minirt *minirt)
+{
+	t_cylinder	*cylinder;
+	t_object	*object;
+
+	cylinder = get_cylinder_info(line);
+	if (!cylinder)
 		return (0);
-	push_back(&(minirt->scene->figures_list), (void *)cylinder, CYLINDER);
+	object = create_cylinder_object(cylinder);
+	if (!object)
+	{
+		free(cylinder);
+		return (0);
+	}
+	push_back(&(minirt->scene->figures_list), object);
 	return (1);
 }

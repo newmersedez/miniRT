@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:19:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 00:00:17 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/23 01:32:05 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	parse_camera(char *line, t_minirt *minirt)
 {
 	int		code;
 	int		fov;
-	t_vec3d	pos;
-	t_vec3d	normal;
+	t_vec	pos;
+	t_vec	normal;
 
 	code = 0;
-	pos = get_vec3d(&line, &code);
+	pos = get_pos(&line, &code);
 	if (code == 1)
 		return (0);
 	normal = get_normal(&line, &code);
