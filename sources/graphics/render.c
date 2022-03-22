@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 23:06:20 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/22 23:14:11 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,12 @@ static t_color	calculate_light(t_minirt *minirt, t_vec3 *pixel, t_sphere *sphere
 	color = sphere->color;	
 	if (angle >= 0 && angle <= 1)
 	{
-		color.r *= angle * minirt->scene->light->brightness_ratio;
-		color.g *= angle * minirt->scene->light->brightness_ratio;
-		color.b *= angle * minirt->scene->light->brightness_ratio;
-	}
-	else
-	{
-		color.r = 0;
-		color.g = 0;
-		color.b = 0;
+		color.r = ((color.r + minirt->scene->light->color.r) / 2)
+			* angle * minirt->scene->light->brightness_ratio;
+		color.g = ((color.g + minirt->scene->light->color.g) / 2)
+			* angle * minirt->scene->light->brightness_ratio;
+		color.b = ((color.b + minirt->scene->light->color.b) / 2)
+			* angle * minirt->scene->light->brightness_ratio;
 	}
 	return (color);
 }
