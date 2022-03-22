@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:50:13 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 20:31:41 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/23 00:06:05 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 typedef struct s_minirt	t_minirt;
 typedef struct s_color	t_color;
-typedef struct s_pos	t_pos;
 
 /* Parsing */
 int		parse_info_from_file(const char *filename, t_minirt *minirt);
@@ -40,7 +39,7 @@ void	skip_spaces(char **line);
 int		get_int_param(char**line, int *code);
 float	get_float_param(char **line, int *code);
 t_color	get_color(char **line, int *code);
-t_pos	get_pos(char **line, int *code);
-t_pos	get_normal(char **line, int *code);
+t_vec3d	get_vec3d(char **line, int *code);
+t_vec3d	get_normal(char **line, int *code);
 
 #endif

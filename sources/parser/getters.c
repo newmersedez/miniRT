@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 17:18:47 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 20:31:41 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/23 00:00:17 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ t_color	get_color(char **line, int *code)
 	return (color);
 }
 
-t_pos	get_pos(char **line, int *code)
+t_vec3d	get_vec3d(char **line, int *code)
 {
-	t_pos	pos;
+	t_vec3d	pos;
 
 	skip_spaces(line);
 	pos.x = get_float_param(line, code);
@@ -102,9 +102,9 @@ t_pos	get_pos(char **line, int *code)
 	return (pos);
 }
 
-t_pos	get_normal(char **line, int *code)
+t_vec3d	get_normal(char **line, int *code)
 {
-	t_pos	normal;
+	t_vec3d	normal;
 
 	skip_spaces(line);
 	normal.x = get_float_param(line, code);

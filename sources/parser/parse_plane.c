@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:22:09 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 19:16:35 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/23 00:00:17 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	parse_plane(char *line, t_minirt *minirt)
 	if (!plane)
 		return (0);
 	code = 0;
-	plane->pos = get_pos(&line, &code);
+	plane->pos = get_vec3d(&line, &code);
 	if (code == 1)
 		return (0);
-	plane->normal = get_pos(&line, &code);
+	plane->normal = get_vec3d(&line, &code);
 	vec_normalize(&plane->normal);
 	if (code == 1)
 		return (0);

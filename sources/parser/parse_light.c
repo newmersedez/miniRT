@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:20:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 20:31:41 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/23 00:00:17 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ static float	get_brightness_ratio(char **line, int *code)
 int	parse_light(char *line, t_minirt *minirt)
 {
 	int		code;
-	t_pos	pos;
+	t_vec3d	pos;
 	t_color	color;
 	float	brightness_ratio;
 
 	code = 0;
-	pos = get_pos(&line, &code);
+	pos = get_vec3d(&line, &code);
 	if (code == -1)
 		return (0);
 	brightness_ratio = get_brightness_ratio(&line, &code);

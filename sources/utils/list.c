@@ -6,12 +6,12 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:40:56 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/21 10:53:50 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/23 00:03:19 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/list.h"
-#include "../../includes/figure.h"
+#include "../../includes/objects.h"
 
 void	print_figure(void *data, int type)
 {
