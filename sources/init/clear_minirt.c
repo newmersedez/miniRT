@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_minirt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 20:11:17 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/15 14:14:50 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/23 03:03:50 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int	clear_figures(t_minirt *minirt)
 		free(minirt->scene->light);
 	if (minirt->scene->figures_list)
 		clear_list(&minirt->scene->figures_list);
+	free(minirt->scene);
 	return (1);
 }

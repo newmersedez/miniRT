@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:25:37 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 02:57:02 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/23 02:59:55 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ int	main(int argc, char *argv[])
 	handle_errors(&minirt, argc, argv);
 	// render(&minirt);
 	
-	if (minirt.scene->ambient_light)
-		display_ambient_light(minirt.scene->ambient_light);
-	if (minirt.scene->light)
-		display_light(minirt.scene->light);
-	if (minirt.scene->camera)
-		display_camera(minirt.scene->camera);
-	t_list	*list = minirt.scene->figures_list;
-	printf("size = %zu\n", size(list));
-	while (list)
-	{
-		display_object(list->object);
-		list = list->next;
-	}
+	// if (minirt.scene->ambient_light)
+	// 	display_ambient_light(minirt.scene->ambient_light);
+	// if (minirt.scene->light)
+	// 	display_light(minirt.scene->light);
+	// if (minirt.scene->camera)
+	// 	display_camera(minirt.scene->camera);
+	// t_list	*list = minirt.scene->figures_list;
+	// printf("size = %zu\n", size(list));
+	// while (list)
+	// {
+	// 	display_object(list->object);
+	// 	list = list->next;
+	// }
 	mlx_hook(minirt.window->mlx_win, 17, 0, close_hook, &minirt);
 	mlx_loop(minirt.window->mlx);
 	return (0);
