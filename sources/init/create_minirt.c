@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:16:18 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 01:50:11 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/23 12:15:33 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ t_image	*create_image(t_minirt *minirt)
 			&image->line_length, &image->endian);
 	if (!image->img || !image->addr)
 	{
+		if (image->img)
+			free(image->img);
+		if (image->addr)
+			free(image->addr);
 		free(image);
 		return (NULL);
 	}
@@ -72,6 +76,10 @@ t_window	*create_window(int width, int height, char *name)
 	window->mlx_win = mlx_new_window(window->mlx, width, height, name);
 	if (!window->mlx || !window->mlx_win)
 	{
+		if (window->mlx)
+			free(window->mlx);
+		if (window->mlx_win)
+			free(window->mlx_win);
 		free(window);
 		return (NULL);
 	}
