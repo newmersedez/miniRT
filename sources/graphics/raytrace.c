@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/24 18:16:13 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 19:51:16 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ static int	is_closest_intersection_point(t_point *origin_point,
 	double	intersection_vec_length;
 	double	closest_vec_length;
 
+	// printf("intersect_point = (%f %f %f)\n", intersection_point->x, intersection_point->y, intersection_point->z);
 	if (intersection_point->x == INFINITY && intersection_point->y == INFINITY
 			&& intersection_point->z == INFINITY)
 		{
-			write(1, "a\n", 2);
+			// write(1, "a\n", 2);
 			return (0);
 		}
 	else
@@ -31,11 +32,12 @@ static int	is_closest_intersection_point(t_point *origin_point,
 		if (closest_point->x == INFINITY && closest_point->y == INFINITY
 				&& closest_point->z == INFINITY)
 		{
-			write(1, "\tb\n", 3);
-			return (0);
+			// write(1, "\tb\n", 3);
+			return (1);
 		}
 		else
 		{
+			// printf("lalka\n");
 			intersection_vec = vec_subtract(origin_point, intersection_point);
 			closest_vec = vec_subtract(origin_point, closest_point);
 			intersection_vec_length = vec_length(&intersection_vec);
@@ -61,7 +63,8 @@ t_color	raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir)
 	objects_list = minirt->scene->objects_list;
 	while (objects_list)
 	{
-		intersect_point = objects_list->object->ray_intersection(objects_list->object, origin, dir);
+		intersect_point = objects_list->object->ray_intersection(objects_list->object->figure, origin, dir);
+		// printf("intersect_point = (%f %f %f)\n", intersect_point.x, intersect_point.y, intersect_point.z);
 		if (is_closest_intersection_point(origin, &intersect_point, &closest_point))
 		{
 			closest_point = intersect_point;
@@ -69,6 +72,7 @@ t_color	raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir)
 		}
 		objects_list = objects_list->next;
 	}
+	// printf("\n");
 	if (closest_object)
 	{
 		if (closest_object->type == SPHERE)
