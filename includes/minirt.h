@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 01:48:31 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/24 12:01:51 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-// # include <mlx.h>
-# include "../mlx_linux/mlx.h"
+# include <mlx.h>
+// # include "../mlx_linux/mlx.h"
 # include <math.h>
 
 # include "list.h"
@@ -77,12 +77,6 @@ t_vec		vec_add(t_vec *vec1, t_vec *vec2);
 t_vec		vec_subtract(t_vec *vec1, t_vec *vec2);
 t_vec		vec_multiply_by_num(t_vec *vec, float n);
 float		vec_dot(t_vec *vec1, t_vec *vec2);
-t_color		get_sphere_color(const void *data,
-				const t_point *intersection);
-t_color		get_plane_color(const void *data,
-				const t_point *intersection);
-t_color		get_cylinder_color(const void *data,
-				const t_point *intersection);
 t_vec		get_sphere_normal_vec(const void *data,
 				const t_point *intersection);
 t_vec		get_plane_normal_vec(const void *data,

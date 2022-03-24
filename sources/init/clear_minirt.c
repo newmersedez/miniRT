@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_minirt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 20:11:17 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 12:15:53 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/24 11:51:35 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,11 @@ int	clear_minirt(t_minirt *minirt)
 		return (0);
 	mlx_destroy_image(minirt->window->mlx, minirt->image->img);
 	mlx_destroy_window(minirt->window->mlx, minirt->window->mlx_win);
-	printf("lalka0\n");
 	if (minirt->image)
 		free(minirt->image);
-	printf("lalka1\n");
 	if (minirt->window)
 		free(minirt->window);
-	printf("lalka2\n");
 	clear_figures(minirt);
-	printf("lalka3\n");
 	return (1);
 }
 
