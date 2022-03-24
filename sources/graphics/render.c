@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 01:32:05 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/24 13:51:33 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+static t_vec	convert_to_viewport(t_minirt *minirt, double x, double y)
+{
+	t_vec	end_vec;
+	double	fov;
+	double	aspect_ratio;
+
+	aspect_ratio = (double)WINDOW_WIDTH  / WINDOW_HEIGHT;
+	fov = minirt->scene->camera->fov / (double)DEFAULT_FOV;
+	end_vec.x = (x - WINDOW_WIDTH / 2) * (fov / WINDOW_WIDTH) * aspect_ratio;
+	end_vec.y = -1 * (y - WINDOW_HEIGHT / 2) * (fov / WINDOW_HEIGHT);
+	end_vec.z = 1;
+	return (vec_normalize(&end_vec));
+}
 
 void	render(t_minirt *minirt)
 {
@@ -25,7 +39,7 @@ void	render(t_minirt *minirt)
 		y = 0;
 		while (y < WINDOW_HEIGHT)
 		{
-			dir = convert_to_viewport(minirt, (float)x, (float)y);
+			dir = convert_to_viewport(minirt, (double)x, (double)y);
 			color = raytrace(minirt, &minirt->scene->camera->pos, &dir);
 			my_mlx_pixel_put(minirt->image, x, y,
 				((color.r & 0xFF) << 16)

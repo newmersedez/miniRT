@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:22:09 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 02:17:10 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/24 13:52:23 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	parse_plane(char *line, t_minirt *minirt)
 		free(plane);
 		return (0);
 	}
-	push_back(&(minirt->scene->figures_list), object);
+	push_back(&(minirt->scene->objects_list), object);
 	return (1);
 }

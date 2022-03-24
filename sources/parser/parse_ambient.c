@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:17:40 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/22 20:31:41 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/24 12:37:56 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-static float	get_lighting_ratio(char **line, int *code)
+static double	get_lighting_ratio(char **line, int *code)
 {
-	float	lighting;
+	double	lighting;
 
 	skip_spaces(line);
-	lighting = get_float_param(line, code);
+	lighting = get_double_param(line, code);
 	if (!ft_isspace(**line) || !(lighting >= 0.0 && lighting <= 1.0))
 		*code = 1;
 	return (lighting);
@@ -26,7 +26,7 @@ static float	get_lighting_ratio(char **line, int *code)
 int	parse_ambient(char *line, t_minirt *minirt)
 {
 	int		code;
-	float	lighting_ratio;
+	double	lighting_ratio;
 	t_color	color;
 
 	code = 0;

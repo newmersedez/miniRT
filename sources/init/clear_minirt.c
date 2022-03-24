@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 20:11:17 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 11:51:35 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 13:52:23 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	clear_figures(t_minirt *minirt)
 		free(minirt->scene->camera);
 	if (minirt->scene->light)
 		free(minirt->scene->light);
-	if (minirt->scene->figures_list)
-		clear_list(&minirt->scene->figures_list);
+	if (minirt->scene->objects_list)
+		clear_list(&minirt->scene->objects_list);
 	free(minirt->scene);
 	return (1);
 }

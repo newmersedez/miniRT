@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 12:01:51 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 16:27:33 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_scene
 	t_ambient	*ambient_light;
 	t_camera	*camera;
 	t_light		*light;
-	t_list		*figures_list;
+	t_list		*objects_list;
 }	t_scene;
 
 typedef struct s_minirt
@@ -71,29 +71,28 @@ void		render(t_minirt *minirt);
 t_color		raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir);
 
 /* Math */
-float		vec_length(t_vec *vec);
+double		vec_length(t_vec *vec);
 t_vec		vec_normalize(t_vec *vec);
 t_vec		vec_add(t_vec *vec1, t_vec *vec2);
 t_vec		vec_subtract(t_vec *vec1, t_vec *vec2);
-t_vec		vec_multiply_by_num(t_vec *vec, float n);
-float		vec_dot(t_vec *vec1, t_vec *vec2);
+t_vec		vec_multiply_by_num(t_vec *vec, double n);
+double		vec_dot(t_vec *vec1, t_vec *vec2);
 t_vec		get_sphere_normal_vec(const void *data,
 				const t_point *intersection);
 t_vec		get_plane_normal_vec(const void *data,
 				const t_point *intersection);
 t_vec		get_cylinder_normal_vec(const void *data,
 				const t_point *intersection);
-float		ray_intersect_sphere(const void *data,
-				const t_point *start_point,
-				const t_vec *ray, t_point *intersection);
-float		ray_intersect_plane(const void *data,
-				const t_point *start_point,
-				const t_vec *ray, t_point *intersection);
-float		ray_intersect_cylinder(const void *data,
-				const t_point *start_point,
-				const t_vec *ray, t_point *intersection);
+t_point		ray_intersect_sphere(const void *data,
+				const t_point *start_point, const t_vec *ray);
+t_point		ray_intersect_plane(const void *data,
+				const t_point *start_point, const t_vec *ray);
+t_point		ray_intersect_cylinder(const void *data,
+				const t_point *start_point, const t_vec *ray);
 
 /* Utils */
-int			close_hook(t_minirt *minirt);
+int		close_hook(t_minirt *minirt);
+void	set_default_color(t_color *color);
+void	set_default_point(t_point *point);
 
 #endif

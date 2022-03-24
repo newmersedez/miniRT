@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_minirt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:16:18 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 12:15:33 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/24 13:52:23 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_scene	*create_scene(void)
 	scene->ambient_light = NULL;
 	scene->camera = NULL;
 	scene->light = NULL;
-	scene->figures_list = NULL;
+	scene->objects_list = NULL;
 	return (scene);
 }
 

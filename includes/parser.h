@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:50:13 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 02:28:32 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/24 12:37:56 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ size_t		numberlen(int n);
 int			ft_isspace(char c);
 void		skip_spaces(char **line);
 int			get_int_param(char**line, int *code);
-float		get_float_param(char **line, int *code);
+double		get_double_param(char **line, int *code);
 t_point	get_pos(char **line, int *code);
 t_color		get_color(char **line, int *code);
 t_vec		get_normal(char **line, int *code);

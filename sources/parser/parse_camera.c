@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:19:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 01:32:05 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/24 12:37:56 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-static float	get_fov(char **line, int *code)
+static double	get_fov(char **line, int *code)
 {
-	float	fov;
+	double	fov;
 
 	skip_spaces(line);
-	fov = get_float_param(line, code);
+	fov = get_double_param(line, code);
 	skip_spaces(line);
 	if (**line != '\0' || !(fov >= 0 && fov <= 180))
 		*code = 1;

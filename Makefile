@@ -6,7 +6,8 @@ CFLAGS			= -w
 RM				= rm -rf
 
 INCLUDES_DIR	= ./includes/
-SOURCES_DIR		= ./sources/ \
+SOURCES_DIR		= 	./sources/ \
+					./sources/graphics/ \
 					./sources/errors/ \
 					./sources/math/ \
 					./sources/init/ \
@@ -25,7 +26,7 @@ VPATH = $(SOURCES_DIR)
 $(OBJECTS_DIR)%.o: %.c $(INCLUDES)
 					mkdir -p $(OBJECTS_DIR)
 					$(CC) $(CFLAGS) -Imlx  -c $< -o $@  							# macos objs
-					# $(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@	# linux objs
+					# $(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@		# linux objs
 
 all:				$(LIBFT) $(NAME)
 

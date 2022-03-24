@@ -20,7 +20,7 @@ t_vec	vec_subtract(t_vec *vec1, t_vec *vec2)
 	return (res_vec);
 }
 
-t_vec	vec_multiply_by_num(t_vec *vec, float n)
+t_vec	vec_multiply_by_num(t_vec *vec, double n)
 {
 	t_vec	res_vec;
 
@@ -30,7 +30,7 @@ t_vec	vec_multiply_by_num(t_vec *vec, float n)
 	return (res_vec);
 }
 
-float	vec_dot(t_vec *vec1, t_vec *vec2)
+double	vec_dot(t_vec *vec1, t_vec *vec2)
 {
 	return (vec1->x * vec2->x + vec1->y * vec2->y + vec1->z * vec2->z);
 }

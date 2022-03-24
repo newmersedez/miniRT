@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:23:21 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 02:27:29 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/24 13:52:23 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-static float	get_diameter(char **line, int *code)
+static double	get_diameter(char **line, int *code)
 {
-	float	diameter;
+	double	diameter;
 
 	skip_spaces(line);
-	diameter = get_float_param(line, code);
+	diameter = get_double_param(line, code);
 	if (!ft_isspace(**line) || diameter <= 0)
 		*code = 1;
 	return (diameter);
 }
 
-static float	get_height(char **line, int *code)
+static double	get_height(char **line, int *code)
 {
-	float	height;
+	double	height;
 
 	skip_spaces(line);
-	height = get_float_param(line, code);
+	height = get_double_param(line, code);
 	if (!ft_isspace(**line) || height <= 0)
 		*code = 1;
 	return (height);
@@ -75,6 +75,6 @@ int	parse_cylinder(char *line, t_minirt *minirt)
 		free(cylinder);
 		return (0);
 	}
-	push_back(&(minirt->scene->figures_list), object);
+	push_back(&(minirt->scene->objects_list), object);
 	return (1);
 }

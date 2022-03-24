@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:21:35 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 02:18:22 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/24 13:52:23 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-static float	get_diameter(char **line, int *code)
+static double	get_diameter(char **line, int *code)
 {
-	float	diameter;
+	double	diameter;
 
 	skip_spaces(line);
-	diameter = get_float_param(line, code);
+	diameter = get_double_param(line, code);
 	if (!ft_isspace(**line) || diameter <= 0)
 		*code = 1;
 	return (diameter);
@@ -58,6 +58,6 @@ int	parse_sphere(char *line, t_minirt *minirt)
 		free(sphere);
 		return (0);
 	}
-	push_back(&(minirt->scene->figures_list), object);
+	push_back(&(minirt->scene->objects_list), object);
 	return (1);
 }
