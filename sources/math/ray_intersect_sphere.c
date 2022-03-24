@@ -7,13 +7,9 @@ static double	*calculate_closest_intersection(t_sphere *sphere, const t_point *s
 	double	*t_array;
 	double	discriminant;
 
-	// printf("cam = %f %f %f\t", start_point->x, start_point->y, start_point->z);
-	// printf("ray = %f %f %f\t", ray->x, ray->y, ray->z);
 	t_array = (double *)malloc(2 * sizeof(double));
 	if (!t_array)
-		return (NULL);
-	// printf("pos = %f %f %f\n", sphere->pos.x, sphere->pos.y, sphere->pos.z);
-	oc_vec = vec_subtract(&sphere->pos, start_point);
+		return (NULL);	oc_vec = vec_subtract(&sphere->pos, start_point);
 	k[0] = vec_dot(ray, ray);
 	k[1] = 2 * vec_dot(&oc_vec, ray);
 	k[2] = vec_dot(&oc_vec, &oc_vec) - (sphere->diameter / 2) * (sphere->diameter / 2);
@@ -28,9 +24,6 @@ static double	*calculate_closest_intersection(t_sphere *sphere, const t_point *s
 		t_array[0] = (-k[1] + sqrtf(discriminant)) / (2 * k[0]);
     	t_array[1] = (-k[1] - sqrtf(discriminant)) / (2 * k[0]);
 	}
-	// printf("oc = (%f, %f, %f)\tk[0]=%f, k[1]=%f, k[2]=%f\tdiscr=%f\n",
-		// oc_vec.x, oc_vec.y, oc_vec.z,
-		// k[0], k[1], k[2], discriminant);
 	return (t_array);
 }
 
@@ -55,8 +48,6 @@ t_point	ray_intersect_sphere(const void *data, const t_point *start_point,
 	{
 		point = vec_multiply_by_num(ray, closest_t);
 		point = vec_add(start_point, &point);
-		// printf("point1 = (%f %f %f)\n", point.x, point.y, point.z);
 	}
-	// printf("point2 = (%f %f %f)\n", point.x, point.y, point.z);
 	return (point);
 }
