@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 16:27:33 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 17:10:44 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ t_point		ray_intersect_cylinder(const void *data,
 				const t_point *start_point, const t_vec *ray);
 
 /* Utils */
-int		close_hook(t_minirt *minirt);
-void	set_default_color(t_color *color);
-void	set_default_point(t_point *point);
+int			close_hook(t_minirt *minirt);
+void		set_default_color(t_color *color);
+void		set_default_point(t_point *point);
 
 #endif

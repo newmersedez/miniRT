@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   set_defaults.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/13 18:06:06 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 17:19:19 by lorphan          ###   ########.fr       */
+/*   Created: 2022/03/24 16:58:24 by lorphan           #+#    #+#             */
+/*   Updated: 2022/03/24 16:59:38 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#include "../../includes/minirt.h"
 
-/* Window settings */
-# define WINDOW_WIDTH		1000
-# define WINDOW_HEIGHT		1000
-# define DEFAULT_FOV		60
+void	set_default_color(t_color *color)
+{
+	color->r = 0;
+	color->g = 0;
+	color->b = 0;
+}
 
-/* Error messages */
-# define ARGS_COUNT_ERROR	"Incorrect args count\n"
-# define FILE_EXT_ERROR		"Incorect file extension\n"
-# define INIT_ERROR			"App init error\n"
-# define PARSE_FILE_ERROR	"Error while file parsing\n"
-
-#endif
+void	set_default_point(t_point *point)
+{
+	point->x = INFINITY;
+	point->y = INFINITY;
+	point->z = INFINITY;
+}
