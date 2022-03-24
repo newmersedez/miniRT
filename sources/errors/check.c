@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:53:50 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 01:02:31 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/24 21:26:52 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	handle_errors(t_minirt *minirt, int argc, char *argv[])
 		fail_exit(minirt, INIT_ERROR);
 	if (!parse_info_from_file(filename, minirt))
 		fail_exit(minirt, PARSE_FILE_ERROR);
+	if (!check_scene_correctness(minirt))
+		success_exit(minirt, SCENE_WARNING);
 }
 
 int	check_file_extension(const char *filename)
@@ -67,4 +69,13 @@ int	check_line_comment(const char *line)
 	if (*line && *line == '#')
 		return (1);
 	return (0);
+}
+
+int	check_scene_correctness(t_minirt *minirt)
+{
+	if (!minirt->scene->camera)
+		return (0);
+	if (!minirt->scene->light && !minirt->scene->ambient_light)
+		return (0);
+	return (1);
 }

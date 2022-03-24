@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:17:40 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 12:37:56 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 21:20:53 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	parse_ambient(char *line, t_minirt *minirt)
 	t_color	color;
 
 	code = 0;
+	if (minirt->scene->ambient_light)
+		return (0);
 	lighting_ratio = get_lighting_ratio(&line, &code);
 	if (code == 1)
 		return (0);
 	color = get_color(&line, &code);
 	if (code == 1)
-		return (0);
-	if (minirt->scene->ambient_light)
 		return (0);
 	minirt->scene->ambient_light = (t_ambient *)malloc(sizeof(t_ambient));
 	if (!minirt->scene->ambient_light)

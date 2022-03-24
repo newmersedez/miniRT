@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 17:10:44 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 20:44:52 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int			clear_figures(t_minirt *minirt);
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
 void		render(t_minirt *minirt);
 t_color		raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir);
+t_color		calculate_color(t_minirt *minirt, t_object *object,
+				t_point *intersection_point);
 
 /* Math */
 double		vec_length(t_vec *vec);
@@ -92,6 +94,7 @@ t_point		ray_intersect_cylinder(const void *data,
 
 /* Utils */
 int			close_hook(t_minirt *minirt);
+void		display_vector(const t_vec *vec);
 void		set_default_color(t_color *color);
 void		set_default_point(t_point *point);
 

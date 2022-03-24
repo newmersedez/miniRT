@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:20:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 12:37:56 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 21:27:46 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	parse_light(char *line, t_minirt *minirt)
 	double	brightness_ratio;
 
 	code = 0;
+	if (minirt->scene->light)
+		return (0);
 	pos = get_pos(&line, &code);
 	if (code == -1)
 		return (0);
@@ -39,8 +41,6 @@ int	parse_light(char *line, t_minirt *minirt)
 		return (0);
 	color = get_color(&line, &code);
 	if (code == 1)
-		return (0);
-	if (minirt->scene->light)
 		return (0);
 	minirt->scene->light = (t_light *)malloc(sizeof(t_light));
 	if (!minirt->scene->light)

@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:49:04 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 15:40:48 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 20:50:06 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_object
 {
 	void	*figure;
 	int		type;
+	t_color	color;
 	t_vec	(*get_normal_vector)(const void *data, const t_point *intersection);
 	t_point	(*ray_intersection)(const void *data, const t_point *start_point,
 				const t_vec *ray);

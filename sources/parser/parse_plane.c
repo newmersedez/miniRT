@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:22:09 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 13:52:23 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 20:16:30 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_plane	*get_plane_info(char *line)
 	if (code == 1)
 		return (NULL);
 	plane->normal = get_pos(&line, &code);
-	vec_normalize(&plane->normal);
+	plane->normal = vec_normalize(&plane->normal);
 	if (code == 1)
 		return (NULL);
 	plane->color = get_color(&line, &code);

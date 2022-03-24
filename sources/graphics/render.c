@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 17:39:46 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 20:15:39 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static t_vec	convert_to_viewport(t_minirt *minirt, double x, double y)
 	end_vec.x = (x - WINDOW_WIDTH / 2) * (fov / WINDOW_WIDTH) * aspect_ratio;
 	end_vec.y = -1 * (y - WINDOW_HEIGHT / 2) * (fov / WINDOW_HEIGHT);
 	end_vec.z = 1;
-	return (vec_normalize(&end_vec));
+	vec_normalize(&end_vec);
+	return (end_vec);
 }
 
 void	render(t_minirt *minirt)

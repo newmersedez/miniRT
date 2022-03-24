@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/24 19:53:09 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 21:55:41 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,6 @@ t_color	raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir)
 		objects_list = objects_list->next;
 	}
 	if (closest_object)
-	{
-		if (closest_object->type == SPHERE)
-			color = ((t_sphere *)closest_object->figure)->color;
-		else if (closest_object->type == PLANE)
-			color = ((t_plane *)closest_object->figure)->color;
-		else if (closest_object->type == CYLINDER)
-			color = ((t_cylinder *)closest_object->figure)->color;
-	}
-		
+		color = calculate_color(minirt, closest_object, &closest_point);
 	return (color);
 }

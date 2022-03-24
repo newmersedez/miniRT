@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:19:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 12:37:56 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/24 21:20:43 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	parse_camera(char *line, t_minirt *minirt)
 	t_vec	normal;
 
 	code = 0;
+	if (minirt->scene->camera)
+		return (0);
 	pos = get_pos(&line, &code);
 	if (code == 1)
 		return (0);
@@ -40,8 +42,6 @@ int	parse_camera(char *line, t_minirt *minirt)
 		return (0);
 	fov = get_fov(&line, &code);
 	if (code == 1)
-		return (0);
-	if (minirt->scene->camera)
 		return (0);
 	minirt->scene->camera = (t_camera *)malloc(sizeof(t_camera));
 	if (!minirt->scene->camera)
