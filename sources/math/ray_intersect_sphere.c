@@ -34,7 +34,7 @@ t_point	ray_intersect_sphere(const void *data, const t_point *start_point,
 	sphere = (t_sphere *)data;
 	set_default_point(&point);
 	t = find_closest_t(sphere, start_point, ray);
-	if (t >= 0 && t <= INFINITY)
+	if (t >= 0 && t < INFINITY)
 	{
 		point = vec_multiply_by_num(ray, t);
 		point = vec_add(start_point, &point);
