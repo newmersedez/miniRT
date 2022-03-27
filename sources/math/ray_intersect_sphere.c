@@ -9,7 +9,8 @@ static double	*calculate_closest_intersection(t_sphere *sphere, const t_point *s
 
 	t_array = (double *)malloc(2 * sizeof(double));
 	if (!t_array)
-		return (NULL);	oc_vec = vec_subtract(&sphere->pos, start_point);
+		return (NULL);
+	oc_vec = vec_subtract(&sphere->pos, start_point);
 	k[0] = vec_dot(ray, ray);
 	k[1] = 2 * vec_dot(&oc_vec, ray);
 	k[2] = vec_dot(&oc_vec, &oc_vec) - (sphere->diameter / 2) * (sphere->diameter / 2);

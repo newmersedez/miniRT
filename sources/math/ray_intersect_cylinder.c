@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:01:25 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 04:32:12 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 17:35:40 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static double	find_t(t_cylinder *cyl, t_point *origin, t_vec *dir)
 	double	x1;
 	double	x2;
 
-	oc = vec_subtract(&cyl->pos, origin);
+	oc = vec_subtract(origin, &cyl->pos);
+	// oc = vec_subtract(&cyl->pos, origin);
 	t[2] = pow(dir->x, 2) + pow(dir->y, 2) + pow(dir->z, 2);
 	t[1] = -2 * (dir->x * oc.x + dir->y * oc.y + dir->z * oc.z);
 	t[0] = pow(oc.x, 2) + pow(oc.y, 2) + pow(oc.z, 2);
@@ -70,7 +71,10 @@ t_point	ray_intersect_cylinder(const void *data, const t_point *start_point,
 	cylinder = (t_cylinder *)data;
 	set_default_color(&point);
 	closest_t = find_t(cylinder, start_point, ray);
-	point = vec_multiply_by_num(ray, closest_t);
-	point = vec_add(start_point, &point);
+	if (closest_t != INFINITY)
+	{
+		point = vec_multiply_by_num(ray, closest_t);
+		point = vec_add(start_point, &point);
+	}
 	return (point);
 }

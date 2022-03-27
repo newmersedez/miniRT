@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:00:38 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 04:32:20 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 17:34:48 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,3 @@ t_point	ray_intersect_plane(const void *data, const t_point *start_point,
 	}
 	return (point);
 }
-
-// t_point	ray_intersect_plane(const void *data, const t_point *start_point,
-			// const t_vec *ray)
-// {
-	// t_point	point;
-	// t_plane	*plane;
-// 
-	// plane = (t_plane *)plane;
-	// 
-// }
