@@ -1,53 +1,42 @@
 #include "../../includes/minirt.h"
 
-static double	*calculate_closest_intersection(t_sphere *sphere, const t_point *start_point, const t_vec *ray)
+static double	find_closest_t(t_sphere *sphere, t_point *origin, t_vec *ray)
 {
-	t_vec	oc_vec;
-	double	k[3];
-	double	*t_array;
-	double	discriminant;
+	t_vec	l;
+	double	d2;
+	double	tca;
+	double	thc;
+	double	t_values[3];
 
-	t_array = (double *)malloc(2 * sizeof(double));
-	if (!t_array)
-		return (NULL);
-	oc_vec = vec_subtract(&sphere->pos, start_point);
-	k[0] = vec_dot(ray, ray);
-	k[1] = 2 * vec_dot(&oc_vec, ray);
-	k[2] = vec_dot(&oc_vec, &oc_vec) - (sphere->diameter / 2) * (sphere->diameter / 2);
-	discriminant = k[1] * k[1] - 4 * k[0] * k[2];
-	if (discriminant < 0)
-	{
-		t_array[0] = INFINITY;
-		t_array[1] = INFINITY;
-	}
-	else
-	{
-		t_array[0] = (-k[1] + sqrtf(discriminant)) / (2 * k[0]);
-    	t_array[1] = (-k[1] - sqrtf(discriminant)) / (2 * k[0]);
-	}
-	return (t_array);
+	t_values[2] = INFINITY;
+	l = vec_subtract(origin, &sphere->pos);
+	tca = vec_dot(&l, ray);
+	d2 = vec_dot(&l, &l) - tca * tca;
+	if (d2 > (sphere->diameter * sphere->diameter) / 4)
+		return (INFINITY);
+	thc = sqrtf((sphere->diameter * sphere->diameter) / 4 - d2);
+	t_values[0] = tca - thc;
+	t_values[1] = tca + thc;
+	if ((t_values[0] >= 0 && t_values[0] <= INFINITY) && (t_values[0] < t_values[2]))
+		t_values[2] = t_values[0];
+	if ((t_values[1] >= 0 && t_values[1] <= INFINITY) && (t_values[1] < t_values[2]))
+		t_values[2]= t_values[1];
+	return (t_values[2]);
 }
 
 t_point	ray_intersect_sphere(const void *data, const t_point *start_point,
 			const t_vec *ray)
 {
-	t_point		point;
 	t_sphere	*sphere;
-	t_vec		new_ray;
-	double		*t_array;
-	double		closest_t;
+	t_point		point;
+	double		t;
 
 	sphere = (t_sphere *)data;
-	closest_t = INFINITY;
 	set_default_point(&point);
-	t_array = calculate_closest_intersection(sphere, start_point, ray);
-	if ((t_array[0] >= 1 && t_array[0] <= INFINITY) && (t_array[0] < closest_t))
-		closest_t = t_array[0];
-	if ((t_array[1] >= 1 && t_array[1] <= INFINITY) && (t_array[1] < closest_t))
-		closest_t = t_array[1];
-	if (closest_t != INFINITY)
+	t = find_closest_t(sphere, start_point, ray);
+	if (t >= 0 && t <= INFINITY)
 	{
-		point = vec_multiply_by_num(ray, closest_t);
+		point = vec_multiply_by_num(ray, t);
 		point = vec_add(start_point, &point);
 	}
 	return (point);

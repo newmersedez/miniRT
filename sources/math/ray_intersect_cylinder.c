@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:01:25 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 17:35:40 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 20:05:31 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,16 @@ t_point	ray_intersect_cylinder(const void *data, const t_point *start_point,
 {
 	t_cylinder	*cylinder;
 	t_point		point;
-	double		closest_t;
+	double		t;
 
 	cylinder = (t_cylinder *)data;
 	set_default_color(&point);
-	closest_t = find_t(cylinder, start_point, ray);
-	if (closest_t != INFINITY)
+	t = find_t(cylinder, start_point, ray);
+	if (t >= 0 && t <= INFINITY)
 	{
-		point = vec_multiply_by_num(ray, closest_t);
-		point = vec_add(start_point, &point);
+		
+	point = vec_multiply_by_num(ray, t);
+	point = vec_add(start_point, &point);
 	}
 	return (point);
 }
