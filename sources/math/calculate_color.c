@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 20:28:10 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 20:29:28 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,5 @@ t_color	calculate_color(t_minirt *minirt, t_object *object, t_point *intersectio
 		color.g = color.g * light_angle * minirt->scene->light->brightness_ratio;
 		color.b = color.b * light_angle * minirt->scene->light->brightness_ratio;
 	}
-
-	// t_color	color;
-	// set_default_color(&color);
-	// if (intersection_point->x != INFINITY)
-	// 	color = object->color;
 	return (color);
 }
