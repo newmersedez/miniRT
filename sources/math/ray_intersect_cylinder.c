@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:01:25 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 20:05:31 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 20:27:53 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static double	find_t(t_cylinder *cyl, t_point *origin, t_vec *dir)
 	double	x2;
 
 	oc = vec_subtract(origin, &cyl->pos);
-	// oc = vec_subtract(&cyl->pos, origin);
 	t[2] = pow(dir->x, 2) + pow(dir->y, 2) + pow(dir->z, 2);
 	t[1] = -2 * (dir->x * oc.x + dir->y * oc.y + dir->z * oc.z);
 	t[0] = pow(oc.x, 2) + pow(oc.y, 2) + pow(oc.z, 2);
@@ -50,12 +49,12 @@ static double	find_t(t_cylinder *cyl, t_point *origin, t_vec *dir)
 	solve_square(t, &x1, &x2);
 	temp = vec_multiply_by_num(dir, x2);
 	temp = vec_add(origin, &temp);
-	temp = vec_subtract(&temp, &cyl->pos);
+	temp = vec_subtract(&cyl->pos, &temp);
 	if (x2 > 0 && x2 < INFINITY && fabs(vec_dot(&cyl->dir, &temp)) < cyl->height / 2)
 		return (x2);
 	temp = vec_multiply_by_num(dir, x1);
 	temp = vec_add(origin, &temp);
-	temp = vec_subtract(&temp, &cyl->pos);
+	temp = vec_subtract(&cyl->pos, &temp);
 	if (x1 > 0 && x1 < INFINITY && fabs(vec_dot(&cyl->dir, &temp)) < cyl->height / 2)
 		return (x1);
 	return (INFINITY);
@@ -72,10 +71,9 @@ t_point	ray_intersect_cylinder(const void *data, const t_point *start_point,
 	set_default_color(&point);
 	t = find_t(cylinder, start_point, ray);
 	if (t >= 0 && t <= INFINITY)
-	{
-		
-	point = vec_multiply_by_num(ray, t);
-	point = vec_add(start_point, &point);
+	{	
+		point = vec_multiply_by_num(ray, t);
+		point = vec_add(start_point, &point);
 	}
 	return (point);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_normal_vector.c                                :+:      :+:    :+:   */
+/*   vector_normal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 01:30:19 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/27 04:32:20 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 20:25:43 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,13 @@ t_vec	get_cylinder_normal_vec(const void *data, const t_point *intersection)
 	t_vec		n;
 	t_vec		v;
 	t_vec		temp;
-	double		k;
 	t_point		c0;
 
 	cylinder = (t_cylinder *)data;
-	v = vec_subtract(intersection, &cylinder->pos);
+	v = vec_subtract(&cylinder->pos, intersection);
 	temp = vec_multiply_by_num(&cylinder->dir, vec_dot(&v, &cylinder->dir));
 	c0 = vec_add(&cylinder->pos, &temp);
-	temp = vec_subtract(intersection, &c0);
+	temp = vec_subtract(&c0, intersection);
 	n = vec_normalize(&temp);
 	return (n);
 }
