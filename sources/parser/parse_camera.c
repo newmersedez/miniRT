@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:19:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 21:20:43 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/27 04:31:35 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	parse_camera(char *line, t_minirt *minirt)
 		return (0);
 	minirt->scene->camera->fov = fov;
 	minirt->scene->camera->pos = pos;
-	minirt->scene->camera->normal = vec_normalize(&normal);
+	minirt->scene->camera->dir = vec_normalize(&normal);
 	return (1);
 }

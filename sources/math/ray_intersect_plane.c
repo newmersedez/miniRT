@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:00:38 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 03:23:18 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 04:32:20 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_point	ray_intersect_plane(const void *data, const t_point *start_point,
 	plane = (t_plane *)data;
 	set_default_point(&point);
 	ray_normal = vec_normalize(ray);
-	plane_normal = change_plane_normal(&plane->normal, ray);
+	plane_normal = change_plane_normal(&plane->dir, ray);
 	denom = vec_dot(&plane_normal, &ray_normal);
 	if (denom > 0.0001f)
 	{

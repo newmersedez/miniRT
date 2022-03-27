@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:49:04 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 03:45:53 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 04:32:20 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_ambient
 typedef struct s_camera
 {
 	t_point	pos;
-	t_vec	normal;
+	t_vec	dir;
 	double	fov;
 	t_vec	basis_x;
 	t_vec	basis_y;
@@ -83,14 +83,14 @@ typedef struct s_plane
 {
 	t_point	pos;
 	t_color	color;
-	t_vec	normal;
+	t_vec	dir;
 }	t_plane;
 
 typedef struct s_cylinder
 {
 	t_point	pos;
 	t_color	color;
-	t_vec	normal;
+	t_vec	dir;
 	double	diameter;
 	double	height;
 }	t_cylinder;

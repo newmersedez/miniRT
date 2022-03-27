@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:01:25 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 02:46:07 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 04:32:12 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static double	find_t(t_cylinder *cyl, t_point *origin, t_vec *dir)
 	t[2] = pow(dir->x, 2) + pow(dir->y, 2) + pow(dir->z, 2);
 	t[1] = -2 * (dir->x * oc.x + dir->y * oc.y + dir->z * oc.z);
 	t[0] = pow(oc.x, 2) + pow(oc.y, 2) + pow(oc.z, 2);
-	x1 = vec_dot(dir, &cyl->normal);
-	x2 = vec_dot(&oc, &cyl->normal);
+	x1 = vec_dot(dir, &cyl->dir);
+	x2 = vec_dot(&oc, &cyl->dir);
 	t[2] -= pow(x1, 2);
 	t[1] -= -2 * x1 * x2;
 	t[0] -= pow(x2, 2);
@@ -50,12 +50,12 @@ static double	find_t(t_cylinder *cyl, t_point *origin, t_vec *dir)
 	temp = vec_multiply_by_num(dir, x2);
 	temp = vec_add(origin, &temp);
 	temp = vec_subtract(&temp, &cyl->pos);
-	if (x2 > 0 && x2 < INFINITY && fabs(vec_dot(&cyl->normal, &temp)) < cyl->height / 2)
+	if (x2 > 0 && x2 < INFINITY && fabs(vec_dot(&cyl->dir, &temp)) < cyl->height / 2)
 		return (x2);
 	temp = vec_multiply_by_num(dir, x1);
 	temp = vec_add(origin, &temp);
 	temp = vec_subtract(&temp, &cyl->pos);
-	if (x1 > 0 && x1 < INFINITY && fabs(vec_dot(&cyl->normal, &temp)) < cyl->height / 2)
+	if (x1 > 0 && x1 < INFINITY && fabs(vec_dot(&cyl->dir, &temp)) < cyl->height / 2)
 		return (x1);
 	return (INFINITY);
 }

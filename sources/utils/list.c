@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:40:56 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/23 02:55:31 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 04:32:20 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	display_object(t_object *object)
 		t_plane *plane = (t_plane *)object->figure;
 		printf("plane = %.1f %.1f %.1f %.1f %.1f %.1f %d %d %d\n",
 			plane->pos.x, plane->pos.y, plane->pos.z,
-			plane->normal.x, plane->normal.y, plane->normal.z,
+			plane->dir.x, plane->dir.y, plane->dir.z,
 			plane->color.r, plane->color.g, plane->color.b);
 	}
 	else if (object->type == CYLINDER)
@@ -100,7 +100,7 @@ void	display_object(t_object *object)
 		t_cylinder *cylinder = (t_cylinder *)object->figure;
 		printf("cylinder = %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %d %d %d",
 			cylinder->pos.x, cylinder->pos.y, cylinder->pos.z,
-			cylinder->normal.x, cylinder->normal.y, cylinder->normal.z, 
+			cylinder->dir.x, cylinder->dir.y, cylinder->dir.z, 
 			cylinder->diameter, cylinder->height,
 			cylinder->color.r, cylinder->color.g, cylinder->color.b);
 	}

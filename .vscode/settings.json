@@ -8,6 +8,13 @@
 		"locale": "c",
 		"memory": "c",
 		"tuple": "c",
-		"utility": "c"
+		"utility": "c",
+		"*.tcc": "c",
+		"string": "c",
+		"vector": "c",
+		"random": "c",
+		"fstream": "c",
+		"functional": "c",
+		"new": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 01:30:19 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/27 02:33:30 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 04:32:20 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_vec	get_plane_normal_vec(const void *data, const t_point *intersection)
 	t_plane	*plane;
 
 	plane = (t_plane *)data;
-	return (plane->normal);
+	return (plane->dir);
 }
 
 t_vec	get_cylinder_normal_vec(const void *data, const t_point *intersection)
@@ -43,7 +43,7 @@ t_vec	get_cylinder_normal_vec(const void *data, const t_point *intersection)
 
 	cylinder = (t_cylinder *)data;
 	v = vec_subtract(intersection, &cylinder->pos);
-	temp = vec_multiply_by_num(&cylinder->normal, vec_dot(&v, &cylinder->normal));
+	temp = vec_multiply_by_num(&cylinder->dir, vec_dot(&v, &cylinder->dir));
 	c0 = vec_add(&cylinder->pos, &temp);
 	temp = vec_subtract(intersection, &c0);
 	n = vec_normalize(&temp);
