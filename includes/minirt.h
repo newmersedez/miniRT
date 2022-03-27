@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 04:03:29 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/28 01:05:57 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int			clear_figures(t_minirt *minirt);
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
 void		render(t_minirt *minirt);
 t_color		raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir);
-t_color		calculate_color(t_minirt *minirt, t_object *object,
+t_color		calculate_light(t_minirt *minirt, t_object *object,
 				t_point *intersection_point);
 
 /* Math */
@@ -81,6 +81,7 @@ t_vec		vec_subtract(t_vec *vec1, t_vec *vec2);
 t_vec		vec_multiply_by_num(t_vec *vec, double n);
 double		vec_dot(t_vec *vec1, t_vec *vec2);
 t_vec		vec_cross(t_vec *vec1, t_vec *vec2);
+t_vec		change_plane_normal(t_vec *normal_vec, t_vec *ray);
 t_vec		get_sphere_normal_vec(const void *data,
 				const t_point *intersection);
 t_vec		get_plane_normal_vec(const void *data,
@@ -93,6 +94,8 @@ t_point		ray_intersect_plane(const void *data,
 				const t_point *start_point, const t_vec *ray);
 t_point		ray_intersect_cylinder(const void *data,
 				const t_point *start_point, const t_vec *ray);
+int			is_closest_intersection_point(t_point *origin_point,
+				t_point *intersection_point, t_point *closest_point);
 
 /* Utils */
 int			close_hook(t_minirt *minirt);

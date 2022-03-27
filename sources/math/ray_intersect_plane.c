@@ -6,13 +6,13 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:00:38 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 21:35:27 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 22:21:11 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static t_vec	change_plane_normal(t_vec *normal_vec, t_vec *ray)
+t_vec	change_plane_normal(t_vec *normal_vec, t_vec *ray)
 {
 	t_vec	new_normal_vec;
 	double	dot_product;
