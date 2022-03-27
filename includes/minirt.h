@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 20:44:52 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/27 04:03:29 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,14 @@ t_color		calculate_color(t_minirt *minirt, t_object *object,
 				t_point *intersection_point);
 
 /* Math */
+t_vec		vec_create(double x, double y, double z);
 double		vec_length(t_vec *vec);
 t_vec		vec_normalize(t_vec *vec);
 t_vec		vec_add(t_vec *vec1, t_vec *vec2);
 t_vec		vec_subtract(t_vec *vec1, t_vec *vec2);
 t_vec		vec_multiply_by_num(t_vec *vec, double n);
 double		vec_dot(t_vec *vec1, t_vec *vec2);
+t_vec		vec_cross(t_vec *vec1, t_vec *vec2);
 t_vec		get_sphere_normal_vec(const void *data,
 				const t_point *intersection);
 t_vec		get_plane_normal_vec(const void *data,
@@ -94,7 +96,6 @@ t_point		ray_intersect_cylinder(const void *data,
 
 /* Utils */
 int			close_hook(t_minirt *minirt);
-void		display_vector(const t_vec *vec);
 void		set_default_color(t_color *color);
 void		set_default_point(t_point *point);
 

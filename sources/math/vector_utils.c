@@ -3,16 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:24:48 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 21:57:05 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/27 04:03:08 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
 #define GET_VARIABLE_NAME(Variable) (#Variable)
+
+t_vec	vec_create(double x, double y, double z)
+{
+	t_vec	vec;
+
+	vec.x = x;
+	vec.y = y;
+	vec.z = z;
+	return (vec);
+}
 
 double	vec_length(t_vec *vec)
 {
@@ -33,8 +43,14 @@ t_vec	vec_normalize(t_vec *vec)
 	return (normal_vec);
 }
 
-void	display_vector(const t_vec *vec)
+t_vec	vec_cross(t_vec *vec1, t_vec *vec2)
 {
-	printf("%s = (%f, %f, %f)\n", GET_VARIABLE_NAME(vec), vec->x, vec->y, vec->z);
-}
+	double	x;
+	double	y;
+	double	z;
 
+	x = vec1->y * vec2->z - vec1->z * vec2->y;
+	y = vec1->z * vec2->x - vec1->x * vec2->z;
+	z = vec1->x * vec2->y - vec1->y * vec2->x;
+	return (vec_create(x, y, z));
+}

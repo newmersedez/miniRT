@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/24 21:55:41 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/27 03:08:22 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ static int	is_closest_intersection_point(t_point *origin_point,
 	double	intersection_vec_length;
 	double	closest_vec_length;
 
-	if (intersection_point->x == INFINITY && intersection_point->y == INFINITY
-			&& intersection_point->z == INFINITY)
+	if (intersection_point->x == INFINITY)
 		return (0);
 	else
 	{
-		if (closest_point->x == INFINITY && closest_point->y == INFINITY
-				&& closest_point->z == INFINITY)
+		if (closest_point->x == INFINITY)
 			return (1);
 		else
 		{

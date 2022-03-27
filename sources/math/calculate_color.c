@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/25 23:01:37 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 02:44:11 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ t_color	calculate_color(t_minirt *minirt, t_object *object, t_point *intersectio
 	light_vec = vec_subtract(intersection_point, &minirt->scene->light->pos);
 	light_vec = vec_normalize(&light_vec);
 		
-	// if (object->type == PLANE)
-		// normal_vec = change_plane_normal(&normal_vec, &light_vec);
+	if (object->type == PLANE || object->type == CYLINDER)
+		normal_vec = change_plane_normal(&normal_vec, &light_vec);
 	
 	dot_product_light = vec_dot(&light_vec, &normal_vec);
 	light_angle = dot_product_light / (vec_length(&light_vec) * vec_length(&normal_vec));

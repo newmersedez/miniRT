@@ -23,7 +23,6 @@ t_vec	vec_subtract(t_vec *vec1, t_vec *vec2)
 t_vec	vec_multiply_by_num(t_vec *vec, double n)
 {
 	t_vec	res_vec;
-
 	res_vec.x = n * vec->x;
 	res_vec.y = n * vec->y;
 	res_vec.z = n * vec->z;

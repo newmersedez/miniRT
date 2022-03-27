@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:00:38 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/25 22:40:52 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/27 03:23:18 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ t_point	ray_intersect_plane(const void *data, const t_point *start_point,
 			point = vec_add(start_point, &point);
 		}
 	}
-	// if (point.x != INFINITY && point.y != INFINITY && point.z != INFINITY)
-		// display_vector(&point);
 	return (point);
 }
 
