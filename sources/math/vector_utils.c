@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:24:48 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 16:14:03 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/28 23:37:02 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ t_vec	vec_create(double x, double y, double z)
 	return (vec);
 }
 
-double	vec_length(t_vec *vec)
+double	vec_length(const t_vec *vec)
 {
 	if (!vec)
 		return (0);
 	return (sqrtf(vec->x * vec->x + vec->y * vec->y + vec->z * vec->z));
 }
 
-t_vec	vec_normalize(t_vec *vec)
+t_vec	vec_normalize(const t_vec *vec)
 {
 	double	temp;
 	t_vec	normal_vec;

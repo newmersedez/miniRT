@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:53:50 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 21:26:52 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/28 23:23:39 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-void	handle_errors(t_minirt *minirt, int argc, char *argv[])
+void	handle_errors(const t_minirt *minirt, int argc, char *argv[])
 {
 	char		*filename;
 
@@ -71,7 +71,7 @@ int	check_line_comment(const char *line)
 	return (0);
 }
 
-int	check_scene_correctness(t_minirt *minirt)
+int	check_scene_correctness(const t_minirt *minirt)
 {
 	if (!minirt->scene->camera)
 		return (0);

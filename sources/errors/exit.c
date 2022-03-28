@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:53:09 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/14 21:44:14 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/28 23:39:58 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/errors.h"
+#include "../../includes/errors.h"
 
 void	display_message(const char *msg, int fd)
 {

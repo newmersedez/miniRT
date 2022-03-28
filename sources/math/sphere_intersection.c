@@ -1,6 +1,6 @@
 #include "../../includes/minirt.h"
 
-static double	find_closest_t(t_sphere *sphere, t_point *origin, t_vec *ray)
+static double	find_t(t_sphere *sphere, t_point *origin, t_vec *ray)
 {
 	t_vec	l;
 	double	d2;
@@ -17,10 +17,12 @@ static double	find_closest_t(t_sphere *sphere, t_point *origin, t_vec *ray)
 	thc = sqrtf((sphere->diameter * sphere->diameter) / 4 - d2);
 	t_values[0] = tca - thc;
 	t_values[1] = tca + thc;
-	if ((t_values[0] >= 0 && t_values[0] <= INFINITY) && (t_values[0] < t_values[2]))
+	if ((t_values[0] >= 0 && t_values[0] <= INFINITY)
+		&& (t_values[0] < t_values[2]))
 		t_values[2] = t_values[0];
-	if ((t_values[1] >= 0 && t_values[1] <= INFINITY) && (t_values[1] < t_values[2]))
-		t_values[2]= t_values[1];
+	if ((t_values[1] >= 0 && t_values[1] <= INFINITY)
+		&& (t_values[1] < t_values[2]))
+		t_values[2] = t_values[1];
 	return (t_values[2]);
 }
 
@@ -33,7 +35,7 @@ t_point	ray_intersect_sphere(const void *data, const t_point *start_point,
 
 	sphere = (t_sphere *)data;
 	set_default_point(&point);
-	t = find_closest_t(sphere, start_point, ray);
+	t = find_t(sphere, start_point, ray);
 	if (t >= 0 && t < INFINITY)
 	{
 		point = vec_multiply_by_num(ray, t);

@@ -6,14 +6,14 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/28 01:05:57 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/28 22:42:45 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int	is_closest_intersection_point(t_point *origin_point,
-				t_point *intersection_point, t_point *closest_point)
+int	is_closest_intersection_point(const t_point *origin_point,
+				const t_point *intersection_point, const t_point *closest_point)
 {
 	t_vec	intersection_vec;
 	t_vec	closest_vec;
@@ -54,7 +54,7 @@ t_color	raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir)
 	while (objects_list)
 	{
 		intersect_point = objects_list->object->ray_intersection(
-			objects_list->object->figure, origin, dir);
+				objects_list->object->figure, origin, dir);
 		if (is_closest_intersection_point(origin,
 				&intersect_point, &closest_point))
 		{
@@ -64,6 +64,10 @@ t_color	raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir)
 		objects_list = objects_list->next;
 	}
 	if (closest_object)
+	{
+		if (closest_point.x == NAN || closest_point.y == NAN || closest_point.z == NAN)
+			printf("intersection = (%f %f %f)\n", closest_point.x, closest_point.y, closest_point.z);
 		color = calculate_light(minirt, closest_object, &closest_point);
+	}
 	return (color);
 }

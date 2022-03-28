@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate_light.c                                  :+:      :+:    :+:   */
+/*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/28 03:07:44 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/28 22:39:34 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,33 +79,28 @@ t_color	calculate_light(t_minirt *minirt, t_object *object, t_point *intersectio
 	t_color	color;
 	t_vec	normal_vec;
 	t_vec	light_ray;
-	double	dot_product_light;
-	double	light_angle;
+	double	dot_pruduct;
+	double	angle;
 
-	set_default_color(&color);
-	normal_vec = object->get_normal_vector(object->figure, intersection_point);
-	light_ray = vec_subtract(intersection_point, &minirt->scene->light->pos);
-	light_ray = vec_normalize(&light_ray);
-	if (object->type == PLANE)
-		normal_vec = change_plane_normal(&normal_vec, &light_ray);
-	dot_product_light = vec_dot(&light_ray, &normal_vec);
-	light_angle = dot_product_light / (vec_length(&light_ray) * vec_length(&normal_vec));
-	if (light_angle >= 0 && light_angle <= 1)
+	color.r = 200;
+	color.g = 200;
+	color.b = 255;
+	if (!is_default_point(intersection_point))
 	{
-		// color = calculate_shadow(minirt, intersection_point, &light_ray);
-		if (pixel_in_shadow(minirt, object, intersection_point, &light_ray))
+		set_default_color(&color);
+		normal_vec = object->get_normal_vector(object->figure, intersection_point);
+		light_ray = vec_subtract(intersection_point, &minirt->scene->light->pos);
+		light_ray = vec_normalize(&light_ray);
+		// if (object->type == PLANE)
+			// normal_vec = change_plane_normal(&normal_vec, &light_ray);
+		dot_pruduct = vec_dot(&light_ray, &normal_vec);
+		angle = dot_pruduct / (vec_length(&light_ray) * vec_length(&normal_vec));
+		if (angle >= 0. && angle <= 1.)
 		{
-			color = object->color;
-			color.r = 0;
-			color.g = 0;
-			color.b = 0;
-		}
-		else
-		{
-			color = object->color;
-			color.r = color.r * light_angle * minirt->scene->light->brightness_ratio;
-			color.g = color.g * light_angle * minirt->scene->light->brightness_ratio;
-			color.b = color.b * light_angle * minirt->scene->light->brightness_ratio;
+				color = object->color;
+				color.r = color.r * angle * minirt->scene->light->brightness_ratio;
+				color.g = color.g * angle * minirt->scene->light->brightness_ratio;
+				color.b = color.b * angle * minirt->scene->light->brightness_ratio;
 		}
 	}
 	return (color);

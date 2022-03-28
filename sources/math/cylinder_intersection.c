@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_intersect_cylinder.c                           :+:      :+:    :+:   */
+/*   cylinder_intersection.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:01:25 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/28 02:32:20 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 00:11:27 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,36 +28,45 @@ static int	solve_square(double k[3], double *d1, double *d2)
 	return (2);
 }
 
+static double	get_solution(t_cylinder *cyl, t_point *origin,
+					t_vec *dir, double *x)
+{
+	t_vec	calc_vec;
+
+	calc_vec = vec_multiply_by_num(dir, x[1]);
+	calc_vec = vec_add(origin, &calc_vec);
+	calc_vec = vec_subtract(&cyl->pos, &calc_vec);
+	if (x[1] > 0 && x[1] < INFINITY
+		&& fabs(vec_dot(&cyl->dir, &calc_vec)) < cyl->height / 2)
+		return (x[1]);
+	calc_vec = vec_multiply_by_num(dir, x[0]);
+	calc_vec = vec_add(origin, &calc_vec);
+	calc_vec = vec_subtract(&cyl->pos, &calc_vec);
+	if (x[0] > 0 && x[0] < INFINITY
+		&& fabs(vec_dot(&cyl->dir, &calc_vec)) < cyl->height / 2)
+		return (x[0]);
+	return (INFINITY);
+}
+
 static double	find_t(t_cylinder *cyl, t_point *origin, t_vec *dir)
 {
 	t_vec	oc;
 	t_vec	temp;
 	double	t[3];
-	double	x1;
-	double	x2;
+	double	x[2];
 
 	oc = vec_subtract(origin, &cyl->pos);
 	t[2] = pow(dir->x, 2) + pow(dir->y, 2) + pow(dir->z, 2);
 	t[1] = -2 * (dir->x * oc.x + dir->y * oc.y + dir->z * oc.z);
 	t[0] = pow(oc.x, 2) + pow(oc.y, 2) + pow(oc.z, 2);
-	x1 = vec_dot(dir, &cyl->dir);
-	x2 = vec_dot(&oc, &cyl->dir);
-	t[2] -= pow(x1, 2);
-	t[1] -= -2 * x1 * x2;
-	t[0] -= pow(x2, 2);
+	x[0] = vec_dot(dir, &cyl->dir);
+	x[1] = vec_dot(&oc, &cyl->dir);
+	t[2] -= pow(x[0], 2);
+	t[1] -= -2 * x[0] * x[1];
+	t[0] -= pow(x[1], 2);
 	t[0] += -pow(cyl->diameter / 2, 2);
-	solve_square(t, &x1, &x2);
-	temp = vec_multiply_by_num(dir, x2);
-	temp = vec_add(origin, &temp);
-	temp = vec_subtract(&cyl->pos, &temp);
-	if (x2 > 0 && x2 < INFINITY && fabs(vec_dot(&cyl->dir, &temp)) < cyl->height / 2)
-		return (x2);
-	temp = vec_multiply_by_num(dir, x1);
-	temp = vec_add(origin, &temp);
-	temp = vec_subtract(&cyl->pos, &temp);
-	if (x1 > 0 && x1 < INFINITY && fabs(vec_dot(&cyl->dir, &temp)) < cyl->height / 2)
-		return (x1);
-	return (INFINITY);
+	solve_square(t, &x[0], &x[1]);
+	return (get_solution(cyl, origin, dir, x));
 }
 
 t_point	ray_intersect_cylinder(const void *data, const t_point *start_point,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects_constructors.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:28:55 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/24 20:50:20 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/28 23:40:32 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,3 @@ t_object	*create_cylinder_object(t_cylinder *cylinder)
 	object->ray_intersection = ray_intersect_cylinder;
 	return (object);
 }
-

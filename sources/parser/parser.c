@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:17:45 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 19:34:35 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/28 23:41:07 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	parse_line(char *line, t_minirt *minirt)
 		status = parse_cylinder(line + 2, minirt);
 	else
 		status = 1;
-	// printf("status = %d\n", status);
 	return (status);
 }
 

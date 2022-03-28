@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_normal.c                                    :+:      :+:    :+:   */
+/*   vector_normals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 01:30:19 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/27 20:25:43 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 00:13:32 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_vec	get_sphere_normal_vec(const void *data, const t_point *intersection)
 	vec = vec_normalize(&vec);
 	return (vec);
 }
-	
+
 t_vec	get_plane_normal_vec(const void *data, const t_point *intersection)
 {
 	t_vec	vec;

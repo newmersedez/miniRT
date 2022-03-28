@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:40:56 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 04:32:20 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/28 23:43:45 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	clear_list(t_list **list)
 	}
 }
 
-size_t	size(t_list *list)
+size_t	size(const t_list *list)
 {
 	size_t	size;
 
@@ -73,35 +73,7 @@ size_t	size(t_list *list)
 	while (list)
 	{
 		list = list->next;
-		++size;	
+		++size;
 	}
 	return (size);
-}
-
-void	display_object(t_object *object)
-{
-	if (object->type == SPHERE)
-	{
-		t_sphere *sphere = (t_sphere *)object->figure;
-		printf("sphere = %.1f %.1f %.1f %.1f %d %d %d\n", sphere->pos.x, sphere->pos.y, sphere->pos.z,
-			sphere->diameter, sphere->color.r, sphere->color.g, sphere->color.b);
-		
-	}
-	else if (object->type == PLANE)
-	{
-		t_plane *plane = (t_plane *)object->figure;
-		printf("plane = %.1f %.1f %.1f %.1f %.1f %.1f %d %d %d\n",
-			plane->pos.x, plane->pos.y, plane->pos.z,
-			plane->dir.x, plane->dir.y, plane->dir.z,
-			plane->color.r, plane->color.g, plane->color.b);
-	}
-	else if (object->type == CYLINDER)
-	{
-		t_cylinder *cylinder = (t_cylinder *)object->figure;
-		printf("cylinder = %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %d %d %d",
-			cylinder->pos.x, cylinder->pos.y, cylinder->pos.z,
-			cylinder->dir.x, cylinder->dir.y, cylinder->dir.z, 
-			cylinder->diameter, cylinder->height,
-			cylinder->color.r, cylinder->color.g, cylinder->color.b);
-	}
 }

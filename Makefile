@@ -6,14 +6,15 @@ CFLAGS			= -w
 RM				= rm -rf
 
 INCLUDES_DIR	= ./includes/
+
 SOURCES_DIR		= 	./sources/ \
-					./sources/graphics/ \
 					./sources/errors/ \
+					./sources/get_next_line/ \
 					./sources/math/ \
-					./sources/init/ \
+					./sources/memory/ \
 					./sources/parser/ \
-					./sources/utils/ \
-					./sources/get_next_line/
+					./sources/render/ \
+					./sources/utils/
 OBJECTS_DIR		= ./objects/
 LIBFT_DIR		= ./libft/
 
