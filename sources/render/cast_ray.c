@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:39:11 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/29 17:47:53 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 19:38:17 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	convert_camera_basis(const t_vec *dir, t_vec *b_x, t_vec *b_y)
 	*b_y = vec_normalize(&temp);
 	temp = vec_cross(dir, b_y);
 	*b_x = vec_normalize(&temp);
-	if (b_y->y < 0)
+	if (b_y->y < 0.0)
 		*b_y = vec_multiply_by_num(b_y, -1.);
-	if (dir->z < 0 && b_x->x > 0)
+	if (dir->z < 0.0 && b_x->x > 0.0)
 		*b_x = vec_multiply_by_num(b_x, -1.);
-	else if (dir->z > 0 && b_x->x < 0)
+	else if (dir->z > 0.0 && b_x->x < 0.0)
 		*b_x = vec_multiply_by_num(b_x, -1.);
 }
 
@@ -41,8 +41,8 @@ t_vec	convert_to_viewport(t_minirt *minirt, double x, double y)
 
 	aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
 	fov = minirt->scene->camera->fov / (double)DEFAULT_FOV;
-	end_vec.x = (x - WINDOW_WIDTH / 2) * (fov / WINDOW_WIDTH) * aspect_ratio;
-	end_vec.y = -1 * (y - WINDOW_HEIGHT / 2) * (fov / WINDOW_HEIGHT);
+	end_vec.x = (x - (double)WINDOW_WIDTH / 2.0) * (fov / (double)WINDOW_WIDTH) * aspect_ratio;
+	end_vec.y = -1.0 * (y - (double)WINDOW_HEIGHT / 2.0) * (fov / (double)WINDOW_HEIGHT);
 	vec_normalize(&end_vec);
 	return (end_vec);
 }

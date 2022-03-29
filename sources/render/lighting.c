@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 19:01:59 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 19:45:28 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	point_in_shadow(t_minirt *minirt, t_object *object, t_point *origin, 
 	closest_object = NULL;
 	set_default_point(&closest_point);
 	dir = *ray;
-	dir = vec_multiply_by_num(&dir, 0.1);
+	dir = vec_multiply_by_num(&dir, 0.01);
 	origin_0 = vec_add(origin, &dir);
 	
 	objects_list = minirt->scene->objects_list;

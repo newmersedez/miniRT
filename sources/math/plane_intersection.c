@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:00:38 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 00:13:02 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 19:40:12 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_point	ray_intersect_plane(const void *data, const t_point *start_point,
 	set_default_point(&point);
 	plane_normal = change_plane_normal(&plane->dir, ray);
 	t = find_t(plane, &plane_normal, start_point, ray);
-	if (t >= 0 && t <= INFINITY)
+	if (t >= 0 && t < INFINITY)
 	{
 		point = vec_multiply_by_num(ray, t);
 		point = vec_add(start_point, &point);
