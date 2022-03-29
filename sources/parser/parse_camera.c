@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:19:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 04:31:35 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 16:42:30 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,23 @@ static double	get_fov(char **line, int *code)
 int	parse_camera(char *line, t_minirt *minirt)
 {
 	int		code;
-	int		fov;
-	t_vec	pos;
-	t_vec	normal;
 
 	code = 0;
 	if (minirt->scene->camera)
 		return (0);
-	pos = get_pos(&line, &code);
-	if (code == 1)
-		return (0);
-	normal = get_normal(&line, &code);
-	if (code == 1)
-		return (0);
-	fov = get_fov(&line, &code);
-	if (code == 1)
-		return (0);
 	minirt->scene->camera = (t_camera *)malloc(sizeof(t_camera));
 	if (!minirt->scene->camera)
 		return (0);
-	minirt->scene->camera->fov = fov;
-	minirt->scene->camera->pos = pos;
-	minirt->scene->camera->dir = vec_normalize(&normal);
+	minirt->scene->camera->pos = get_pos(&line, &code);
+	minirt->scene->camera->dir = get_normal(&line, &code);
+	minirt->scene->camera->fov = get_fov(&line, &code);
+	if (code == 1)
+	{
+		free(minirt->scene->camera);
+		minirt->scene->camera = NULL;
+		return (0);
+	}
+	convert_camera_basis(&minirt->scene->camera->dir,
+		&minirt->scene->camera->basis_x, &minirt->scene->camera->basis_y);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 00:49:27 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 17:44:53 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_object	*create_sphere_object(t_sphere *sphere);
 t_object	*create_plane_object(t_plane *plane);
 t_object	*create_cylinder_object(t_cylinder *cylinder);
 int			clear_minirt(t_minirt *minirt);
-int			clear_figures(t_minirt *minirt);
+int			clear_scene(t_scene *scene);
 
 /* Render */
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
@@ -105,6 +105,6 @@ int			is_closest_intersection_point(const t_point *origin_point,
 int			close_hook(t_minirt *minirt);
 void		set_default_color(t_color *color);
 void		set_default_point(t_point *point);
-int			is_default_point(const t_point *point);
+int			is_intersection_point(const t_point *point);
 
 #endif

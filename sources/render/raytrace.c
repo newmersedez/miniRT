@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/28 22:42:45 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/28 23:03:13 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,6 @@ t_color	raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir)
 		objects_list = objects_list->next;
 	}
 	if (closest_object)
-	{
-		if (closest_point.x == NAN || closest_point.y == NAN || closest_point.z == NAN)
-			printf("intersection = (%f %f %f)\n", closest_point.x, closest_point.y, closest_point.z);
 		color = calculate_light(minirt, closest_object, &closest_point);
-	}
 	return (color);
 }

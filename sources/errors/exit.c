@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:53:09 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/28 23:39:58 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 17:43:46 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	display_message(const char *msg, int fd)
 
 void	success_exit(t_minirt *minirt, const char *msg)
 {
-	if (!minirt && !msg)
+	if (!minirt)
 		return ;
 	clear_minirt(minirt);
 	display_message(msg, 1);
@@ -30,7 +30,7 @@ void	success_exit(t_minirt *minirt, const char *msg)
 
 void	fail_exit(t_minirt *minirt, const char *msg)
 {
-	if (!minirt && !msg)
+	if (!minirt)
 		return ;
 	clear_minirt(minirt);
 	display_message(msg, 2);

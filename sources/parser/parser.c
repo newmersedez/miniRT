@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:17:45 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/28 23:41:07 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 17:00:58 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ int	parse_info_from_file(const char *filename, t_minirt *minirt)
 	int		status;
 	char	*line;
 
-	if (!minirt)
-		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
@@ -51,9 +49,16 @@ int	parse_info_from_file(const char *filename, t_minirt *minirt)
 	{
 		status = get_next_line(fd, &line);
 		if (!check_line_empty(line) && !check_line_comment(line))
+		{
 			if (!parse_line(line, minirt))
+			{
+				free(line);
 				return (0);
-		free(line);
+			}
+		}
+		if (line)
+			free(line);
+		line = NULL;
 	}
 	close(fd);
 	return (1);

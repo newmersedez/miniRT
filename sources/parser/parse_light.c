@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:20:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 21:27:46 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/29 16:43:00 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-static double	get_brightness_ratio(char **line, int *code)
+static double	get_brightness(char **line, int *code)
 {
 	double	brightness;
 
@@ -26,27 +26,21 @@ static double	get_brightness_ratio(char **line, int *code)
 int	parse_light(char *line, t_minirt *minirt)
 {
 	int		code;
-	t_vec	pos;
-	t_color	color;
-	double	brightness_ratio;
 
 	code = 0;
 	if (minirt->scene->light)
 		return (0);
-	pos = get_pos(&line, &code);
-	if (code == -1)
-		return (0);
-	brightness_ratio = get_brightness_ratio(&line, &code);
-	if (code == 1)
-		return (0);
-	color = get_color(&line, &code);
-	if (code == 1)
-		return (0);
 	minirt->scene->light = (t_light *)malloc(sizeof(t_light));
 	if (!minirt->scene->light)
 		return (0);
-	minirt->scene->light->pos = pos;
-	minirt->scene->light->color = color;
-	minirt->scene->light->brightness_ratio = brightness_ratio;
+	minirt->scene->light->pos = get_pos(&line, &code);
+	minirt->scene->light->brightness_ratio = get_brightness(&line, &code);
+	minirt->scene->light->color = get_color(&line, &code);
+	if (code == 1)
+	{
+		free(minirt->scene->light);
+		minirt->scene->light = NULL;
+		return (0);
+	}
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_minirt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 20:11:17 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 13:52:23 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/29 17:46:22 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,35 @@ int	clear_minirt(t_minirt *minirt)
 {
 	if (!minirt)
 		return (0);
-	mlx_destroy_image(minirt->window->mlx, minirt->image->img);
-	mlx_destroy_window(minirt->window->mlx, minirt->window->mlx_win);
+	if (minirt->scene)
+	{
+		clear_scene(minirt->scene);
+		free(minirt->scene);
+	}
 	if (minirt->image)
+	{
+		mlx_destroy_image(minirt->window->mlx, minirt->image->img);
 		free(minirt->image);
+	}
 	if (minirt->window)
+	{
+		mlx_destroy_window(minirt->window->mlx, minirt->window->mlx_win);
 		free(minirt->window);
-	clear_figures(minirt);
+	}
 	return (1);
 }
 
-int	clear_figures(t_minirt *minirt)
+int	clear_scene(t_scene *scene)
 {
-	if (!minirt)
+	if (!scene)
 		return (0);
-	if (minirt->scene->ambient_light)
-		free(minirt->scene->ambient_light);
-	if (minirt->scene->camera)
-		free(minirt->scene->camera);
-	if (minirt->scene->light)
-		free(minirt->scene->light);
-	if (minirt->scene->objects_list)
-		clear_list(&minirt->scene->objects_list);
-	free(minirt->scene);
+	if (scene->ambient_light)
+		free(scene->ambient_light);
+	if (scene->camera)
+		free(scene->camera);
+	if (scene->light)
+		free(scene->light);
+	if (scene->objects_list)
+		clear_list(&scene->objects_list);
 	return (1);
 }

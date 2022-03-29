@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:21:35 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/24 13:52:23 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/29 15:47:29 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ static t_sphere	*get_sphere_info(char *line)
 	if (!sphere)
 		return (NULL);
 	sphere->pos = get_pos(&line, &code);
-	if (code == 1)
-		return (NULL);
 	sphere->diameter = get_diameter(&line, &code);
-	if (code == 1)
-		return (NULL);
 	sphere->color = get_color(&line, &code);
 	if (code == 1)
+	{
+		free(sphere);
 		return (NULL);
+	}
 	return (sphere);
 }
 

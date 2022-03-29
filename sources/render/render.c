@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 00:54:31 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 17:15:30 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	render(t_minirt *minirt)
 			color = raytrace(minirt, &minirt->scene->camera->pos, &dir);
 			my_mlx_pixel_put(minirt->image, x, y,
 				((color.r & 0xFF) << 16)
-				+ ((color.g & 0xFF) << 8) 
+				+ ((color.g & 0xFF) << 8)
 				+ (color.b & 0xFF));
 			++y;
 		}

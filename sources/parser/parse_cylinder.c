@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:23:21 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/27 17:04:47 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 15:47:10 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,15 @@ static t_cylinder	*get_cylinder_info(char *line)
 	if (!cylinder)
 		return (NULL);
 	cylinder->pos = get_pos(&line, &code);
-	if (code == 1)
-		return (NULL);
 	cylinder->dir = get_normal(&line, &code);
-	if (code == 1)
-		return (NULL);
 	cylinder->diameter = get_diameter(&line, &code);
-	if (code == 1)
-		return (NULL);
 	cylinder->height = get_height(&line, &code);
-	if (code == 1)
-		return (NULL);
 	cylinder->color = get_color(&line, &code);
 	if (code == 1)
+	{
+		free(cylinder);
 		return (NULL);
+	}
 	return (cylinder);
 }
 
