@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 18:06:06 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 19:32:06 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/30 00:57:32 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define WINDOW_WIDTH		1280
 # define WINDOW_HEIGHT		800
 # define DEFAULT_FOV		60
+# define BIAS				0.01
 
 /* Error messages */
 # define ARGS_COUNT_ERROR	"Incorrect args count\n"

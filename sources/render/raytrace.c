@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/28 23:03:13 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/30 00:58:31 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ t_color	raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir)
 	t_color		color;
 
 	set_default_color(&color);
+	// color.r = 135 * minirt->scene->light->brightness_ratio;
+	// color.g = 206 * minirt->scene->light->brightness_ratio;
+	// color.b = 235 * minirt->scene->light->brightness_ratio;
 	set_default_point(&closest_point);
 	closest_object = NULL;
 	objects_list = minirt->scene->objects_list;

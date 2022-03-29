@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 19:45:28 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/30 00:59:57 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ static int	point_in_shadow(t_minirt *minirt, t_object *object, t_point *origin, 
 	t_vec	dir;
 
 	closest_object = NULL;
-	set_default_point(&closest_point);
+	closest_point = *origin;
 	dir = *ray;
-	dir = vec_multiply_by_num(&dir, 0.01);
+	dir = vec_multiply_by_num(&dir, BIAS);
 	origin_0 = vec_add(origin, &dir);
 	
 	objects_list = minirt->scene->objects_list;
@@ -75,11 +75,7 @@ static int	point_in_shadow(t_minirt *minirt, t_object *object, t_point *origin, 
 		t_vec	default_ray;
 
 		new_ray = vec_subtract(&closest_point, &minirt->scene->light->pos);
-		// new_ray = vec_normalize(&new_ray);
-		
 		default_ray = vec_subtract(&origin_0, &minirt->scene->light->pos);
-		// default_ray = vec_normalize(&default_ray);
-
 		if (vec_length(&new_ray) < vec_length(&default_ray))
 			return (1);
 	}
@@ -104,19 +100,15 @@ t_color	calculate_light(t_minirt *minirt, t_object *object, t_point *intersectio
 	angle = dot_pruduct / (vec_length(&light_ray) * vec_length(&normal_vec));
 	if (angle >= 0. && angle <= 1.)
 	{
+		color = object->color;
+		color.r = color.r * angle * minirt->scene->light->brightness_ratio;
+		color.g = color.g * angle * minirt->scene->light->brightness_ratio;
+		color.b = color.b * angle * minirt->scene->light->brightness_ratio;
 		if (point_in_shadow(minirt, object, intersection_point, &light_ray))
 		{
-			color = object->color;
-			color.r = color.r * angle * minirt->scene->light->brightness_ratio / 2;
-			color.g = color.g * angle * minirt->scene->light->brightness_ratio / 2;
-			color.b = color.b * angle * minirt->scene->light->brightness_ratio / 2;
-		}
-		else
-		{
-			color = object->color;
-			color.r = color.r * angle * minirt->scene->light->brightness_ratio;
-			color.g = color.g * angle * minirt->scene->light->brightness_ratio;
-			color.b = color.b * angle * minirt->scene->light->brightness_ratio;
+			color.r = color.r / 2;
+			color.g = color.g / 2;
+			color.b = color.b / 2;
 		}
 	}
 	return (color);
