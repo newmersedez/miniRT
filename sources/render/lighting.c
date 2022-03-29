@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/28 23:58:38 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/29 18:32:43 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,44 @@
 // 	return (color);
 // }
 
-static int	point_in_shadow(t_minirt *minirt, t_object *object, t_point *intersection)
+static int	point_in_shadow(t_minirt *minirt, t_object *object, t_point *origin, t_vec *ray)
 {
-	/*
-	* на свежую голову перечитать еще раз статью, по идее тут просто найти то, про что говорил дима
-	* то есть просто пустить смещенный лучь из точки пересечения в источник света, найти ближайщую 
-	* точку пересечения к позиции света и проверить, если расстояние от полученной точки до источника света
-	* меньше, чем расстояние от поданной точки до источника света, то перед точкой что-то есть, и она в тени
-	*/
+	t_list	*objects_list;
+	t_point	intersection_point;
+	t_point	closest_point;
+	t_point	origin_0;
+	t_vec	normal_vec;
+
+	set_default_point(&closest_point);
+	normal_vec = object->get_normal_vector(object->figure, origin);
+	normal_vec = vec_multiply_by_num(&normal_vec, 0.1);
+	origin_0 = vec_add(origin, &normal_vec);
+	objects_list = minirt->scene->objects_list;
+	while (objects_list)
+	{
+		intersection_point = objects_list->object->ray_intersection(
+			objects_list->object->figure, &origin_0, ray);
+		if (is_closest_intersection_point(&origin_0,
+				&intersection_point, &closest_point))
+			closest_point = intersection_point;
+		objects_list = objects_list->next;
+	}
+	if (is_intersection_point(&closest_point))
+	{
+		t_vec	new_ray;
+		t_vec	default_ray;
+
+		new_ray = vec_subtract(&closest_point, &minirt->scene->light->pos);
+		new_ray = vec_normalize(&new_ray);
+		
+		default_ray = vec_subtract(&origin_0, &minirt->scene->light->pos);
+		default_ray = vec_normalize(&default_ray);
+
+		// printf("new_ray = %f, default_ray = %f\n", vec_length(&new_ray), vec_length(ray));
+		if (vec_length(&new_ray) < vec_length(&default_ray))
+			return (1);
+	}
+	return (0);
 }
 
 t_color	calculate_light(t_minirt *minirt, t_object *object, t_point *intersection_point)
@@ -65,7 +95,7 @@ t_color	calculate_light(t_minirt *minirt, t_object *object, t_point *intersectio
 	light_ray = vec_normalize(&light_ray);
 	if (object->type == PLANE)
 		normal_vec = change_plane_normal(&normal_vec, &light_ray);
-	if (point_in_shadow(minirt, object, intersection_point))
+	if (point_in_shadow(minirt, object, intersection_point, &light_ray))
 		return (color);
 	else
 	{
