@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:49:04 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 15:15:10 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/31 01:24:53 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ typedef struct s_object
 				const t_vec *ray);
 
 }	t_object;
+
+typedef struct s_intersect
+{
+	t_point		point;
+	t_object	*object;
+}	t_intersect;
 
 typedef struct s_sphere
 {

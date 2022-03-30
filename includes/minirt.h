@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/30 17:43:07 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/31 01:24:44 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include <mlx.h>
-// # include "../mlx_linux/mlx.h"
+// # include <mlx.h>
+# include "../mlx_linux/mlx.h"
 # include <math.h>
 
 # include "list.h"
@@ -69,9 +69,10 @@ int			clear_scene(t_scene *scene);
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
 void		convert_camera_basis(const t_vec *dir, t_vec *b_x, t_vec *b_y);
 t_vec		convert_to_viewport(t_minirt *minirt, double x, double y);
-t_point		cast_ray(t_minirt *minirt, double x, double y);
+t_point		create_ray(t_minirt *minirt, double x, double y);
+t_intersect	cast_ray(t_minirt *minirt, t_point *origin, t_vec *ray);
 void		render(t_minirt *minirt);
-t_color		raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir);
+t_color		raytrace(t_minirt *minirt, t_point *origin, t_vec *dir);
 t_color		calculate_light(t_minirt *minirt, t_object *object,
 				t_point *intersection_point);
 

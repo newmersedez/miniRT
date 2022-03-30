@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cast_ray.c                                         :+:      :+:    :+:   */
+/*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:39:11 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/30 21:23:37 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/31 01:45:28 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,21 @@ void	convert_camera_basis(const t_vec *dir, t_vec *b_x, t_vec *b_y)
 
 t_vec	convert_to_viewport(t_minirt *minirt, double x, double y)
 {
-	t_vec	end_vec;
+	t_vec	vec;
 	double	fov;
 	double	aspect_ratio;
 
 	aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
 	fov = minirt->scene->camera->fov / (double)DEFAULT_FOV;
-	end_vec.x = (x - (double)WINDOW_WIDTH / 2.0)
+	vec.x = (x - (double)WINDOW_WIDTH / 2.0)
 		* (fov / (double)WINDOW_WIDTH) * aspect_ratio;
-	end_vec.y = -1.0 * (y - (double)WINDOW_HEIGHT / 2.0)
+	vec.y = -1.0 * (y - (double)WINDOW_HEIGHT / 2.0)
 		* (fov / (double)WINDOW_HEIGHT);
-	vec_normalize(&end_vec);
-	return (end_vec);
+	vec_normalize(&vec);
+	return (vec);
 }
 
-t_point	cast_ray(t_minirt *minirt, double x, double y)
+t_point	create_ray(t_minirt *minirt, double x, double y)
 {
 	t_point	on_screen;
 	t_vec	basis_nx;
@@ -66,4 +66,28 @@ t_point	cast_ray(t_minirt *minirt, double x, double y)
 	temp = vec_add(&temp, &minirt->scene->camera->dir);
 	ans = vec_normalize(&temp);
 	return (ans);
+}
+
+t_intersect	cast_ray(t_minirt *minirt, t_point *origin, t_vec *ray)
+{
+	t_intersect	intersection;
+	t_point		point;
+	t_list		*objects_list;
+
+	set_default_point(&intersection.point);
+	intersection.object = NULL;
+	objects_list = minirt->scene->objects_list;
+	while (objects_list)
+	{
+		point = objects_list->object->ray_intersection(
+				objects_list->object->figure, origin, ray);
+		if (is_closest_intersection_point(origin,
+				&point, &intersection.point))
+		{
+			intersection.point = point;
+			intersection.object = objects_list->object;
+		}
+		objects_list = objects_list->next;
+	}
+	return (intersection);
 }

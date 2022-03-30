@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/30 21:26:39 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/31 01:24:15 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	is_closest_intersection_point(const t_point *origin_point,
 	return (0);
 }
 
-t_color	raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir)
+t_color	raytrace(t_minirt *minirt, t_point *origin, t_vec *dir)
 {
 	t_list		*objects_list;
 	t_object	*closest_object;
@@ -47,10 +47,10 @@ t_color	raytrace(t_minirt *minirt, t_vec *origin, t_vec *dir)
 	t_point		intersect_point;
 	t_color		color;
 
-	set_default_color(&color);
-	// color.r = 135 * minirt->scene->light->brightness_ratio;
-	// color.g = 206 * minirt->scene->light->brightness_ratio;
-	// color.b = 235 * minirt->scene->light->brightness_ratio;
+	// set_default_color(&color);
+	color.r = 135 * minirt->scene->light->brightness_ratio;
+	color.g = 206 * minirt->scene->light->brightness_ratio;
+	color.b = 235 * minirt->scene->light->brightness_ratio;
 	set_default_point(&closest_point);
 	closest_object = NULL;
 	objects_list = minirt->scene->objects_list;

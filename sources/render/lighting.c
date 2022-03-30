@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/30 21:30:29 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/30 23:37:59 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_color	calculate_light(t_minirt *minirt, t_object *object,
 	light_ray = vec_subtract(intersection_point, &minirt->scene->light->pos);
 	light_ray = vec_normalize(&light_ray);
 	if (object->type == PLANE)
-		normal_vec = change_plane_normal(&normal_vec, &light_ray);	
+		normal_vec = change_plane_normal(&normal_vec, &light_ray);
 	dot_pruduct = vec_dot(&light_ray, &normal_vec);
 	angle = dot_pruduct / (vec_length(&light_ray) * vec_length(&normal_vec));
 	if (angle >= 0 && angle <= 1)
