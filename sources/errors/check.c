@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:53:50 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 17:43:10 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/30 02:12:23 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	handle_errors(const t_minirt *minirt, int argc, char *argv[])
 	char		*filename;
 
 	if (argc != 2)
-		fail_exit(NULL, ARGS_COUNT_ERROR);
+		exit(EXIT_FAILURE);
 	filename = argv[1];
 	if (!check_file_extension(filename))
 		fail_exit(NULL, FILE_EXT_ERROR);

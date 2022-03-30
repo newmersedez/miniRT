@@ -69,8 +69,8 @@ static float	*intersect_ray_sphere(t_vec *camera_vec, t_vec *d_vec, t_sphere *sp
 	}
 	else
 	{
-		intersections[0] = (-k2 + sqrtf(discriminant)) / (2 * k1);
-    	intersections[1] = (-k2 - sqrtf(discriminant)) / (2 * k1);
+		intersections[0] = (-k2 + sqrt(discriminant)) / (2 * k1);
+    	intersections[1] = (-k2 - sqrt(discriminant)) / (2 * k1);
 	}
 	return (intersections);
 }

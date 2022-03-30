@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/30 00:59:57 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/30 03:03:52 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,39 +44,48 @@
 static int	point_in_shadow(t_minirt *minirt, t_object *object, t_point *origin, t_vec *ray)
 {
 	t_list	*objects_list;
-	t_point	intersection_point;
-	t_point	closest_point;
+	t_vec	normal_vec;
+	t_vec	new_ray;
+	t_point	new_origin;
+	t_point	intersection;
+	t_point	closest;
 	t_object *closest_object;
-	t_point	origin_0;
-	t_vec	dir;
 
+	normal_vec = object->get_normal_vector(object->figure, origin);
+	if (object->type == PLANE)
+		normal_vec = change_plane_normal(&normal_vec, ray);
+	normal_vec = vec_multiply_by_num(&normal_vec, BIAS);
+	new_origin = vec_add(origin, &normal_vec);
+	new_ray = vec_subtract(&new_origin, &minirt->scene->light->pos);
+	new_ray = vec_normalize(&new_ray);	
+	set_default_point(&closest);
 	closest_object = NULL;
-	closest_point = *origin;
-	dir = *ray;
-	dir = vec_multiply_by_num(&dir, BIAS);
-	origin_0 = vec_add(origin, &dir);
-	
-	objects_list = minirt->scene->objects_list;
+	objects_list = minirt->scene->objects_list;	
 	while (objects_list)
 	{
-		intersection_point = objects_list->object->ray_intersection(
-			objects_list->object->figure, &origin_0, ray);
-		if (is_closest_intersection_point(&origin_0,
-				&intersection_point, &closest_point))
+		intersection = objects_list->object->ray_intersection(
+			objects_list->object->figure, &new_origin, &new_ray);
+		if (is_closest_intersection_point(&minirt->scene->light->pos,
+				&intersection, &closest))
 			{
+				closest = intersection;
 				closest_object = objects_list->object;
-				closest_point = intersection_point;
 			}
 		objects_list = objects_list->next;
 	}
 	if (closest_object)
 	{
-		t_vec	new_ray;
-		t_vec	default_ray;
+		t_vec	closest_ray;
+		t_vec	new_origin_ray;
 
-		new_ray = vec_subtract(&closest_point, &minirt->scene->light->pos);
-		default_ray = vec_subtract(&origin_0, &minirt->scene->light->pos);
-		if (vec_length(&new_ray) < vec_length(&default_ray))
+		closest_ray = vec_subtract(&closest, &minirt->scene->light->pos);
+		new_origin_ray = vec_subtract(&new_origin, &minirt->scene->light->pos);
+		// closest_ray = vec_normalize(&closest_ray);
+		// new_origin_ray = vec_normalize(&new_origin_ray);
+		// printf("closest = (%f %f %f) = %f, new_ray = (%f %f %f)%f\n",
+		// 	closest_ray.x, closest_ray.y, closest_ray.z, vec_length(&closest_ray),
+		// 	new_ray.x, new_ray.y, new_ray.z, vec_length(&new_ray));
+		if (vec_length(&closest_ray) < vec_length(&new_origin_ray))
 			return (1);
 	}
 	return (0);
@@ -106,9 +115,10 @@ t_color	calculate_light(t_minirt *minirt, t_object *object, t_point *intersectio
 		color.b = color.b * angle * minirt->scene->light->brightness_ratio;
 		if (point_in_shadow(minirt, object, intersection_point, &light_ray))
 		{
-			color.r = color.r / 2;
-			color.g = color.g / 2;
-			color.b = color.b / 2;
+			// color.r = 255;
+			color.r /= 2;
+			color.g /= 2;
+			color.b /= 2;
 		}
 	}
 	return (color);

@@ -14,7 +14,7 @@ static double	find_t(t_sphere *sphere, t_point *origin, t_vec *ray)
 	d2 = vec_dot(&l, &l) - tca * tca;
 	if (d2 > (sphere->diameter * sphere->diameter) / 4.0)
 		return (INFINITY);
-	thc = sqrtf((sphere->diameter * sphere->diameter) / 4.0 - d2);
+	thc = sqrt((sphere->diameter * sphere->diameter) / 4.0 - d2);
 	t_values[0] = tca - thc;
 	t_values[1] = tca + thc;
 	if ((t_values[0] >= 0 && t_values[0] <= INFINITY)

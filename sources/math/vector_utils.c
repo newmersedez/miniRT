@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:24:48 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 17:48:36 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/30 02:10:08 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ double	vec_length(const t_vec *vec)
 {
 	if (!vec)
 		return (0);
-	return (sqrtf(vec->x * vec->x + vec->y * vec->y + vec->z * vec->z));
+	return (sqrt(vec->x * vec->x + vec->y * vec->y + vec->z * vec->z));
 }
 
 t_vec	vec_normalize(const t_vec *vec)

@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/30 00:58:31 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/30 02:27:24 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	is_closest_intersection_point(const t_point *origin_point,
 			closest_vec = vec_subtract(origin_point, closest_point);
 			intersection_vec_length = vec_length(&intersection_vec);
 			closest_vec_length = vec_length(&closest_vec);
-			if (intersection_vec_length <= closest_vec_length)
+			if (intersection_vec_length < closest_vec_length)
 				return (1);
 		}
 	}	
