@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane_intersection.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:00:38 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/30 02:50:16 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/30 19:18:19 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_vec	change_plane_normal(const t_vec *normal_vec, const t_vec *ray)
 	double	cos_angle;
 
 	dot_product = vec_dot(normal_vec, ray);
-	cos_angle = dot_product / (vec_length(normal_vec) + vec_length(ray));
+	cos_angle = dot_product / (vec_length(normal_vec) * vec_length(ray));
 	if (cos_angle >= 0 && cos_angle <= 1)
 		new_normal_vec = *normal_vec;
 	else

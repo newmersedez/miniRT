@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:22:09 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 15:48:13 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/30 17:43:40 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_plane	*get_plane_info(char *line)
 	if (!plane)
 		return (NULL);
 	plane->pos = get_pos(&line, &code);
-	plane->dir = get_pos(&line, &code);
+	plane->dir = get_normal(&line, &code);
 	plane->dir = vec_normalize(&plane->dir);
 	plane->color = get_color(&line, &code);
 	if (code == 1)
