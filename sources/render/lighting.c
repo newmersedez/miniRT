@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/30 23:37:59 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/31 02:08:42 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,15 @@
 static int	point_in_shadow(t_minirt *minirt, t_object *object,
 				t_point *origin, t_vec *ray)
 {
-	t_list	*objects_list;
-	t_vec	new_ray;
-	t_point	intersection;
-	t_point	closest;
-	t_object *closest_object;
+	t_intersect	intersection;
+	t_list		*objects_list;
+	t_vec		new_ray;
 
 	new_ray = vec_subtract(&minirt->scene->light->pos, origin);
 	new_ray = vec_normalize(&new_ray);
-	set_default_point(&closest);
-	closest_object = object;
-	objects_list = minirt->scene->objects_list;	
-	while (objects_list)
-	{
-		intersection = objects_list->object->ray_intersection(
-			objects_list->object->figure, &minirt->scene->light->pos,
-			&new_ray);
-		if (is_closest_intersection_point(&minirt->scene->light->pos,
-		&intersection, &closest))
-		{
-			closest = intersection;
-			closest_object = objects_list->object;
-		}
-		objects_list = objects_list->next;
-	}
-	if (closest_object && closest_object == object)
+	intersection = cast_ray(minirt, object,
+			&minirt->scene->light->pos, &new_ray);
+	if (intersection.object && intersection.object == object)
 		return (0);
 	return (1);
 }

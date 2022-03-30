@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/31 01:24:15 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/31 02:08:00 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,34 +39,16 @@ int	is_closest_intersection_point(const t_point *origin_point,
 	return (0);
 }
 
-t_color	raytrace(t_minirt *minirt, t_point *origin, t_vec *dir)
+t_color	raytrace(t_minirt *minirt, t_point *origin, t_vec *ray)
 {
+	t_intersect	intersection;
 	t_list		*objects_list;
-	t_object	*closest_object;
-	t_point		closest_point;
-	t_point		intersect_point;
 	t_color		color;
 
-	// set_default_color(&color);
-	color.r = 135 * minirt->scene->light->brightness_ratio;
-	color.g = 206 * minirt->scene->light->brightness_ratio;
-	color.b = 235 * minirt->scene->light->brightness_ratio;
-	set_default_point(&closest_point);
-	closest_object = NULL;
-	objects_list = minirt->scene->objects_list;
-	while (objects_list)
-	{
-		intersect_point = objects_list->object->ray_intersection(
-				objects_list->object->figure, origin, dir);
-		if (is_closest_intersection_point(origin,
-				&intersect_point, &closest_point))
-		{
-			closest_point = intersect_point;
-			closest_object = objects_list->object;
-		}
-		objects_list = objects_list->next;
-	}
-	if (closest_object)
-		color = calculate_light(minirt, closest_object, &closest_point);
+	set_sky_color(minirt, &color);
+	intersection = cast_ray(minirt, NULL, origin, ray);
+	if (intersection.object)
+		color = calculate_light(minirt, intersection.object,
+				&intersection.point);
 	return (color);
 }

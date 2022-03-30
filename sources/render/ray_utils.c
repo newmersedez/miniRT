@@ -6,7 +6,7 @@
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:39:11 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/31 01:45:28 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/31 02:01:37 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,15 @@ t_point	create_ray(t_minirt *minirt, double x, double y)
 	return (ans);
 }
 
-t_intersect	cast_ray(t_minirt *minirt, t_point *origin, t_vec *ray)
+t_intersect	cast_ray(t_minirt *minirt, t_object *object,
+				t_point *origin, t_vec *ray)
 {
 	t_intersect	intersection;
 	t_point		point;
 	t_list		*objects_list;
 
 	set_default_point(&intersection.point);
-	intersection.object = NULL;
+	intersection.object = object;
 	objects_list = minirt->scene->objects_list;
 	while (objects_list)
 	{
