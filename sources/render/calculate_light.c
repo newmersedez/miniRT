@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   calculate_light.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/04/01 00:40:17 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/04/01 02:18:05 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-
-static t_point	reflect_ray(t_vec *ray, t_vec *normal)
-{
-	t_vec	new_normal;
-
-	new_normal = vec_multiply_by_num(normal, 2 * vec_dot(normal, ray));
-	return (vec_subtract(ray, &new_normal));
-}
 
 static int	point_in_shadow(t_minirt *minirt, t_object *object,
 				t_point *origin, t_vec *ray)
@@ -30,10 +22,18 @@ static int	point_in_shadow(t_minirt *minirt, t_object *object,
 	new_ray = vec_subtract(&minirt->scene->light->pos, origin);
 	new_ray = vec_normalize(&new_ray);
 	intersection = cast_ray(minirt, object,
-					&minirt->scene->light->pos, &new_ray);
+			&minirt->scene->light->pos, &new_ray);
 	if (intersection.object && intersection.object == object)
 		return (0);
 	return (1);
+}
+
+static t_vec	reflect_ray(t_vec *ray, t_vec *normal)
+{
+	t_vec	new_normal;
+
+	new_normal = vec_multiply_by_num(normal, 2 * vec_dot(normal, ray));
+	return (vec_subtract(ray, &new_normal));
 }
 
 static double	get_specular(t_minirt *minirt, t_vec *normal,
@@ -46,7 +46,7 @@ static double	get_specular(t_minirt *minirt, t_vec *normal,
 	t_vec	reflected;
 
 	direction = vec_subtract(intersection_point, &minirt->scene->light->pos);
-	reflected = (reflect_ray(&direction, normal));
+	reflected = reflect_ray(&direction, normal);
 	dot_pruduct = vec_dot(&reflected, &direction);
 	angle = dot_pruduct / (vec_length(&reflected) * vec_length(&direction));
 	light = minirt->scene->light->brightness_ratio * pow(fmax(0.0, angle), 32);
