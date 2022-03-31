@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:40:11 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/31 22:48:25 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 00:32:35 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@ void	set_sky_color(t_minirt *minirt, t_color *color, t_vec *ray)
 	double	angle;
 
 	dot_product = vec_dot(&minirt->scene->camera->dir, ray);
-	angle = dot_product / (vec_length(&minirt->scene->camera->dir) * vec_length(ray));
+	angle = dot_product
+		/ (vec_length(&minirt->scene->camera->dir) * vec_length(ray));
 	color->r = 150 * fabs(angle) * minirt->scene->light->brightness_ratio;
 	color->g = 206 * fabs(angle) * minirt->scene->light->brightness_ratio;
 	color->b = 235 * fabs(angle) * minirt->scene->light->brightness_ratio;
 }
 
-int		mix_colors(t_color *color)
+int	mix_colors(t_color *color)
 {
-	return ((int)color->r << 16) | ((int)color->g << 8) | (int)color->b;
+	return (((int)color->r << 16) | ((int)color->g << 8) | (int)color->b);
 }
 
 void	add_coefficient(t_color *color, t_color *light_color, double coef)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/31 22:31:41 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 00:40:17 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,21 @@ static t_point	reflect_ray(t_vec *ray, t_vec *normal)
 static int	point_in_shadow(t_minirt *minirt, t_object *object,
 				t_point *origin, t_vec *ray)
 {
-	t_list	*objects_list;
-	t_vec	n_ray;
-	t_point	intersection;
-	t_point	closest;
-	t_object *closest_object;
+	t_list		*objects_list;
+	t_vec		new_ray;
+	t_intersect	intersection;
 
-	n_ray = vec_subtract(&minirt->scene->light->pos, origin);
-	n_ray = vec_normalize(&n_ray);
-	set_default_point(&closest);
-	closest_object = object;
-	objects_list = minirt->scene->objects_list;	
-	while (objects_list)
-	{
-		intersection = objects_list->object->ray_intersection(
-			objects_list->object->figure, &minirt->scene->light->pos, &n_ray);
-		if (is_closest_intersection_point(&minirt->scene->light->pos,
-		&intersection, &closest))
-		{
-			closest = intersection;
-			closest_object = objects_list->object;
-		}
-		objects_list = objects_list->next;
-	}
-	if (closest_object && closest_object == object)
+	new_ray = vec_subtract(&minirt->scene->light->pos, origin);
+	new_ray = vec_normalize(&new_ray);
+	intersection = cast_ray(minirt, object,
+					&minirt->scene->light->pos, &new_ray);
+	if (intersection.object && intersection.object == object)
 		return (0);
 	return (1);
 }
 
-static double	get_specular(t_minirt *minirt, t_vec *normal, t_point *intersection_point)
+static double	get_specular(t_minirt *minirt, t_vec *normal,
+					t_point *intersection_point)
 {
 	double	light;
 	double	dot_pruduct;
@@ -81,13 +67,16 @@ t_color	calculate_light(t_minirt *minirt, t_object *object,
 	light_ray = vec_subtract(intersection_point, &minirt->scene->light->pos);
 	light_ray = vec_normalize(&light_ray);
 	if (object->type == PLANE)
-		normal_vec = change_plane_normal(&normal_vec, &light_ray);	
+		normal_vec = change_plane_normal(&normal_vec, &light_ray);
 	dot_pruduct = vec_dot(&light_ray, &normal_vec);
 	if (minirt->scene->ambient_light)
-		add_coefficient(&color, &minirt->scene->ambient_light->color, minirt->scene->ambient_light->lighting_ratio);
-	if (dot_pruduct > 0 && !point_in_shadow(minirt, object, intersection_point, &light_ray))
+		add_coefficient(&color, &minirt->scene->ambient_light->color,
+			minirt->scene->ambient_light->lighting_ratio);
+	if (dot_pruduct > 0 && !point_in_shadow(minirt, object,
+			intersection_point, &light_ray))
 	{
-		angle = dot_pruduct / (vec_length(&light_ray) * vec_length(&normal_vec));
+		angle = dot_pruduct
+			/ (vec_length(&light_ray) * vec_length(&normal_vec));
 		angle *= minirt->scene->light->brightness_ratio;
 		add_coefficient(&color, &minirt->scene->light->color, angle);
 		angle = get_specular(minirt, &normal_vec, intersection_point);

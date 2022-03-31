@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/31 22:37:51 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 00:32:59 by dmitry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
 int	is_closest_intersection_point(const t_point *origin_point,
-				const t_point *intersection_point, const t_point *closest_point)
+			const t_point *intersection_point, const t_point *closest_point)
 {
 	t_vec	intersection_vec;
 	t_vec	closest_vec;
@@ -45,7 +45,6 @@ t_color	raytrace(t_minirt *minirt, t_point *origin, t_vec *ray)
 	t_list		*objects_list;
 	t_color		color;
 
-	// set_default_color(&color);
 	set_sky_color(minirt, &color, ray);
 	intersection = cast_ray(minirt, NULL, origin, ray);
 	if (intersection.object)
