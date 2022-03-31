@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:53:50 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/30 02:12:23 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/31 21:33:22 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	check_scene_correctness(const t_minirt *minirt)
 {
 	if (!minirt->scene->camera)
 		return (0);
-	if (!minirt->scene->light && !minirt->scene->ambient_light)
+	if (!minirt->scene->light)
 		return (0);
 	return (1);
 }

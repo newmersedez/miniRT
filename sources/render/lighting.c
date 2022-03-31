@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/31 20:33:49 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/31 21:37:33 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,15 @@ t_color	calculate_light(t_minirt *minirt, t_object *object,
 	if (object->type == PLANE)
 		normal_vec = change_plane_normal(&normal_vec, &light_ray);	
 	dot_pruduct = vec_dot(&light_ray, &normal_vec);
-	angle = dot_pruduct / (vec_length(&light_ray) * vec_length(&normal_vec));
 	if (minirt->scene->ambient_light)
+		add_coefficient(&color, &minirt->scene->ambient_light->color, minirt->scene->ambient_light->lighting_ratio);
+	if (dot_pruduct > 0 && !point_in_shadow(minirt, object, intersection_point, &light_ray))
 	{
-		// printf("ambient coloor\n");	
-		add_coeficient(&color, &minirt->scene->ambient_light->color, minirt->scene->ambient_light->lighting_ratio);
-	}
-	if (angle >= 0)
-	{
+		angle = dot_pruduct / (vec_length(&light_ray) * vec_length(&normal_vec));
+		angle *= minirt->scene->light->brightness_ratio;
 		if (minirt->scene->light)
-		{
-			// printf("light color\n");	
-			add_coeficient(&color, &minirt->scene->light->color, angle * minirt->scene->light->brightness_ratio);
-		}
-		color = build_color(&object->color, &color);
-		if (point_in_shadow(minirt, object, intersection_point, &light_ray))
-		{
-			color.r /= 3;
-			color.g /= 3;
-			color.b /= 3;
-		}
+			add_coefficient(&color, &minirt->scene->light->color, angle);
 	}
+	color = build_color(&object->color, &color);
 	return (color);
 }

@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 22:17:43 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/31 20:33:06 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/31 20:54:22 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ void	render(t_minirt *minirt)
 		{
 			dir = create_ray(minirt, (double)x, (double)y);
 			color = raytrace(minirt, &minirt->scene->camera->pos, &dir);
-			my_mlx_pixel_put(minirt->image, x, y,
-				(((int)color.r & 0xFF) << 16)
-				+ (((int)color.g & 0xFF) << 8)
-				+ ((int)color.b & 0xFF));
+			my_mlx_pixel_put(minirt->image, x, y, mix_colors(&color));
 			++y;
 		}
 		++x;

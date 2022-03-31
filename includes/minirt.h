@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/31 20:22:06 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/31 21:16:16 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,9 @@ int			close_hook(t_minirt *minirt);
 
 void		set_default_color(t_color *color);
 void		set_sky_color(t_minirt *minirt, t_color *color);
-void		add_coeficient(t_color *object_color, t_color *light_color, double coef);
-t_color		build_color(t_color *object_color, t_color *light_color);
+int			mix_colors(t_color *color);
+void		add_coefficient(t_color *color, t_color *light_color, double coef);
+t_color		build_color(t_color *color, t_color *light_color);
 void		set_default_point(t_point *point);
 int			is_intersection_point(const t_point *point);
 
