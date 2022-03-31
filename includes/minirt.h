@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/31 02:00:45 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/31 20:22:06 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-// # include <mlx.h>
-# include "../mlx_linux/mlx.h"
+# include <mlx.h>
+// # include "../mlx_linux/mlx.h"
 # include <math.h>
 
 # include "list.h"
@@ -105,8 +105,11 @@ int			is_closest_intersection_point(const t_point *origin_point,
 
 /* Utils */
 int			close_hook(t_minirt *minirt);
+
 void		set_default_color(t_color *color);
 void		set_sky_color(t_minirt *minirt, t_color *color);
+void		add_coeficient(t_color *object_color, t_color *light_color, double coef);
+t_color		build_color(t_color *object_color, t_color *light_color);
 void		set_default_point(t_point *point);
 int			is_intersection_point(const t_point *point);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/31 02:08:00 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/31 17:54:59 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ t_color	raytrace(t_minirt *minirt, t_point *origin, t_vec *ray)
 	t_list		*objects_list;
 	t_color		color;
 
-	set_sky_color(minirt, &color);
+	set_default_color(&color);
+	// set_sky_color(minirt, &color);
 	intersection = cast_ray(minirt, NULL, origin, ray);
 	if (intersection.object)
 		color = calculate_light(minirt, intersection.object,
