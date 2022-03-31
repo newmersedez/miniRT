@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:53:09 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 17:43:46 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/03/31 22:13:45 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	display_message(const char *msg, int fd)
 void	success_exit(t_minirt *minirt, const char *msg)
 {
 	if (!minirt)
-		return ;
+	{
+		display_message(msg, 1);
+		exit(EXIT_FAILURE);
+	}
 	clear_minirt(minirt);
 	display_message(msg, 1);
 	exit(EXIT_SUCCESS);
@@ -31,7 +34,10 @@ void	success_exit(t_minirt *minirt, const char *msg)
 void	fail_exit(t_minirt *minirt, const char *msg)
 {
 	if (!minirt)
-		return ;
+	{
+		display_message(msg, 2);
+		exit(EXIT_FAILURE);
+	}
 	clear_minirt(minirt);
 	display_message(msg, 2);
 	exit(EXIT_FAILURE);

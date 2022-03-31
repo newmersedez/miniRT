@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:38:35 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/31 17:54:59 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/31 22:37:51 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_color	raytrace(t_minirt *minirt, t_point *origin, t_vec *ray)
 	t_list		*objects_list;
 	t_color		color;
 
-	set_default_color(&color);
-	// set_sky_color(minirt, &color);
+	// set_default_color(&color);
+	set_sky_color(minirt, &color, ray);
 	intersection = cast_ray(minirt, NULL, origin, ray);
 	if (intersection.object)
 		color = calculate_light(minirt, intersection.object,

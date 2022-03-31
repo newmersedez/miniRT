@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lighting.c                                         :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/31 21:37:33 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/03/31 22:31:41 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+static t_point	reflect_ray(t_vec *ray, t_vec *normal)
+{
+	t_vec	new_normal;
+
+	new_normal = vec_multiply_by_num(normal, 2 * vec_dot(normal, ray));
+	return (vec_subtract(ray, &new_normal));
+}
 
 static int	point_in_shadow(t_minirt *minirt, t_object *object,
 				t_point *origin, t_vec *ray)
@@ -43,6 +51,22 @@ static int	point_in_shadow(t_minirt *minirt, t_object *object,
 	return (1);
 }
 
+static double	get_specular(t_minirt *minirt, t_vec *normal, t_point *intersection_point)
+{
+	double	light;
+	double	dot_pruduct;
+	double	angle;
+	t_vec	direction;
+	t_vec	reflected;
+
+	direction = vec_subtract(intersection_point, &minirt->scene->light->pos);
+	reflected = (reflect_ray(&direction, normal));
+	dot_pruduct = vec_dot(&reflected, &direction);
+	angle = dot_pruduct / (vec_length(&reflected) * vec_length(&direction));
+	light = minirt->scene->light->brightness_ratio * pow(fmax(0.0, angle), 32);
+	return (light);
+}
+
 t_color	calculate_light(t_minirt *minirt, t_object *object,
 			t_point *intersection_point)
 {
@@ -65,8 +89,9 @@ t_color	calculate_light(t_minirt *minirt, t_object *object,
 	{
 		angle = dot_pruduct / (vec_length(&light_ray) * vec_length(&normal_vec));
 		angle *= minirt->scene->light->brightness_ratio;
-		if (minirt->scene->light)
-			add_coefficient(&color, &minirt->scene->light->color, angle);
+		add_coefficient(&color, &minirt->scene->light->color, angle);
+		angle = get_specular(minirt, &normal_vec, intersection_point);
+		add_coefficient(&color, &minirt->scene->light->color, angle);
 	}
 	color = build_color(&object->color, &color);
 	return (color);
