@@ -6,13 +6,13 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:39:51 by lorphan           #+#    #+#             */
-/*   Updated: 2022/04/01 16:35:59 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 18:14:19 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static int	point_in_shadow(t_minirt *minirt, t_object *object,
+static int	in_shadow(t_minirt *minirt, t_object *object,
 				t_point *origin, t_vec *ray)
 {
 	t_vec		new_ray;
@@ -58,28 +58,26 @@ t_color	calculate_light(t_minirt *minirt, t_object *object,
 	t_color	color;
 	t_vec	normal_vec;
 	t_vec	light_ray;
-	double	dot_prod;
+	double	dot;
 	double	angle;
 
 	set_default_color(&color);
-	normal_vec = object->get_normal_vector(object->figure, intersection_point);
+	normal_vec = get_normal_vec(object, intersection_point);
 	light_ray = vec_subtract(intersection_point, &minirt->scene.light->pos);
 	light_ray = vec_normalize(&light_ray);
 	if (object->type == PLANE)
 		normal_vec = change_plane_normal(&normal_vec, &light_ray);
-	dot_prod = vec_dot(&light_ray, &normal_vec);
+	dot = vec_dot(&light_ray, &normal_vec);
 	if (minirt->scene.ambient_light)
 		add_coefficient(&color, &minirt->scene.ambient_light->color,
 			minirt->scene.ambient_light->lighting_ratio);
-	if (dot_prod > 0 && !point_in_shadow(minirt, object,
-			intersection_point, &light_ray))
+	if (dot > 0 && !in_shadow(minirt, object, intersection_point, &light_ray))
 	{
-		angle = dot_prod / (vec_length(&light_ray) * vec_length(&normal_vec));
+		angle = dot / (vec_length(&light_ray) * vec_length(&normal_vec));
 		angle *= minirt->scene.light->brightness_ratio;
 		add_coefficient(&color, &minirt->scene.light->color, angle);
 		angle = get_specular(minirt, &normal_vec, intersection_point);
 		add_coefficient(&color, &minirt->scene.light->color, angle);
 	}
-	color = build_color(&object->color, &color);
-	return (color);
+	return (build_color(&object->color, &color));
 }

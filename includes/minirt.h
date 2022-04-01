@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/04/01 16:26:47 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 18:04:53 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ t_vec		vec_multiply_by_num(t_vec *vec, double n);
 double		vec_dot(t_vec *vec1, t_vec *vec2);
 t_vec		vec_cross(t_vec *vec1, t_vec *vec2);
 t_vec		change_plane_normal(t_vec *normal_vec, t_vec *ray);
+t_vec		get_normal_vec(t_object *object, t_point *intersection);
+t_point		ray_intersection(t_object *object, t_point *start, t_vec *ray);
 t_vec		get_sphere_normal_vec(void *data,
 				t_point *intersection);
 t_vec		get_plane_normal_vec(void *data,

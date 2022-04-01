@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:39:11 by dmitry            #+#    #+#             */
-/*   Updated: 2022/04/01 16:35:55 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 18:04:30 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,7 @@ t_intersect	cast_ray(t_minirt *minirt, t_object *object,
 	objects_list = minirt->scene.objects_list;
 	while (objects_list)
 	{
-		point = objects_list->object->ray_intersection(
-				objects_list->object->figure, origin, ray);
+		point = ray_intersection(objects_list->object, origin, ray);
 		if (is_closest_intersection_point(origin,
 				&point, &intersection.point))
 		{

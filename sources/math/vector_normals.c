@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 01:30:19 by dmitry            #+#    #+#             */
-/*   Updated: 2022/04/01 15:05:26 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 18:06:44 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,17 @@ t_vec	get_cylinder_normal_vec(void *data, t_point *intersection)
 	temp = vec_subtract(&c0, intersection);
 	n = vec_normalize(&temp);
 	return (n);
+}
+
+t_vec	get_normal_vec(t_object *object, t_point *intersection)
+{
+	t_vec	normal;
+
+	if (object->type == SPHERE)
+		normal = get_sphere_normal_vec(object->figure, intersection);
+	if (object->type == PLANE)
+		normal = get_plane_normal_vec(object->figure, intersection);
+	if (object->type == CYLINDER)
+		normal = get_cylinder_normal_vec(object->figure, intersection);
+	return (normal);
 }
