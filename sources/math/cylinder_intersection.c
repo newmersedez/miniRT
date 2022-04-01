@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_intersection.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:01:25 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/30 02:35:27 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:04:57 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static double	get_solution(t_cylinder *cyl, t_point *origin,
 static double	find_t(t_cylinder *cyl, t_point *origin, t_vec *dir)
 {
 	t_vec	oc;
-	t_vec	temp;
 	double	t[3];
 	double	x[2];
 
@@ -69,8 +68,7 @@ static double	find_t(t_cylinder *cyl, t_point *origin, t_vec *dir)
 	return (get_solution(cyl, origin, dir, x));
 }
 
-t_point	ray_intersect_cylinder(const void *data, const t_point *start_point,
-			const t_vec *ray)
+t_point	ray_intersect_cylinder(void *data, t_point *start_point, t_vec *ray)
 {
 	t_cylinder	*cylinder;
 	t_point		point;

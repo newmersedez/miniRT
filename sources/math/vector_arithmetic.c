@@ -6,13 +6,13 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 21:20:18 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/30 21:20:19 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 15:03:45 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_vec	vec_add(const t_vec *vec1, const t_vec *vec2)
+t_vec	vec_add(t_vec *vec1, t_vec *vec2)
 {
 	t_vec	res_vec;
 
@@ -22,7 +22,7 @@ t_vec	vec_add(const t_vec *vec1, const t_vec *vec2)
 	return (res_vec);
 }
 
-t_vec	vec_subtract(const t_vec *vec1, const t_vec *vec2)
+t_vec	vec_subtract(t_vec *vec1, t_vec *vec2)
 {
 	t_vec	res_vec;
 
@@ -32,7 +32,7 @@ t_vec	vec_subtract(const t_vec *vec1, const t_vec *vec2)
 	return (res_vec);
 }
 
-t_vec	vec_multiply_by_num(const t_vec *vec, double n)
+t_vec	vec_multiply_by_num(t_vec *vec, double n)
 {
 	t_vec	res_vec;
 
@@ -42,12 +42,12 @@ t_vec	vec_multiply_by_num(const t_vec *vec, double n)
 	return (res_vec);
 }
 
-double	vec_dot(const t_vec *vec1, const t_vec *vec2)
+double	vec_dot(t_vec *vec1, t_vec *vec2)
 {
 	return (vec1->x * vec2->x + vec1->y * vec2->y + vec1->z * vec2->z);
 }
 
-t_vec	vec_cross(const t_vec *vec1, const t_vec *vec2)
+t_vec	vec_cross(t_vec *vec1, t_vec *vec2)
 {
 	double	x;
 	double	y;

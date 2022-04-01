@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:50:13 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/28 23:30:32 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:02:13 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_minirt	t_minirt;
 typedef struct s_color	t_color;
 
 /* Parsing */
-int			parse_info_from_file(const char *filename, t_minirt *minirt);
+int			parse_info_from_file(char *filename, t_minirt *minirt);
 int			parse_camera(char *line, t_minirt *minirt);
 int			parse_light(char *line, t_minirt *minirt);
 int			parse_ambient(char *line, t_minirt *minirt);

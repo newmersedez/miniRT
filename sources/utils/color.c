@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:40:11 by lorphan           #+#    #+#             */
-/*   Updated: 2022/04/01 01:25:16 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:12:00 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	set_sky_color(t_minirt *minirt, t_color *color, t_vec *ray)
 		/ (vec_length(&minirt->scene->camera->dir) * vec_length(ray));
 	color->r = 150 * fabs(angle) * minirt->scene->light->brightness_ratio;
 	color->g = 206 * fabs(angle) * minirt->scene->light->brightness_ratio;
-	color->b = 235 * fabs(angle) * minirt->scene->light->brightness_ratio;
+	color->b = 255 * fabs(angle) * minirt->scene->light->brightness_ratio;
 }
 
 int	mix_colors(t_color *color)

@@ -6,13 +6,13 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:00:38 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/30 19:18:19 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 15:03:22 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_vec	change_plane_normal(const t_vec *normal_vec, const t_vec *ray)
+t_vec	change_plane_normal(t_vec *normal_vec, t_vec *ray)
 {
 	t_vec	new_normal_vec;
 	double	dot_product;
@@ -44,8 +44,7 @@ static double	find_t(t_plane *plane, t_vec *plane_normal,
 	return (t);
 }
 
-t_point	ray_intersect_plane(const void *data, const t_point *start_point,
-			const t_vec *ray)
+t_point	ray_intersect_plane(void *data, t_point *start_point, t_vec *ray)
 {
 	t_plane	*plane;
 	t_point	point;

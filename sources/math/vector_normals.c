@@ -6,13 +6,13 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 01:30:19 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/30 21:20:27 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 15:05:26 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_vec	get_sphere_normal_vec(const void *data, const t_point *intersection)
+t_vec	get_sphere_normal_vec(void *data, t_point *intersection)
 {
 	t_vec		vec;
 	t_sphere	*sphere;
@@ -23,16 +23,16 @@ t_vec	get_sphere_normal_vec(const void *data, const t_point *intersection)
 	return (vec);
 }
 
-t_vec	get_plane_normal_vec(const void *data, const t_point *intersection)
+t_vec	get_plane_normal_vec(void *data, t_point *intersection)
 {
-	t_vec	vec;
 	t_plane	*plane;
 
+	(void)intersection;
 	plane = (t_plane *)data;
 	return (plane->dir);
 }
 
-t_vec	get_cylinder_normal_vec(const void *data, const t_point *intersection)
+t_vec	get_cylinder_normal_vec(void *data, t_point *intersection)
 {
 	t_cylinder	*cylinder;
 	t_vec		n;

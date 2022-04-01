@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:39:11 by dmitry            #+#    #+#             */
-/*   Updated: 2022/03/31 02:01:37 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:04:14 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void	convert_camera_basis(const t_vec *dir, t_vec *b_x, t_vec *b_y)
+void	convert_camera_basis(t_vec *dir, t_vec *b_x, t_vec *b_y)
 {
 	t_vec	temp;
 

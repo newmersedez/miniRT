@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 21:20:13 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/30 21:20:14 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 15:03:28 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ static double	find_t(t_sphere *sphere, t_point *origin, t_vec *ray)
 	return (t_values[2]);
 }
 
-t_point	ray_intersect_sphere(const void *data, const t_point *start_point,
-			const t_vec *ray)
+t_point	ray_intersect_sphere(void *data, t_point *start_point, t_vec *ray)
 {
 	t_sphere	*sphere;
 	t_point		point;

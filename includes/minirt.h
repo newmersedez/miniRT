@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/31 22:38:11 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 15:15:09 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINIRT_H
 
 # include <mlx.h>
-// # include "../mlx_linux/mlx.h"
 # include <math.h>
 
 # include "list.h"
@@ -67,7 +66,7 @@ int			clear_scene(t_scene *scene);
 
 /* Render */
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
-void		convert_camera_basis(const t_vec *dir, t_vec *b_x, t_vec *b_y);
+void		convert_camera_basis(t_vec *dir, t_vec *b_x, t_vec *b_y);
 t_vec		convert_to_viewport(t_minirt *minirt, double x, double y);
 t_point		create_ray(t_minirt *minirt, double x, double y);
 t_intersect	cast_ray(t_minirt *minirt, t_object *object,
@@ -79,32 +78,32 @@ t_color		calculate_light(t_minirt *minirt, t_object *object,
 
 /* Math */
 t_vec		vec_create(double x, double y, double z);
-double		vec_length(const t_vec *vec);
-t_vec		vec_normalize(const t_vec *vec);
-t_vec		vec_add(const t_vec *vec1, const t_vec *vec2);
-t_vec		vec_subtract(const t_vec *vec1, const t_vec *vec2);
-t_vec		vec_multiply_by_num(const t_vec *vec, double n);
-double		vec_dot(const t_vec *vec1, const t_vec *vec2);
-t_vec		vec_cross(const t_vec *vec1, const t_vec *vec2);
-t_vec		change_plane_normal(const t_vec *normal_vec, const t_vec *ray);
-t_vec		get_sphere_normal_vec(const void *data,
-				const t_point *intersection);
-t_vec		get_plane_normal_vec(const void *data,
-				const t_point *intersection);
-t_vec		get_cylinder_normal_vec(const void *data,
-				const t_point *intersection);
-t_point		ray_intersect_sphere(const void *data,
-				const t_point *start_point, const t_vec *ray);
-t_point		ray_intersect_plane(const void *data,
-				const t_point *start_point, const t_vec *ray);
-t_point		ray_intersect_cylinder(const void *data,
-				const t_point *start_point, const t_vec *ray);
-int			is_closest_intersection_point(const t_point *origin_point,
-				const t_point *intersection_point,
-				const t_point *closest_point);
+double		vec_length(t_vec *vec);
+t_vec		vec_normalize(t_vec *vec);
+t_vec		vec_add(t_vec *vec1, t_vec *vec2);
+t_vec		vec_subtract(t_vec *vec1, t_vec *vec2);
+t_vec		vec_multiply_by_num(t_vec *vec, double n);
+double		vec_dot(t_vec *vec1, t_vec *vec2);
+t_vec		vec_cross(t_vec *vec1, t_vec *vec2);
+t_vec		change_plane_normal(t_vec *normal_vec, t_vec *ray);
+t_vec		get_sphere_normal_vec(void *data,
+				t_point *intersection);
+t_vec		get_plane_normal_vec(void *data,
+				t_point *intersection);
+t_vec		get_cylinder_normal_vec(void *data,
+				t_point *intersection);
+t_point		ray_intersect_sphere(void *data,
+				t_point *start_point, t_vec *ray);
+t_point		ray_intersect_plane(void *data,
+				t_point *start_point, t_vec *ray);
+t_point		ray_intersect_cylinder(void *data,
+				t_point *start_point, t_vec *ray);
+int			is_closest_intersection_point(t_point *origin_point,
+				t_point *intersection_point, t_point *closest_point);
 
 /* Utils */
 int			close_hook(t_minirt *minirt);
+int			keyboard_hook(int keycode, t_minirt *minirt);
 
 void		set_default_color(t_color *color);
 void		set_sky_color(t_minirt *minirt, t_color *color, t_vec *ray);
@@ -112,6 +111,6 @@ int			mix_colors(t_color *color);
 void		add_coefficient(t_color *color, t_color *light_color, double coef);
 t_color		build_color(t_color *color, t_color *light_color);
 void		set_default_point(t_point *point);
-int			is_intersection_point(const t_point *point);
+int			is_intersection_point(t_point *point);
 
 #endif

@@ -6,20 +6,20 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:53:09 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/31 22:13:45 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 15:02:58 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/errors.h"
 
-void	display_message(const char *msg, int fd)
+void	display_message(char *msg, int fd)
 {
 	if (!msg)
 		return ;
 	ft_putstr_fd((char *)msg, fd);
 }
 
-void	success_exit(t_minirt *minirt, const char *msg)
+void	success_exit(t_minirt *minirt, char *msg)
 {
 	if (!minirt)
 	{
@@ -31,7 +31,7 @@ void	success_exit(t_minirt *minirt, const char *msg)
 	exit(EXIT_SUCCESS);
 }
 
-void	fail_exit(t_minirt *minirt, const char *msg)
+void	fail_exit(t_minirt *minirt, char *msg)
 {
 	if (!minirt)
 	{

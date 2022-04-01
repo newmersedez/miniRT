@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:17:45 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/31 20:26:04 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 15:04:11 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	parse_line(char *line, t_minirt *minirt)
 	return (status);
 }
 
-int	parse_info_from_file(const char *filename, t_minirt *minirt)
+int	parse_info_from_file(char *filename, t_minirt *minirt)
 {
 	int		fd;
 	int		status;

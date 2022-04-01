@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:40:56 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 17:24:00 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/04/01 15:04:34 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	clear_list(t_list **list)
 	}
 }
 
-size_t	size(const t_list *list)
+size_t	size(t_list *list)
 {
 	size_t	size;
 
