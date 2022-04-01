@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:53:50 by lorphan           #+#    #+#             */
-/*   Updated: 2022/04/01 15:02:50 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 16:33:22 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int	check_line_comment(char *line)
 
 int	check_scene_correctness(t_minirt *minirt)
 {
-	if (!minirt->scene->camera)
+	if (!minirt->scene.camera)
 		return (0);
-	if (!minirt->scene->light)
+	if (!minirt->scene.light)
 		return (0);
 	return (1);
 }

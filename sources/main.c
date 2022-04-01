@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:25:37 by lorphan           #+#    #+#             */
-/*   Updated: 2022/04/01 14:27:39 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 16:31:04 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	main(int argc, char *argv[])
 
 	handle_errors(&minirt, argc, argv);
 	render(&minirt);
-	mlx_hook(minirt.window->mlx_win, 17, 0, close_hook, &minirt);
-	mlx_hook(minirt.window->mlx_win, 2, 5, keyboard_hook, &minirt);
-	mlx_loop(minirt.window->mlx);
+	mlx_hook(minirt.window.mlx_win, 17, 0, close_hook, &minirt);
+	mlx_hook(minirt.window.mlx_win, 2, 5, keyboard_hook, &minirt);
+	mlx_loop(minirt.window.mlx);
 	clear_minirt(&minirt);
 	return (0);
 }

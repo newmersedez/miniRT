@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:22:09 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/30 17:43:40 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 16:36:07 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int	parse_plane(char *line, t_minirt *minirt)
 		free(plane);
 		return (0);
 	}
-	push_back(&(minirt->scene->objects_list), object);
+	push_back(&(minirt->scene.objects_list), object);
 	return (1);
 }

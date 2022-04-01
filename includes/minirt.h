@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:12:55 by lorphan           #+#    #+#             */
-/*   Updated: 2022/04/01 15:15:09 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 16:26:47 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ typedef struct s_scene
 
 typedef struct s_minirt
 {
-	t_window	*window;
-	t_image		*image;
-	t_scene		*scene;
+	t_window	window;
+	t_image		image;
+	t_scene		scene;
 
 }	t_minirt;
 
 /* Init and clear*/
 int			create_minirt(t_minirt *minirt);
-t_scene		*create_scene(void);
-t_window	*create_window(int width, int height, char *name);
-t_image		*create_image(t_minirt *minirt);
+t_scene		create_scene(void);
+t_window	create_window(int width, int height, char *name);
+t_image		create_image(t_minirt *minirt);
 t_object	*create_sphere_object(t_sphere *sphere);
 t_object	*create_plane_object(t_plane *plane);
 t_object	*create_cylinder_object(t_cylinder *cylinder);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:23:21 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 15:47:10 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/04/01 16:35:41 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ int	parse_cylinder(char *line, t_minirt *minirt)
 		free(cylinder);
 		return (0);
 	}
-	push_back(&(minirt->scene->objects_list), object);
+	push_back(&minirt->scene.objects_list, object);
 	return (1);
 }

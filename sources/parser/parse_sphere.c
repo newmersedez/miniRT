@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitry <dmitry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:21:35 by lorphan           #+#    #+#             */
-/*   Updated: 2022/03/29 15:47:29 by dmitry           ###   ########.fr       */
+/*   Updated: 2022/04/01 16:36:04 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ int	parse_sphere(char *line, t_minirt *minirt)
 		free(sphere);
 		return (0);
 	}
-	push_back(&(minirt->scene->objects_list), object);
+	push_back(&(minirt->scene.objects_list), object);
 	return (1);
 }

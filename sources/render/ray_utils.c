@@ -6,7 +6,7 @@
 /*   By: lorphan <lorphan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:39:11 by dmitry            #+#    #+#             */
-/*   Updated: 2022/04/01 15:04:14 by lorphan          ###   ########.fr       */
+/*   Updated: 2022/04/01 16:35:55 by lorphan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_vec	convert_to_viewport(t_minirt *minirt, double x, double y)
 	double	aspect_ratio;
 
 	aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
-	fov = minirt->scene->camera->fov / (double)DEFAULT_FOV;
+	fov = minirt->scene.camera->fov / (double)DEFAULT_FOV;
 	vec.x = (x - (double)WINDOW_WIDTH / 2.0)
 		* (fov / (double)WINDOW_WIDTH) * aspect_ratio;
 	vec.y = -1.0 * (y - (double)WINDOW_HEIGHT / 2.0)
@@ -58,12 +58,12 @@ t_point	create_ray(t_minirt *minirt, double x, double y)
 	t_vec	temp;
 
 	on_screen = convert_to_viewport(minirt, x, y);
-	basis_nx = vec_multiply_by_num(&minirt->scene->camera->basis_x,
+	basis_nx = vec_multiply_by_num(&minirt->scene.camera->basis_x,
 			on_screen.x);
-	basis_ny = vec_multiply_by_num(&minirt->scene->camera->basis_y,
+	basis_ny = vec_multiply_by_num(&minirt->scene.camera->basis_y,
 			on_screen.y);
 	temp = vec_add(&basis_nx, &basis_ny);
-	temp = vec_add(&temp, &minirt->scene->camera->dir);
+	temp = vec_add(&temp, &minirt->scene.camera->dir);
 	ans = vec_normalize(&temp);
 	return (ans);
 }
@@ -77,7 +77,7 @@ t_intersect	cast_ray(t_minirt *minirt, t_object *object,
 
 	set_default_point(&intersection.point);
 	intersection.object = object;
-	objects_list = minirt->scene->objects_list;
+	objects_list = minirt->scene.objects_list;
 	while (objects_list)
 	{
 		point = objects_list->object->ray_intersection(
