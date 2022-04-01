@@ -1,4 +1,4 @@
-NAME			= minirt
+NAME			= miniRT
 LIBFT			= ./libft/libft.h
 
 CC				= gcc
