@@ -13,7 +13,8 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include <mlx.h>
+// # include <mlx.h>
+# include "../mlx_linux/mlx.h"
 # include <math.h>
 
 # include "list.h"
