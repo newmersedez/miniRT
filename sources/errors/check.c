@@ -33,7 +33,7 @@ int	check_file_extension(char *filename)
 {
 	char	*ext;
 
-	ext = ft_strchr(filename, '.');
+	ext = ft_strrchr(filename, '.');
 	if (!ext)
 		return (0);
 	else
